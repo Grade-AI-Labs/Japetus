@@ -1,5 +1,5 @@
-import type { Space } from '../adapters/types.js';
-import { notEntitled } from '../errors.js';
+import type { Space } from '../adapters/types.ts';
+import { notEntitled } from '../errors.ts';
 
 export type Scope = 'standards:read' | 'catalog:read' | `kb:read:${Space}`;
 

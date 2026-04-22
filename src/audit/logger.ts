@@ -1,4 +1,4 @@
-import { readCounts } from '../staleness.js';
+import { readCounts } from '../staleness.ts';
 
 export interface AuditEntry {
   ts: string;

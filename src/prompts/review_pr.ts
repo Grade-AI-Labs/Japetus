@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import type { PromptMessage } from '@modelcontextprotocol/sdk/types.js';
-import { embed, userText } from './shared.js';
+import { embed, userText } from './shared.ts';
 
 export function registerReviewPr(server: McpServer): void {
   server.registerPrompt(

@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { embed, userText } from './shared.js';
+import { embed, userText } from './shared.ts';
 
 export function registerWriteAdr(server: McpServer): void {
   server.registerPrompt(

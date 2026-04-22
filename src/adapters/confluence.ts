@@ -1,4 +1,4 @@
-import { upstreamUnavailable } from '../errors.js';
+import { upstreamUnavailable } from '../errors.ts';
 import type {
   FetchResult,
   ResourceHandle,
@@ -6,7 +6,7 @@ import type {
   SourceAdapter,
   Space,
   Unsubscribe,
-} from './types.js';
+} from './types.ts';
 
 export interface ConfluenceAdapterOptions {
   baseUrl: string;

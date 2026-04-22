@@ -3,8 +3,8 @@ import { randomUUID } from 'node:crypto';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import type { AuthInfo } from '@modelcontextprotocol/sdk/server/auth/types.js';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import type { EntraValidator } from './auth/entra.js';
-import { UnauthorizedError } from './auth/entra.js';
+import type { EntraValidator } from './auth/entra.ts';
+import { UnauthorizedError } from './auth/entra.ts';
 
 export interface TransportOptions {
   server: McpServer;

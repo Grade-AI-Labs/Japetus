@@ -4,13 +4,13 @@ import { join } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
-import { buildServer } from '../../src/server.js';
-import { FilesystemAdapter } from '../../src/adapters/filesystem.js';
-import { Registry } from '../../src/registry.js';
-import { ResourceCache } from '../../src/cache.js';
-import { seedRegistry } from '../../src/seed.js';
-import { startHttpServer } from '../../src/transport.js';
-import { DevValidator } from '../../src/auth/entra.js';
+import { buildServer } from '../../src/server.ts';
+import { FilesystemAdapter } from '../../src/adapters/filesystem.ts';
+import { Registry } from '../../src/registry.ts';
+import { ResourceCache } from '../../src/cache.ts';
+import { seedRegistry } from '../../src/seed.ts';
+import { startHttpServer } from '../../src/transport.ts';
+import { DevValidator } from '../../src/auth/entra.ts';
 
 interface Fixture {
   contentDir: string;

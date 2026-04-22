@@ -124,7 +124,7 @@ npm test                          # run all tests
 npx vitest run <path>             # run a single test file
 npm run test:watch                # watch-mode tests
 npm run typecheck                 # npx tsc --noEmit
-npm run dev                       # dev server (tsx watch)
+npm run dev                       # dev server (node --watch, native TS)
 npm run build                     # tsc -p tsconfig.json → dist/
 npm run start                     # node dist/server.js
 npm run lint                      # prettier --check . && tsc --noEmit

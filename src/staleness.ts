@@ -1,5 +1,5 @@
 import { createServer } from 'node:http';
-import type { Registry } from './registry.js';
+import type { Registry } from './registry.ts';
 
 export interface StalenessOptions {
   registry: Registry;

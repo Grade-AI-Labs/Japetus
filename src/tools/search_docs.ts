@@ -1,9 +1,9 @@
 import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { audit } from '../audit/logger.js';
-import { kbScopeFor, requireScope } from '../auth/scopes.js';
-import { principalFromExtra, type AppContext, type McpExtra } from '../server.js';
-import type { Space } from '../adapters/types.js';
+import { audit } from '../audit/logger.ts';
+import { kbScopeFor, requireScope } from '../auth/scopes.ts';
+import { principalFromExtra, type AppContext, type McpExtra } from '../server.ts';
+import type { Space } from '../adapters/types.ts';
 
 export function registerSearchDocs(server: McpServer, ctx: AppContext): void {
   server.registerTool(

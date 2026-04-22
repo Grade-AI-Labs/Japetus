@@ -1,5 +1,5 @@
 import { createRemoteJWKSet, jwtVerify, errors as joseErrors } from 'jose';
-import type { Principal } from './scopes.js';
+import type { Principal } from './scopes.ts';
 
 export interface EntraConfig {
   tenantId: string;

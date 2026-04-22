@@ -1,4 +1,4 @@
-import type { FetchResult } from './adapters/types.js';
+import type { FetchResult } from './adapters/types.ts';
 
 interface CacheEntry {
   result: FetchResult;

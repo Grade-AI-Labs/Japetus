@@ -1,5 +1,5 @@
-import { resourceNotFound } from './errors.js';
-import type { SourceAdapter, Space } from './adapters/types.js';
+import { resourceNotFound } from './errors.ts';
+import type { SourceAdapter, Space } from './adapters/types.ts';
 
 export type ResourceKind = 'conventions' | 'runbooks' | 'templates' | 'catalog' | 'docs';
 

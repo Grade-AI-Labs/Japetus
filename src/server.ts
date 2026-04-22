@@ -9,30 +9,30 @@ import {
   type ServerRequest,
   type ServerNotification,
 } from '@modelcontextprotocol/sdk/types.js';
-import { FilesystemAdapter } from './adapters/filesystem.js';
-import { ConfluenceAdapter } from './adapters/confluence.js';
-import { Registry, type ResourceEntry } from './registry.js';
-import { ResourceCache } from './cache.js';
-import { audit } from './audit/logger.js';
-import { requireScope, type Principal, type Scope, kbScopeFor } from './auth/scopes.js';
-import { DevValidator, EntraJwtValidator, type EntraValidator } from './auth/entra.js';
-import { resourceNotFound } from './errors.js';
-import { seedRegistry } from './seed.js';
-import { registerSearchStandards } from './tools/search_standards.js';
-import { registerGetResource } from './tools/get_resource.js';
-import { registerCurrentStandard } from './tools/current_standard.js';
-import { registerSearchDocs } from './tools/search_docs.js';
-import { registerWhoOwns } from './tools/who_owns.js';
-import { registerWritePrd } from './prompts/write_prd.js';
-import { registerReviewPr } from './prompts/review_pr.js';
-import { registerWriteRfc } from './prompts/write_rfc.js';
-import { registerWriteAdr } from './prompts/write_adr.js';
-import { registerIncidentPostmortem } from './prompts/incident_postmortem.js';
-import { registerOnboardRepo } from './prompts/onboard_repo.js';
-import type { Space } from './adapters/types.js';
-import type { SourceAdapter } from './adapters/types.js';
-import { startHttpServer } from './transport.js';
-import { startStalenessServer } from './staleness.js';
+import { FilesystemAdapter } from './adapters/filesystem.ts';
+import { ConfluenceAdapter } from './adapters/confluence.ts';
+import { Registry, type ResourceEntry } from './registry.ts';
+import { ResourceCache } from './cache.ts';
+import { audit } from './audit/logger.ts';
+import { requireScope, type Principal, type Scope, kbScopeFor } from './auth/scopes.ts';
+import { DevValidator, EntraJwtValidator, type EntraValidator } from './auth/entra.ts';
+import { resourceNotFound } from './errors.ts';
+import { seedRegistry } from './seed.ts';
+import { registerSearchStandards } from './tools/search_standards.ts';
+import { registerGetResource } from './tools/get_resource.ts';
+import { registerCurrentStandard } from './tools/current_standard.ts';
+import { registerSearchDocs } from './tools/search_docs.ts';
+import { registerWhoOwns } from './tools/who_owns.ts';
+import { registerWritePrd } from './prompts/write_prd.ts';
+import { registerReviewPr } from './prompts/review_pr.ts';
+import { registerWriteRfc } from './prompts/write_rfc.ts';
+import { registerWriteAdr } from './prompts/write_adr.ts';
+import { registerIncidentPostmortem } from './prompts/incident_postmortem.ts';
+import { registerOnboardRepo } from './prompts/onboard_repo.ts';
+import type { Space } from './adapters/types.ts';
+import type { SourceAdapter } from './adapters/types.ts';
+import { startHttpServer } from './transport.ts';
+import { startStalenessServer } from './staleness.ts';
 
 export type McpExtra = RequestHandlerExtra<ServerRequest, ServerNotification>;
 

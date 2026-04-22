@@ -2,9 +2,9 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { audit } from '../audit/logger.js';
-import { requireScope } from '../auth/scopes.js';
-import { principalFromExtra, type McpExtra } from '../server.js';
+import { audit } from '../audit/logger.ts';
+import { requireScope } from '../auth/scopes.ts';
+import { principalFromExtra, type McpExtra } from '../server.ts';
 
 interface CatalogEntry {
   keys: string[];

@@ -1,4 +1,4 @@
-import type { Registry, ResourceEntry } from './registry.js';
+import type { Registry, ResourceEntry } from './registry.ts';
 
 /**
  * MVP corpus registration. Backed by the filesystem adapter reading from content/.

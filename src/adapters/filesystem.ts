@@ -1,15 +1,15 @@
 import { createHash } from 'node:crypto';
 import { readFile, stat, readdir, watch } from 'node:fs/promises';
-import { FSWatcher, watch as watchSync } from 'node:fs';
+import { type FSWatcher, watch as watchSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
-import { upstreamUnavailable } from '../errors.js';
+import { upstreamUnavailable } from '../errors.ts';
 import type {
   FetchResult,
   ResourceHandle,
   SearchHit,
   SourceAdapter,
   Unsubscribe,
-} from './types.js';
+} from './types.ts';
 
 export interface FilesystemAdapterOptions {
   root: string;
