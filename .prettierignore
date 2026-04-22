@@ -1,0 +1,8 @@
+node_modules/
+dist/
+coverage/
+package-lock.json
+
+# Authored by humans; do not reformat
+plans/
+.claude/skills/

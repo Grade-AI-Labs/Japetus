@@ -1,0 +1,47 @@
+{
+  "_note": "MVP stub for who_owns (plans/issues/12-who-owns.md). Replace with real catalog feed in Phase 3 without changing tool shape.",
+  "services": [
+    {
+      "keys": ["talentech-ats-core", "ats-core"],
+      "team": "ATS Core",
+      "primary_contact": "ats-core-lead@talentech.com",
+      "slack_channel": "#ats-core",
+      "repos": ["Grade-AI-Labs/talentech-ats-core"]
+    },
+    {
+      "keys": ["varbi", "varbi-web"],
+      "team": "Varbi",
+      "primary_contact": "varbi-lead@talentech.com",
+      "slack_channel": "#varbi",
+      "repos": ["Grade-AI-Labs/varbi-web", "Grade-AI-Labs/varbi-api"]
+    },
+    {
+      "keys": ["reachmee"],
+      "team": "ReachMee",
+      "primary_contact": "reachmee-lead@talentech.com",
+      "slack_channel": "#reachmee",
+      "repos": ["Grade-AI-Labs/reachmee-web", "Grade-AI-Labs/reachmee-api"]
+    },
+    {
+      "keys": ["jobtip"],
+      "team": "Jobtip",
+      "primary_contact": "jobtip-lead@talentech.com",
+      "slack_channel": "#jobtip",
+      "repos": ["Grade-AI-Labs/jobtip"]
+    },
+    {
+      "keys": ["talmund"],
+      "team": "Talmund",
+      "primary_contact": "talmund-lead@talentech.com",
+      "slack_channel": "#talmund",
+      "repos": ["Grade-AI-Labs/talmund"]
+    },
+    {
+      "keys": ["grade-standards", "mimas"],
+      "team": "Platform DX",
+      "primary_contact": "platform-dx-lead@talentech.com",
+      "slack_channel": "#platform-dx",
+      "repos": ["Grade-AI-Labs/grade-standards", "Grade-AI-Labs/Mimas"]
+    }
+  ]
+}
