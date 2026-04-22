@@ -1,6 +1,6 @@
 ---
 title: WCAG 2.1 AA Baseline
-description: Accessibility baseline for user-facing products at Talentech AI Labs.
+description: Accessibility baseline for user-facing products at Talentech.
 owner: frontend-eng
 ---
 

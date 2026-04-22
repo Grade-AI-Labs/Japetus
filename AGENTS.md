@@ -11,7 +11,7 @@ When working inside `src/`, also read `src/AGENTS.md`.
 
 ---
 
-`talentech-standards` is a TypeScript/Node.js MCP server that surfaces Talentech AI Labs' coding standards, runbooks, templates, and service ownership to any MCP-capable coding agent (Claude Code, Cursor, VS Code Copilot Chat). It speaks Streamable HTTP, authenticates via Microsoft Entra OAuth 2.1, and projects curated content from pluggable source adapters (filesystem + Confluence today) through stable URI namespaces. The product intent lives in [`plans/prds/MCP.md`](plans/prds/MCP.md); the foundational decisions in [`docs/adr/001-foundations.md`](docs/adr/001-foundations.md).
+`talentech-standards` is a TypeScript/Node.js MCP server that surfaces Talentech's coding standards, runbooks, templates, and service ownership to any MCP-capable coding agent (Claude Code, Cursor, VS Code Copilot Chat). It speaks Streamable HTTP, authenticates via Microsoft Entra OAuth 2.1, and projects curated content from pluggable source adapters (filesystem + Confluence today) through stable URI namespaces. The product intent lives in [`plans/prds/MCP.md`](plans/prds/MCP.md); the foundational decisions in [`docs/adr/001-foundations.md`](docs/adr/001-foundations.md).
 
 ## CRITICAL — Non-negotiable rules for all agents
 

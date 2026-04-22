@@ -1,6 +1,6 @@
 ---
 title: Integration Testing
-description: Conventions for integration tests at Talentech AI Labs.
+description: Conventions for integration tests at Talentech.
 owner: platform-eng
 ---
 

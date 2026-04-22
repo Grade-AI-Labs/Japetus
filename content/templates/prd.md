@@ -1,6 +1,6 @@
 ---
 title: PRD Template
-description: Product Requirements Document template for Talentech AI Labs.
+description: Product Requirements Document template for Talentech.
 owner: product
 ---
 

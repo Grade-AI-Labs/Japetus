@@ -1,6 +1,6 @@
 ---
 title: Secrets Handling
-description: How to store, access, and rotate secrets at Talentech AI Labs.
+description: How to store, access, and rotate secrets at Talentech.
 owner: security
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Unit Testing
-description: Conventions for writing unit tests at Talentech AI Labs.
+description: Conventions for writing unit tests at Talentech.
 owner: platform-eng
 ---
 

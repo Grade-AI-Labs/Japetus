@@ -1,6 +1,6 @@
 ---
 title: Python Style
-description: Python coding conventions for Talentech AI Labs services and libraries.
+description: Python coding conventions for Talentech services and libraries.
 owner: platform-eng
 ---
 

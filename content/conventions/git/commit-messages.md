@@ -1,6 +1,6 @@
 ---
 title: Commit Messages
-description: How to write commit messages at Talentech AI Labs.
+description: How to write commit messages at Talentech.
 owner: platform-eng
 ---
 

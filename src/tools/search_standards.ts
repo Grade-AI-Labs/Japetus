@@ -58,7 +58,7 @@ export function registerSearchStandards(server: McpServer, ctx: AppContext): voi
     'search_standards',
     {
       description:
-        'Semantic search over the Talentech AI Labs curated corpus of coding conventions, runbooks, and templates. Returns URIs and snippets — call get_resource to read full content. Use this when the user asks for guidance, checklists, or house-style rules; do NOT use this for general KB search (see search_docs).',
+        'Semantic search over the Talentech curated corpus of coding conventions, runbooks, and templates. Returns URIs and snippets — call get_resource to read full content. Use this when the user asks for guidance, checklists, or house-style rules; do NOT use this for general KB search (see search_docs).',
       inputSchema: {
         query: z.string().min(1).describe('Free-text query.'),
         scope: z

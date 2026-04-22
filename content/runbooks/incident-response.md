@@ -1,6 +1,6 @@
 ---
 title: Incident Response
-description: How to declare, run, and close incidents at Talentech AI Labs.
+description: How to declare, run, and close incidents at Talentech.
 owner: sre
 ---
 

@@ -7,7 +7,7 @@ export function registerOnboardRepo(server: McpServer): void {
     'onboard_repo',
     {
       description:
-        'Generate an AGENTS.md draft for a repository. Inspects the repo (the agent does this; no tool call here) and combines findings with Talentech AI Labs org defaults. The resulting AGENTS.md should link to talentech-standards:// URIs for anything that ought to be pulled live, not copy-paste the content.',
+        'Generate an AGENTS.md draft for a repository. Inspects the repo (the agent does this; no tool call here) and combines findings with Talentech org defaults. The resulting AGENTS.md should link to talentech-standards:// URIs for anything that ought to be pulled live, not copy-paste the content.',
       argsSchema: {
         repo_url: z.string().describe('Git URL of the repository to onboard.'),
       },

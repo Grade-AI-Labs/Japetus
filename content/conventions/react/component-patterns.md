@@ -1,6 +1,6 @@
 ---
 title: React Component Patterns
-description: Conventions for building React components at Talentech AI Labs.
+description: Conventions for building React components at Talentech.
 owner: frontend-eng
 ---
 

@@ -1,6 +1,6 @@
 # talentech-standards
 
-Org-wide MCP server that surfaces Talentech AI Labs' coding standards, runbooks, templates, and service ownership to any MCP-capable coding agent (Claude Code, Cursor, VS Code/Copilot Chat agent, …).
+Org-wide MCP server that surfaces Talentech's coding standards, runbooks, templates, and service ownership to any MCP-capable coding agent (Claude Code, Cursor, VS Code/Copilot Chat agent, …).
 
 **Status:** in development.
 

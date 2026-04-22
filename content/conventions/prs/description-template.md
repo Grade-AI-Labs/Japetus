@@ -1,6 +1,6 @@
 ---
 title: Pull Request Description Template
-description: Canonical PR description template for Talentech AI Labs repositories.
+description: Canonical PR description template for Talentech repositories.
 owner: platform-eng
 ---
 

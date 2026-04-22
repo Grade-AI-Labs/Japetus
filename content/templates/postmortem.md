@@ -1,6 +1,6 @@
 ---
 title: Blameless Postmortem Template
-description: Postmortem template for incidents at Talentech AI Labs.
+description: Postmortem template for incidents at Talentech.
 owner: sre
 ---
 

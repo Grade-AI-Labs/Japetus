@@ -1,6 +1,6 @@
 ---
 title: TypeScript Style
-description: TypeScript coding conventions for Talentech AI Labs applications and libraries.
+description: TypeScript coding conventions for Talentech applications and libraries.
 owner: platform-eng
 ---
 

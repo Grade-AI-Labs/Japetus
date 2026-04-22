@@ -1,6 +1,6 @@
 ---
 title: Azure DevOps Work Item Conventions
-description: How to write, link, and tag ADO work items at Talentech AI Labs.
+description: How to write, link, and tag ADO work items at Talentech.
 owner: eng-ops
 ---
 

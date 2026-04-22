@@ -1,6 +1,6 @@
 ---
 title: GDPR & PII Handling
-description: How to handle personally identifiable information at Talentech AI Labs.
+description: How to handle personally identifiable information at Talentech.
 owner: compliance
 ---
 

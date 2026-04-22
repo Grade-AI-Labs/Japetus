@@ -1,6 +1,6 @@
 ---
 title: Branch Naming
-description: Conventions for Git branch names at Talentech AI Labs.
+description: Conventions for Git branch names at Talentech.
 owner: platform-eng
 ---
 

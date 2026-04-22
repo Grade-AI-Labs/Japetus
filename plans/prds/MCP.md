@@ -1,7 +1,7 @@
 # PRD: `talentech-standards` — Org-wide MCP server for coding agents
 
 **Status:** Draft
-**Author:** Olof (Talentech AI Labs)
+**Author:** Olof (Talentech)
 **Last updated:** 2026-04-22
 **Target release:** MVP in one quarter; see Rollout
 
@@ -9,7 +9,7 @@
 
 ## 1. Summary
 
-`talentech-standards` is a remote MCP server that surfaces Talentech AI Labs' coding standards, runbooks, templates, and service ownership to any MCP-capable coding agent (Claude Code, Cursor, VS Code/Copilot Chat, etc.). It authenticates developers via Microsoft Entra and projects curated content from the org's knowledge sources — Confluence at launch, pluggable by design — through stable, cache-friendly MCP primitives: resources for reference material, tools for search and lookup, prompts for canonical workflows.
+`talentech-standards` is a remote MCP server that surfaces Talentech's coding standards, runbooks, templates, and service ownership to any MCP-capable coding agent (Claude Code, Cursor, VS Code/Copilot Chat, etc.). It authenticates developers via Microsoft Entra and projects curated content from the org's knowledge sources — Confluence at launch, pluggable by design — through stable, cache-friendly MCP primitives: resources for reference material, tools for search and lookup, prompts for canonical workflows.
 
 The goal is one place for "how we build software at Talentech" that every AI tool can reach, without asking every developer to copy-paste conventions into every repo or chat.
 
@@ -49,7 +49,7 @@ Result: agents give outdated advice, conventions are inconsistently applied in g
 
 ## 4. Users and use cases
 
-**Primary users:** engineers at Talentech AI Labs using AI coding tools on a daily basis.
+**Primary users:** engineers at Talentech using AI coding tools on a daily basis.
 
 **Secondary users:** platform/DX team (content owners), security/compliance (policy owners), tech leads (contribute conventions).
 

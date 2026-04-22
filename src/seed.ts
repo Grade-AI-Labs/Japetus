@@ -12,7 +12,7 @@ const MVP_CORPUS: ResourceEntry[] = [
     backingId: 'conventions/prs/review-checklist.md',
     name: 'PR review checklist',
     description:
-      'Talentech AI Labs PR review checklist. Cover these points on every review: correctness, tests, security, observability, accessibility. Supersedes ad-hoc reviewer lists.',
+      'Talentech PR review checklist. Cover these points on every review: correctness, tests, security, observability, accessibility. Supersedes ad-hoc reviewer lists.',
     owner: 'platform-dx',
     topics: ['pr review', 'pull request', 'review checklist'],
     priority: 0.9,
@@ -184,7 +184,7 @@ const MVP_CORPUS: ResourceEntry[] = [
     adapterId: 'filesystem',
     backingId: 'templates/prd.md',
     name: 'PRD template',
-    description: 'Canonical PRD skeleton at Talentech AI Labs. Used by the write_prd prompt.',
+    description: 'Canonical PRD skeleton at Talentech. Used by the write_prd prompt.',
     owner: 'platform-dx',
     topics: ['prd', 'template'],
   },

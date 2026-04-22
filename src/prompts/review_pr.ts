@@ -8,7 +8,7 @@ export function registerReviewPr(server: McpServer): void {
     'review_pr',
     {
       description:
-        'Review a pull request against Talentech AI Labs conventions. Always applies the review checklist and description template; `focus` pulls additional targeted conventions.',
+        'Review a pull request against Talentech conventions. Always applies the review checklist and description template; `focus` pulls additional targeted conventions.',
       argsSchema: {
         pr_url: z.string().describe('Full PR URL (GitHub or Azure DevOps).'),
         focus: z

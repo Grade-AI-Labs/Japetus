@@ -1,6 +1,6 @@
 ---
 title: 'PR review checklist'
-description: 'Talentech AI Labs review checklist; cover these on every review.'
+description: 'Talentech review checklist; cover these on every review.'
 owner: 'platform-dx'
 ---
 

@@ -7,7 +7,7 @@ export function registerIncidentPostmortem(server: McpServer): void {
     'incident_postmortem',
     {
       description:
-        'Draft a blameless postmortem for an incident, following Talentech AI Labs conventions. Pulls both the postmortem template and the incident-response runbook.',
+        'Draft a blameless postmortem for an incident, following Talentech conventions. Pulls both the postmortem template and the incident-response runbook.',
       argsSchema: {
         incident_id: z.string().describe('Incident identifier (e.g. INC-2026-0042).'),
       },
