@@ -10,7 +10,7 @@ AFK
 
 ## What to build
 
-Register `grade-standards` as a remote MCP server in Cursor, validate the OAuth flow works end-to-end, and ship an onboarding doc for engineers covering both Claude Code and Cursor. Per PRD §3, "Works today with Claude Code and Cursor" is a Goal — this closes the Cursor half.
+Register `talentech-standards` as a remote MCP server in Cursor, validate the OAuth flow works end-to-end, and ship an onboarding doc for engineers covering both Claude Code and Cursor. Per PRD §3, "Works today with Claude Code and Cursor" is a Goal — this closes the Cursor half.
 
 Also document the VS Code Copilot Chat story as partial support (agent chat only, not inline completions) per PRD §6.9. Continue to ship static `.github/copilot-instructions.md` via Mimas for the completion path — this is an explicit product stance, not an accidental gap (PRD §9 risk mitigation).
 

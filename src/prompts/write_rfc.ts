@@ -7,7 +7,7 @@ export function registerWriteRfc(server: McpServer): void {
     'write_rfc',
     {
       description:
-        'Draft an RFC for a proposed technical change, following Grade AI Labs conventions. Uses the canonical RFC template.',
+        'Draft an RFC for a proposed technical change, following Talentech AI Labs conventions. Uses the canonical RFC template.',
       argsSchema: {
         topic: z.string().describe('One-line problem statement or proposed change.'),
       },

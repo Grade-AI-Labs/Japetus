@@ -7,7 +7,7 @@ export function registerWritePrd(server: McpServer): void {
     'write_prd',
     {
       description:
-        'Draft a PRD (product requirements document) following Grade AI Labs conventions. Pulls the canonical PRD template and relevant product guidance. Produces text only — filing to Azure DevOps is a separate step (see PRD §10 #3).',
+        'Draft a PRD (product requirements document) following Talentech AI Labs conventions. Pulls the canonical PRD template and relevant product guidance. Produces text only — filing to Azure DevOps is a separate step (see PRD §10 #3).',
       argsSchema: {
         topic: z.string().describe('One-line description of the feature or product problem.'),
         product: z

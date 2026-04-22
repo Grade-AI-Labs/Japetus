@@ -43,7 +43,7 @@ export interface AppContext {
 
 export function buildServer(ctx: AppContext): McpServer {
   const server = new McpServer(
-    { name: 'grade-standards', version: '0.1.0' },
+    { name: 'talentech-standards', version: '0.1.0' },
     { capabilities: { resources: { listChanged: true }, tools: {}, prompts: {}, logging: {} } },
   );
 
@@ -222,7 +222,7 @@ export async function main(): Promise<void> {
     validator: buildValidator(),
     port: Number(process.env['PORT'] ?? 3333),
   });
-  console.error(`grade-standards listening on ${http.url}`);
+  console.error(`talentech-standards listening on ${http.url}`);
 
   if (process.env['STALENESS_PORT']) {
     const s = startStalenessServer({

@@ -61,7 +61,7 @@ async function setup(): Promise<Fixture> {
   };
 }
 
-describe('grade-standards MCP server', () => {
+describe('talentech-standards MCP server', () => {
   let fx: Fixture;
 
   beforeEach(async () => {

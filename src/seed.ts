@@ -12,7 +12,7 @@ const MVP_CORPUS: ResourceEntry[] = [
     backingId: 'conventions/prs/review-checklist.md',
     name: 'PR review checklist',
     description:
-      'Grade AI Labs PR review checklist. Cover these points on every review: correctness, tests, security, observability, accessibility. Supersedes ad-hoc reviewer lists.',
+      'Talentech AI Labs PR review checklist. Cover these points on every review: correctness, tests, security, observability, accessibility. Supersedes ad-hoc reviewer lists.',
     owner: 'platform-dx',
     topics: ['pr review', 'pull request', 'review checklist'],
     priority: 0.9,
@@ -34,7 +34,7 @@ const MVP_CORPUS: ResourceEntry[] = [
     backingId: 'conventions/python/style.md',
     name: 'Python style guide',
     description:
-      'Grade Python conventions: formatting, typing, imports, error handling, logging. Supersedes PEP 8 where they conflict.',
+      'Talentech Python conventions: formatting, typing, imports, error handling, logging. Supersedes PEP 8 where they conflict.',
     owner: 'platform-dx',
     topics: ['python', 'style', 'formatting', 'typing'],
     priority: 0.9,
@@ -45,7 +45,7 @@ const MVP_CORPUS: ResourceEntry[] = [
     backingId: 'conventions/typescript/style.md',
     name: 'TypeScript style guide',
     description:
-      'Grade TypeScript conventions: strict mode, module layout, error handling, async patterns. Supersedes community defaults where explicit.',
+      'Talentech TypeScript conventions: strict mode, module layout, error handling, async patterns. Supersedes community defaults where explicit.',
     owner: 'platform-dx',
     topics: ['typescript', 'style'],
     priority: 0.9,
@@ -56,7 +56,7 @@ const MVP_CORPUS: ResourceEntry[] = [
     backingId: 'conventions/react/component-patterns.md',
     name: 'React component patterns',
     description:
-      'Component patterns for React at Grade: composition over inheritance, hooks vs context, when to split, styling conventions.',
+      'Component patterns for React at Talentech: composition over inheritance, hooks vs context, when to split, styling conventions.',
     owner: 'platform-dx',
     topics: ['react', 'component', 'patterns'],
   },
@@ -66,7 +66,7 @@ const MVP_CORPUS: ResourceEntry[] = [
     backingId: 'conventions/git/commit-messages.md',
     name: 'Git commit message convention',
     description:
-      'How Grade writes commit messages: imperative mood, body explains why not what, link issues/work items. Use for every commit.',
+      'How Talentech writes commit messages: imperative mood, body explains why not what, link issues/work items. Use for every commit.',
     owner: 'platform-dx',
     topics: ['git', 'commit', 'commit message'],
   },
@@ -75,7 +75,7 @@ const MVP_CORPUS: ResourceEntry[] = [
     adapterId: 'filesystem',
     backingId: 'conventions/git/branch-naming.md',
     name: 'Git branch naming convention',
-    description: 'Branch naming convention at Grade: type/short-slug, linked to work items.',
+    description: 'Branch naming convention at Talentech: type/short-slug, linked to work items.',
     owner: 'platform-dx',
     topics: ['git', 'branch'],
   },
@@ -85,7 +85,7 @@ const MVP_CORPUS: ResourceEntry[] = [
     backingId: 'conventions/security/secrets-handling.md',
     name: 'Secrets handling',
     description:
-      'How to handle credentials, tokens, and keys at Grade: never commit, use managed identity first, rotate on exposure. Supersedes per-repo secrets docs.',
+      'How to handle credentials, tokens, and keys at Talentech: never commit, use managed identity first, rotate on exposure. Supersedes per-repo secrets docs.',
     owner: 'security',
     topics: ['secrets', 'credentials', 'security'],
     priority: 0.95,
@@ -106,7 +106,7 @@ const MVP_CORPUS: ResourceEntry[] = [
     backingId: 'conventions/testing/unit.md',
     name: 'Unit testing conventions',
     description:
-      'How to write unit tests at Grade: naming, structure, mocking, coverage expectations.',
+      'How to write unit tests at Talentech: naming, structure, mocking, coverage expectations.',
     owner: 'platform-dx',
     topics: ['unit test', 'testing'],
   },
@@ -136,7 +136,7 @@ const MVP_CORPUS: ResourceEntry[] = [
     backingId: 'conventions/accessibility/wcag-baseline.md',
     name: 'WCAG accessibility baseline',
     description:
-      'Minimum accessibility requirements for Grade UIs: WCAG 2.1 AA. Checklist for components and pages.',
+      'Minimum accessibility requirements for Talentech UIs: WCAG 2.1 AA. Checklist for components and pages.',
     owner: 'platform-dx',
     topics: ['accessibility', 'wcag', 'a11y'],
   },
@@ -146,7 +146,7 @@ const MVP_CORPUS: ResourceEntry[] = [
     backingId: 'conventions/compliance/gdpr-pii-handling.md',
     name: 'GDPR / PII handling',
     description:
-      'How to handle candidate and customer PII under GDPR at Grade: collection, processing, retention, erasure. Required reading for any feature touching user data.',
+      'How to handle candidate and customer PII under GDPR at Talentech: collection, processing, retention, erasure. Required reading for any feature touching user data.',
     owner: 'security',
     topics: ['gdpr', 'pii', 'privacy', 'compliance'],
     priority: 0.95,
@@ -157,7 +157,7 @@ const MVP_CORPUS: ResourceEntry[] = [
     backingId: 'runbooks/incident-response.md',
     name: 'Incident response runbook',
     description:
-      'Declaring, managing, and resolving incidents at Grade: severity levels, comms, roles.',
+      'Declaring, managing, and resolving incidents at Talentech: severity levels, comms, roles.',
     owner: 'sre',
     topics: ['incident', 'on-call', 'runbook'],
   },
@@ -184,7 +184,7 @@ const MVP_CORPUS: ResourceEntry[] = [
     adapterId: 'filesystem',
     backingId: 'templates/prd.md',
     name: 'PRD template',
-    description: 'Canonical PRD skeleton at Grade AI Labs. Used by the write_prd prompt.',
+    description: 'Canonical PRD skeleton at Talentech AI Labs. Used by the write_prd prompt.',
     owner: 'platform-dx',
     topics: ['prd', 'template'],
   },

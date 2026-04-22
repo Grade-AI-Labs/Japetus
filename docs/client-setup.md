@@ -1,6 +1,6 @@
 # Client setup
 
-This doc covers registering `grade-standards` in the supported clients and the OAuth flow. Matches slice [plans/issues/18-cursor-wiring.md](../plans/issues/18-cursor-wiring.md).
+This doc covers registering `talentech-standards` in the supported clients and the OAuth flow. Matches slice [plans/issues/18-cursor-wiring.md](../plans/issues/18-cursor-wiring.md).
 
 ## Claude Code
 
@@ -8,7 +8,7 @@ Add the server as a remote MCP server at the user or project level:
 
 ```sh
 # user-level (recommended for org-wide use)
-claude mcp add --transport http grade-standards https://grade-standards.example.corp/mcp
+claude mcp add --transport http talentech-standards https://talentech-standards.example.corp/mcp
 ```
 
 On first use, Claude Code opens a browser for the Entra consent flow. After consent, tokens are cached per user.
@@ -20,9 +20,9 @@ Drop a `.mcp.json` into the repo root:
 ```json
 {
   "mcpServers": {
-    "grade-standards": {
+    "talentech-standards": {
       "type": "http",
-      "url": "https://grade-standards.example.corp/mcp"
+      "url": "https://talentech-standards.example.corp/mcp"
     }
   }
 }
@@ -35,8 +35,8 @@ Cursor supports remote MCP servers via `~/.cursor/mcp.json`:
 ```json
 {
   "mcpServers": {
-    "grade-standards": {
-      "url": "https://grade-standards.example.corp/mcp",
+    "talentech-standards": {
+      "url": "https://talentech-standards.example.corp/mcp",
       "transport": "http"
     }
   }
@@ -52,9 +52,9 @@ MCP is supported in **agent chat**, not in inline completions. Wire via `.vscode
 ```json
 {
   "servers": {
-    "grade-standards": {
+    "talentech-standards": {
       "type": "http",
-      "url": "https://grade-standards.example.corp/mcp"
+      "url": "https://talentech-standards.example.corp/mcp"
     }
   }
 }

@@ -1,7 +1,7 @@
 {
-  "name": "grade-standards",
+  "name": "talentech-standards",
   "version": "0.1.0",
-  "description": "Org-wide MCP server exposing Grade AI Labs coding standards, runbooks, templates, and service ownership to MCP-capable coding agents.",
+  "description": "Org-wide MCP server exposing Talentech AI Labs coding standards, runbooks, templates, and service ownership to MCP-capable coding agents.",
   "type": "module",
   "private": true,
   "engines": {

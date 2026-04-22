@@ -19,7 +19,7 @@ Per PRD §6.9: "CI agents: narrow-scoped client credentials; do not use user OAu
 - [ ] Server accepts client-credentials tokens from Entra alongside user-auth-code tokens.
 - [ ] Tokens are validated with the same middleware; scopes enforced identically to user tokens.
 - [ ] Documented procedure for issuing a CI client credential with specified scopes.
-- [ ] Sample CI job (GitHub Actions or Azure DevOps, matching Grade's stack) exercises a tool call using client credentials.
+- [ ] Sample CI job (GitHub Actions or Azure DevOps, matching Talentech's stack) exercises a tool call using client credentials.
 - [ ] Sample job uses the narrowest scope needed (typically `standards:read`).
 - [ ] Runbook entry for rotating CI credentials.
 

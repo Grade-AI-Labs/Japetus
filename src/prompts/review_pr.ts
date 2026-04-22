@@ -8,7 +8,7 @@ export function registerReviewPr(server: McpServer): void {
     'review_pr',
     {
       description:
-        'Review a pull request against Grade AI Labs conventions. Always applies the review checklist and description template; `focus` pulls additional targeted conventions.',
+        'Review a pull request against Talentech AI Labs conventions. Always applies the review checklist and description template; `focus` pulls additional targeted conventions.',
       argsSchema: {
         pr_url: z.string().describe('Full PR URL (GitHub or Azure DevOps).'),
         focus: z
@@ -21,7 +21,7 @@ export function registerReviewPr(server: McpServer): void {
       const f = focus ?? 'all';
       const messages: PromptMessage[] = [
         userText(
-          `Review this PR: ${pr_url}\nFocus: ${f}\n\nApply the Grade review checklist and call out anything missing from the description template. Be specific; reference file paths and line numbers where relevant.`,
+          `Review this PR: ${pr_url}\nFocus: ${f}\n\nApply the Talentech review checklist and call out anything missing from the description template. Be specific; reference file paths and line numbers where relevant.`,
         ),
         embed('conventions://prs/review-checklist'),
         embed('conventions://prs/description-template'),

@@ -7,7 +7,7 @@ export function registerOnboardRepo(server: McpServer): void {
     'onboard_repo',
     {
       description:
-        'Generate an AGENTS.md draft for a repository. Inspects the repo (the agent does this; no tool call here) and combines findings with Grade AI Labs org defaults. The resulting AGENTS.md should link to grade-standards:// URIs for anything that ought to be pulled live, not copy-paste the content.',
+        'Generate an AGENTS.md draft for a repository. Inspects the repo (the agent does this; no tool call here) and combines findings with Talentech AI Labs org defaults. The resulting AGENTS.md should link to talentech-standards:// URIs for anything that ought to be pulled live, not copy-paste the content.',
       argsSchema: {
         repo_url: z.string().describe('Git URL of the repository to onboard.'),
       },
@@ -15,7 +15,7 @@ export function registerOnboardRepo(server: McpServer): void {
     ({ repo_url }) => ({
       messages: [
         userText(
-          `Inspect ${repo_url} and draft an AGENTS.md.\n\nRules:\n- Detect primary language(s) and frameworks; reference the matching grade-standards URIs below rather than duplicating their content.\n- Keep repo-specific sections (build, test, deploy) concrete; keep org-level sections as links.\n- If the repo has its own conventions that override the org default, note them explicitly.`,
+          `Inspect ${repo_url} and draft an AGENTS.md.\n\nRules:\n- Detect primary language(s) and frameworks; reference the matching talentech-standards URIs below rather than duplicating their content.\n- Keep repo-specific sections (build, test, deploy) concrete; keep org-level sections as links.\n- If the repo has its own conventions that override the org default, note them explicitly.`,
         ),
         embed('conventions://git/commit-messages'),
         embed('conventions://git/branch-naming'),

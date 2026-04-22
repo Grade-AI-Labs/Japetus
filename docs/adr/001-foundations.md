@@ -7,7 +7,7 @@
 
 ## Context
 
-`grade-standards` is an MCP server that must speak Streamable HTTP to MCP-capable agents, validate OAuth 2.1 tokens from Entra, project content from Confluence (and later other sources) through a curated surface, and run as a long-lived service. The choice of language, runtime, deployment target, and repo layout propagates through every later slice.
+`talentech-standards` is an MCP server that must speak Streamable HTTP to MCP-capable agents, validate OAuth 2.1 tokens from Entra, project content from Confluence (and later other sources) through a curated surface, and run as a long-lived service. The choice of language, runtime, deployment target, and repo layout propagates through every later slice.
 
 ## Decisions
 
@@ -19,7 +19,7 @@
 
 ### Deployment target: Azure Container Apps
 
-- Grade already runs workloads on Azure (confirmed by existing ADO MCP integration referenced in the PRD).
+- Talentech already runs workloads on Azure (confirmed by existing ADO MCP integration referenced in the PRD).
 - ACA terminates HTTPS, supports long-lived Streamable HTTP connections, and can front Entra auth via the platform's managed identity + app registration.
 - Horizontal scaling is built in, which matters once every developer agent is hitting the server on most turns.
 - Alternative considered: Azure App Service (rejected — less first-class for OCI images), AKS (rejected — operational overhead not justified for a single service).

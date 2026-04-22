@@ -6,42 +6,42 @@
       "team": "ATS Core",
       "primary_contact": "ats-core-lead@talentech.com",
       "slack_channel": "#ats-core",
-      "repos": ["Grade-AI-Labs/talentech-ats-core"]
+      "repos": ["Talentech-AI-Labs/talentech-ats-core"]
     },
     {
       "keys": ["varbi", "varbi-web"],
       "team": "Varbi",
       "primary_contact": "varbi-lead@talentech.com",
       "slack_channel": "#varbi",
-      "repos": ["Grade-AI-Labs/varbi-web", "Grade-AI-Labs/varbi-api"]
+      "repos": ["Talentech-AI-Labs/varbi-web", "Talentech-AI-Labs/varbi-api"]
     },
     {
       "keys": ["reachmee"],
       "team": "ReachMee",
       "primary_contact": "reachmee-lead@talentech.com",
       "slack_channel": "#reachmee",
-      "repos": ["Grade-AI-Labs/reachmee-web", "Grade-AI-Labs/reachmee-api"]
+      "repos": ["Talentech-AI-Labs/reachmee-web", "Talentech-AI-Labs/reachmee-api"]
     },
     {
       "keys": ["jobtip"],
       "team": "Jobtip",
       "primary_contact": "jobtip-lead@talentech.com",
       "slack_channel": "#jobtip",
-      "repos": ["Grade-AI-Labs/jobtip"]
+      "repos": ["Talentech-AI-Labs/jobtip"]
     },
     {
       "keys": ["talmund"],
       "team": "Talmund",
       "primary_contact": "talmund-lead@talentech.com",
       "slack_channel": "#talmund",
-      "repos": ["Grade-AI-Labs/talmund"]
+      "repos": ["Talentech-AI-Labs/talmund"]
     },
     {
-      "keys": ["grade-standards", "mimas"],
+      "keys": ["talentech-standards", "mimas"],
       "team": "Platform DX",
       "primary_contact": "platform-dx-lead@talentech.com",
       "slack_channel": "#platform-dx",
-      "repos": ["Grade-AI-Labs/grade-standards", "Grade-AI-Labs/Mimas"]
+      "repos": ["Talentech-AI-Labs/talentech-standards", "Talentech-AI-Labs/Mimas"]
     }
   ]
 }

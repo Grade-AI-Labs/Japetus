@@ -1,10 +1,10 @@
 ---
 title: Secrets Handling
-description: How to store, access, and rotate secrets at Grade AI Labs.
+description: How to store, access, and rotate secrets at Talentech AI Labs.
 owner: security
 ---
 
-> **Placeholder content.** Seeded for the `grade-standards` MCP server. HITL
+> **Placeholder content.** Seeded for the `talentech-standards` MCP server. HITL
 > review from content owners is pending as part of slice 09. See
 > `plans/issues/09-seed-corpus.md`.
 

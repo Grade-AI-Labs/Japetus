@@ -1,6 +1,6 @@
 # Engineering Standards & Workflows
 
-This document defines shared engineering practices for `grade-standards`.
+This document defines shared engineering practices for `talentech-standards`.
 
 ---
 
@@ -129,7 +129,7 @@ npm run build                     # tsc -p tsconfig.json → dist/
 npm run start                     # node dist/server.js
 npm run lint                      # prettier --check . && tsc --noEmit
 npm run format                    # prettier --write .
-docker build -t grade-standards . # container image
+docker build -t talentech-standards . # container image
 ```
 
 For local dev against the real seed corpus:

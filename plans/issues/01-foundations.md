@@ -10,12 +10,12 @@ HITL
 
 ## What to build
 
-Lock in the foundational decisions every subsequent slice depends on: language/runtime for the server, deployment target (where `grade-standards` runs in production), and repo layout. Capture as a short ADR alongside the PRD so later slices reference a single source rather than re-deciding.
+Lock in the foundational decisions every subsequent slice depends on: language/runtime for the server, deployment target (where `talentech-standards` runs in production), and repo layout. Capture as a short ADR alongside the PRD so later slices reference a single source rather than re-deciding.
 
 Scope:
 
 - Pick language/runtime (TypeScript/Node vs Python vs other) with a one-paragraph rationale.
-- Pick deployment target (Azure Container Apps / AKS / other Grade-hosted surface) and confirm it can terminate Streamable HTTP with Entra OAuth in front.
+- Pick deployment target (Azure Container Apps / AKS / other Talentech-hosted surface) and confirm it can terminate Streamable HTTP with Entra OAuth in front.
 - Agree on repo layout: where the server code lives, where source adapters live, where curated content (for the filesystem adapter) lives, where ADRs live.
 - Confirm CI surface for the repo (PR checks, container build, deploy pipeline skeleton).
 

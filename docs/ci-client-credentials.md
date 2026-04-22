@@ -6,7 +6,7 @@ CI agents authenticate with Entra using the OAuth 2.1 **client-credentials** gra
 
 ## Issuing a CI credential
 
-1. In the `grade-standards` Entra app registration, add a client secret (or federated credential — preferred for GitHub Actions / ADO).
+1. In the `talentech-standards` Entra app registration, add a client secret (or federated credential — preferred for GitHub Actions / ADO).
 2. Grant the credential only the scopes the CI job needs. Start with `standards:read`.
 3. Store the secret in the CI provider's secret manager (GitHub Actions: repo/org secrets; ADO: Library → Variable Group).
 
@@ -16,7 +16,7 @@ CI agents authenticate with Entra using the OAuth 2.1 **client-credentials** gra
 curl -X POST "https://login.microsoftonline.com/${ENTRA_TENANT_ID}/oauth2/v2.0/token" \
   -d "client_id=${CLIENT_ID}" \
   -d "client_secret=${CLIENT_SECRET}" \
-  -d "scope=api://grade-standards/.default" \
+  -d "scope=api://talentech-standards/.default" \
   -d "grant_type=client_credentials"
 ```
 
@@ -27,7 +27,7 @@ The response includes `access_token`. Attach as `Authorization: Bearer <token>` 
 See `examples/ci/github-actions.yml`:
 
 ```yaml
-- name: Fetch grade-standards token
+- name: Fetch talentech-standards token
   id: token
   env:
     ENTRA_TENANT_ID: ${{ secrets.ENTRA_TENANT_ID }}
@@ -37,12 +37,12 @@ See `examples/ci/github-actions.yml`:
     TOKEN=$(curl -sS -X POST "https://login.microsoftonline.com/${ENTRA_TENANT_ID}/oauth2/v2.0/token" \
       -d "client_id=${CLIENT_ID}" \
       -d "client_secret=${CLIENT_SECRET}" \
-      -d "scope=api://grade-standards/.default" \
+      -d "scope=api://talentech-standards/.default" \
       -d "grant_type=client_credentials" | jq -r .access_token)
     echo "::add-mask::${TOKEN}"
     echo "token=${TOKEN}" >> "$GITHUB_OUTPUT"
 
-- name: Call grade-standards
+- name: Call talentech-standards
   run: |
     curl -sS -H "Authorization: Bearer ${{ steps.token.outputs.token }}" \
       -H "Content-Type: application/json" \

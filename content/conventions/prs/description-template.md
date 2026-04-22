@@ -1,10 +1,10 @@
 ---
 title: Pull Request Description Template
-description: Canonical PR description template for Grade AI Labs repositories.
+description: Canonical PR description template for Talentech AI Labs repositories.
 owner: platform-eng
 ---
 
-> **Placeholder content.** This document is seeded for the `grade-standards` MCP
+> **Placeholder content.** This document is seeded for the `talentech-standards` MCP
 > server. HITL review from content owners is pending as part of slice 09. See
 > `plans/issues/09-seed-corpus.md`.
 

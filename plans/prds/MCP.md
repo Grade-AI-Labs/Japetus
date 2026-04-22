@@ -1,7 +1,7 @@
-# PRD: `grade-standards` — Org-wide MCP server for coding agents
+# PRD: `talentech-standards` — Org-wide MCP server for coding agents
 
 **Status:** Draft
-**Author:** Olof (Grade AI Labs)
+**Author:** Olof (Talentech AI Labs)
 **Last updated:** 2026-04-22
 **Target release:** MVP in one quarter; see Rollout
 
@@ -9,9 +9,9 @@
 
 ## 1. Summary
 
-`grade-standards` is a remote MCP server that surfaces Grade AI Labs' coding standards, runbooks, templates, and service ownership to any MCP-capable coding agent (Claude Code, Cursor, VS Code/Copilot Chat, etc.). It authenticates developers via Microsoft Entra and projects curated content from the org's knowledge sources — Confluence at launch, pluggable by design — through stable, cache-friendly MCP primitives: resources for reference material, tools for search and lookup, prompts for canonical workflows.
+`talentech-standards` is a remote MCP server that surfaces Talentech AI Labs' coding standards, runbooks, templates, and service ownership to any MCP-capable coding agent (Claude Code, Cursor, VS Code/Copilot Chat, etc.). It authenticates developers via Microsoft Entra and projects curated content from the org's knowledge sources — Confluence at launch, pluggable by design — through stable, cache-friendly MCP primitives: resources for reference material, tools for search and lookup, prompts for canonical workflows.
 
-The goal is one place for "how we build software at Grade" that every AI tool can reach, without asking every developer to copy-paste conventions into every repo or chat.
+The goal is one place for "how we build software at Talentech" that every AI tool can reach, without asking every developer to copy-paste conventions into every repo or chat.
 
 ---
 
@@ -21,7 +21,7 @@ Coding agents today get context from two places: files in the repo (`AGENTS.md`,
 
 - **Static repo files drift.** A PR convention copied into 40 repos ages at 40 different rates. When we update it centrally, the repos don't know.
 - **Canonical docs live behind auth.** Our coding conventions, PR checklists, incident runbooks, and service catalog sit in Confluence behind Entra SSO. Agents can't reach them directly.
-- **Mimas solves distribution, not surfacing.** The skills repo (github.com/Grade-AI-Labs/Mimas) is good at shipping skills that travel with code; it's the wrong layer for content that changes weekly and needs live auth.
+- **Mimas solves distribution, not surfacing.** The skills repo (github.com/Talentech-AI-Labs/Mimas) is good at shipping skills that travel with code; it's the wrong layer for content that changes weekly and needs live auth.
 - **Per-tool configuration doesn't compose.** `AGENTS.md`, `.cursor/rules`, `.github/copilot-instructions.md` — each tool has its own way. Every new standard becomes three PRs across every repo.
 
 Result: agents give outdated advice, conventions are inconsistently applied in generated code, and maintainers spend time on copy-paste work that should be one source of truth.
@@ -49,7 +49,7 @@ Result: agents give outdated advice, conventions are inconsistently applied in g
 
 ## 4. Users and use cases
 
-**Primary users:** engineers at Grade AI Labs using AI coding tools on a daily basis.
+**Primary users:** engineers at Talentech AI Labs using AI coding tools on a daily basis.
 
 **Secondary users:** platform/DX team (content owners), security/compliance (policy owners), tech leads (contribute conventions).
 
@@ -70,7 +70,7 @@ Three layers, each with a clear job:
 | Layer | Purpose | Distribution | Lifecycle |
 |---|---|---|---|
 | **Repo (`AGENTS.md`, skills)** | Repo-specific conventions, per-project tooling | Mimas, git | Changes with the code |
-| **`grade-standards` (MCP)** | Org-wide standards, curated docs, catalog | Remote MCP server | Changes weekly; server returns current |
+| **`talentech-standards` (MCP)** | Org-wide standards, curated docs, catalog | Remote MCP server | Changes weekly; server returns current |
 | **Upstream KB / ADO / catalog** | Systems of record (Confluence at launch) | As today | Owned by content authors |
 
 The MCP server is a thin, opinionated surface. It does not store standards — it curates and projects them from existing systems of record through a stable, agent-friendly API.
@@ -82,7 +82,7 @@ Agent (Claude Code, Cursor, …)
         │  Streamable HTTP, MCP
         ▼
 ┌────────────────────────────┐
-│  grade-standards server    │◀── Entra OAuth 2.1 (per-user token)
+│  talentech-standards server    │◀── Entra OAuth 2.1 (per-user token)
 │   ├── Resources            │
 │   ├── Tools                │
 │   ├── Prompts              │
@@ -124,7 +124,7 @@ Resource metadata shape:
 {
   "uri": "conventions://python/style",
   "name": "Python style guide",
-  "description": "Grade Python conventions: formatting, typing, imports, error handling. Supersedes PEP 8 where they conflict.",
+  "description": "Talentech Python conventions: formatting, typing, imports, error handling. Supersedes PEP 8 where they conflict.",
   "mimeType": "text/markdown",
   "annotations": {
     "audience": ["assistant"],
@@ -241,7 +241,7 @@ Agents behave very differently for 401 vs 403 vs 404; getting this right is wort
 
 ### 6.9 Client wiring
 
-- **Claude Code:** native remote MCP support; register `grade-standards` as a project or user-level server; OAuth on first use.
+- **Claude Code:** native remote MCP support; register `talentech-standards` as a project or user-level server; OAuth on first use.
 - **Cursor:** native remote MCP support; similar flow.
 - **VS Code Copilot Chat:** MCP supported in agent chat, not in inline completions. Document as partial support; continue to ship static `.github/copilot-instructions.md` via Mimas for the completion path.
 - **CI agents:** narrow-scoped client credentials; do not use user OAuth.
@@ -264,10 +264,10 @@ Phased to de-risk content curation (usually the slowest part) and prove the auth
 
 ## 8. Success metrics
 
-- **Adoption:** % of engineers with `grade-standards` registered in at least one agent; target 70% by end of Phase 2.
+- **Adoption:** % of engineers with `talentech-standards` registered in at least one agent; target 70% by end of Phase 2.
 - **Usage:** resource reads per active developer per week; target ≥ 5.
 - **Content freshness:** median age of most-read resources; target < 90 days.
-- **Displacement:** reduction in the number of repos shipping full conventions in `AGENTS.md` vs linking to `grade-standards`. (Proxy for "single source of truth" working.)
+- **Displacement:** reduction in the number of repos shipping full conventions in `AGENTS.md` vs linking to `talentech-standards`. (Proxy for "single source of truth" working.)
 - **Quality, qualitative:** quarterly survey — does AI-generated code feel more aligned with house style?
 
 ---
@@ -297,6 +297,6 @@ Phased to de-risk content curation (usually the slowest part) and prove the auth
 
 ## 11. Appendix: relationship to existing work
 
-- **Mimas** continues to own static, repo-bundled skills and per-repo conventions. `grade-standards` complements it by owning the dynamic, org-wide, authenticated layer. Over time, some Mimas skills (notably `write-a-prd-irecommend`) migrate to server-provided prompts; others (repo-specific tooling) stay where they are.
-- **Azure DevOps MCP server** (already integrated via `setup-mimas-template`) remains the execution surface for ticketing. `grade-standards` prompts can hand off to it rather than duplicating that capability.
-- **`AGENTS.md` convention** stays the primary config mechanism inside repos; it can reference `grade-standards` resources by URI for anything that should be pulled live.
+- **Mimas** continues to own static, repo-bundled skills and per-repo conventions. `talentech-standards` complements it by owning the dynamic, org-wide, authenticated layer. Over time, some Mimas skills (notably `write-a-prd-irecommend`) migrate to server-provided prompts; others (repo-specific tooling) stay where they are.
+- **Azure DevOps MCP server** (already integrated via `setup-mimas-template`) remains the execution surface for ticketing. `talentech-standards` prompts can hand off to it rather than duplicating that capability.
+- **`AGENTS.md` convention** stays the primary config mechanism inside repos; it can reference `talentech-standards` resources by URI for anything that should be pulled live.

@@ -1,6 +1,6 @@
 # `src/` Instructions
 
-This directory contains the `grade-standards` MCP server — a TypeScript/Node service that speaks the Model Context Protocol over Streamable HTTP, validates Entra OAuth tokens, and projects curated content from pluggable source adapters to MCP-capable coding agents.
+This directory contains the `talentech-standards` MCP server — a TypeScript/Node service that speaks the Model Context Protocol over Streamable HTTP, validates Entra OAuth tokens, and projects curated content from pluggable source adapters to MCP-capable coding agents.
 
 You MUST follow:
 

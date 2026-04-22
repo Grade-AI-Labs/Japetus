@@ -1,17 +1,17 @@
 ---
 title: GDPR & PII Handling
-description: How to handle personally identifiable information at Grade AI Labs.
+description: How to handle personally identifiable information at Talentech AI Labs.
 owner: compliance
 ---
 
-> **Placeholder content.** Seeded for the `grade-standards` MCP server. HITL
+> **Placeholder content.** Seeded for the `talentech-standards` MCP server. HITL
 > review from content owners is pending as part of slice 09. See
 > `plans/issues/09-seed-corpus.md`.
 
-Grade handles candidate and employee data across EEA jurisdictions. GDPR is
+Talentech handles candidate and employee data across EEA jurisdictions. GDPR is
 the floor, not the ceiling.
 
-## What counts as PII at Grade
+## What counts as PII at Talentech
 
 - **Direct identifiers:** name, email, phone, national ID, passport,
   photograph, video, voice recording.

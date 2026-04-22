@@ -162,7 +162,7 @@ None.
 
 - Every read flows through the ETag cache; cache hit serves in microseconds.
 - Cache TTL is 5 minutes by default — tuned so agents pulling on every turn don't tax upstreams while staying within the PRD's freshness window.
-- Confluence `list()` is called on every `search_standards` index rebuild (also 5-minute TTL). Large spaces → consider pagination (TODO: verify `limit=250` handles Grade's current Confluence size).
+- Confluence `list()` is called on every `search_standards` index rebuild (also 5-minute TTL). Large spaces → consider pagination (TODO: verify `limit=250` handles Talentech's current Confluence size).
 - `minisearch` index is rebuilt lazily from all adapters' content; rebuild cost is linear in corpus size. Fine at 20–100 resources; revisit at 1000+.
 
 ## Known Issues and Limitations

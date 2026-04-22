@@ -6,7 +6,7 @@
 
 ## Overview
 
-`grade-standards` authenticates every request against Microsoft Entra (OAuth 2.1), extracts a `Principal` from the validated token's claims, and enforces a backend-neutral scope set on every tool call and resource read. Scope names (`standards:read`, `kb:read:<space>`, `catalog:read`) are intentionally decoupled from the underlying source adapters so swapping a backend does not force token reissuance. A dev validator allows local work without Entra; an `off` mode disables auth entirely for diagnostics.
+`talentech-standards` authenticates every request against Microsoft Entra (OAuth 2.1), extracts a `Principal` from the validated token's claims, and enforces a backend-neutral scope set on every tool call and resource read. Scope names (`standards:read`, `kb:read:<space>`, `catalog:read`) are intentionally decoupled from the underlying source adapters so swapping a backend does not force token reissuance. A dev validator allows local work without Entra; an `off` mode disables auth entirely for diagnostics.
 
 ## Responsibilities
 
@@ -113,7 +113,7 @@ If `principal.scopes` does not contain the required scope, `requireScope` throws
 
 - `AUTH_MODE` — `dev` | `entra` | `off`. Default: `dev`.
 - `ENTRA_TENANT_ID` — required when `AUTH_MODE=entra`; the Entra tenant GUID
-- `ENTRA_AUDIENCE` — required when `AUTH_MODE=entra`; the `aud` claim the token must carry (typically `api://grade-standards`)
+- `ENTRA_AUDIENCE` — required when `AUTH_MODE=entra`; the `aud` claim the token must carry (typically `api://talentech-standards`)
 
 ### Scope set (fixed)
 
