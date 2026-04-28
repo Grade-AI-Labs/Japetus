@@ -14,13 +14,12 @@ import { ConfluenceAdapter } from './adapters/confluence.ts';
 import { Registry, type ResourceEntry } from './registry.ts';
 import { ResourceCache } from './cache.ts';
 import { audit } from './audit/logger.ts';
-import { requireScope, type Principal, type Scope, kbScopeFor } from './auth/scopes.ts';
+import { setupAuditSinks } from './audit/setup.ts';
+import { requireScope, type Principal, type Scope } from './auth/scopes.ts';
 import { DevValidator, EntraJwtValidator, type EntraValidator } from './auth/entra.ts';
 import { resourceNotFound } from './errors.ts';
-import { seedRegistry } from './seed.ts';
+import { loadRegistryConfig, resolveRegistryConfigPath } from './config/registry_config.ts';
 import { registerSearchStandards } from './tools/search_standards.ts';
-import { registerGetResource } from './tools/get_resource.ts';
-import { registerCurrentStandard } from './tools/current_standard.ts';
 import { registerSearchDocs } from './tools/search_docs.ts';
 import { registerWhoOwns } from './tools/who_owns.ts';
 import { registerWritePrd } from './prompts/write_prd.ts';
@@ -28,7 +27,6 @@ import { registerReviewPr } from './prompts/review_pr.ts';
 import { registerWriteRfc } from './prompts/write_rfc.ts';
 import { registerWriteAdr } from './prompts/write_adr.ts';
 import { registerIncidentPostmortem } from './prompts/incident_postmortem.ts';
-import { registerOnboardRepo } from './prompts/onboard_repo.ts';
 import type { Space } from './adapters/types.ts';
 import type { SourceAdapter } from './adapters/types.ts';
 import { startHttpServer } from './transport.ts';
@@ -43,15 +41,13 @@ export interface AppContext {
 
 export function buildServer(ctx: AppContext): McpServer {
   const server = new McpServer(
-    { name: 'talentech-standards', version: '0.1.0' },
+    { name: 'Japetus', version: '0.1.0' },
     { capabilities: { resources: { listChanged: true }, tools: {}, prompts: {}, logging: {} } },
   );
 
   registerResourceHandlers(server, ctx);
 
   registerSearchStandards(server, ctx);
-  registerGetResource(server, ctx);
-  registerCurrentStandard(server, ctx);
   registerSearchDocs(server, ctx);
   registerWhoOwns(server);
 
@@ -60,10 +56,25 @@ export function buildServer(ctx: AppContext): McpServer {
   registerWriteRfc(server);
   registerWriteAdr(server);
   registerIncidentPostmortem(server);
-  registerOnboardRepo(server);
 
   wireChangeNotifications(server, ctx);
+  wireSessionStartAudit(server);
   return server;
+}
+
+function wireSessionStartAudit(server: McpServer): void {
+  const lowLevel = server.server;
+  lowLevel.oninitialized = () => {
+    const clientInfo = lowLevel.getClientVersion();
+    audit({
+      user: 'anonymous',
+      kind: 'session_start',
+      target: 'mcp.initialize',
+      outcome: 'ok',
+      clientName: clientInfo?.name,
+      clientVersion: clientInfo?.version,
+    });
+  };
 }
 
 function registerResourceHandlers(server: McpServer, ctx: AppContext): void {
@@ -139,7 +150,7 @@ function registerResourceHandlers(server: McpServer, ctx: AppContext): void {
 
 function scopeForEntry(entry: ResourceEntry): Scope {
   if (entry.uri.startsWith('catalog://')) return 'catalog:read';
-  if (entry.uri.startsWith('docs://') && entry.space) return kbScopeFor(entry.space);
+  if (entry.uri.startsWith('docs://')) return 'kb:read';
   return 'standards:read';
 }
 
@@ -170,7 +181,8 @@ function wireChangeNotifications(server: McpServer, ctx: AppContext): void {
 
 function buildAdapters(): SourceAdapter[] {
   const adapters: SourceAdapter[] = [];
-  const contentDir = process.env['CONTENT_DIR'] ?? resolve(process.cwd(), 'content');
+  const contentDir =
+    process.env['CONTENT_DIR'] ?? resolve(process.cwd(), 'config/fixtures/content');
   adapters.push(new FilesystemAdapter({ root: contentDir }));
 
   if (
@@ -211,10 +223,11 @@ function buildValidator(): EntraValidator | undefined {
 }
 
 export async function main(): Promise<void> {
+  await setupAuditSinks();
   const registry = new Registry();
   const cache = new ResourceCache({ ttlMs: 5 * 60_000 });
   for (const a of buildAdapters()) registry.registerAdapter(a);
-  seedRegistry(registry);
+  await loadRegistryConfig(registry, resolveRegistryConfigPath());
 
   const server = buildServer({ registry, cache });
   const http = await startHttpServer({
@@ -222,7 +235,7 @@ export async function main(): Promise<void> {
     validator: buildValidator(),
     port: Number(process.env['PORT'] ?? 3333),
   });
-  console.error(`talentech-standards listening on ${http.url}`);
+  console.error(`Japetus listening on ${http.url}`);
 
   if (process.env['STALENESS_PORT']) {
     const s = startStalenessServer({

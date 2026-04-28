@@ -1,5 +1,5 @@
 {
-  "_note": "MVP stub for who_owns (plans/issues/12-who-owns.md). Replace with real catalog feed in Phase 3 without changing tool shape.",
+  "_note": "MVP STUB — used in production until issue 33 (real catalog source-of-record) lands. The who_owns tool shape (`{team, primary_contact, slack_channel, repos[]}`) is stable; the data here is hand-maintained and goes stale as teams reorganize. NOT a test fixture; this file is read in every environment until the catalog adapter is rewired. See plans/issues/33-real-catalog-source.md.",
   "services": [
     {
       "keys": ["talentech-ats-core", "ats-core"],
@@ -37,11 +37,11 @@
       "repos": ["Talentech-AI-Labs/talmund"]
     },
     {
-      "keys": ["talentech-standards", "mimas"],
+      "keys": ["japetus", "talentech-standards", "mimas"],
       "team": "Platform DX",
       "primary_contact": "platform-dx-lead@talentech.com",
       "slack_channel": "#platform-dx",
-      "repos": ["Talentech-AI-Labs/talentech-standards", "Talentech-AI-Labs/Mimas"]
+      "repos": ["Talentech-AI-Labs/Japetus", "Talentech-AI-Labs/Mimas"]
     }
   ]
 }

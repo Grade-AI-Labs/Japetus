@@ -34,7 +34,7 @@ async function setup(): Promise<Fixture> {
 
   const registry = new Registry();
   registry.registerAdapter(new FilesystemAdapter({ root: contentDir }));
-  seedRegistry(registry);
+  await seedRegistry(registry);
 
   const server = buildServer({ registry, cache: new ResourceCache({ ttlMs: 1000 }) });
   const http = await startHttpServer({
@@ -61,7 +61,7 @@ async function setup(): Promise<Fixture> {
   };
 }
 
-describe('talentech-standards MCP server', () => {
+describe('Japetus MCP server', () => {
   let fx: Fixture;
 
   beforeEach(async () => {
@@ -96,6 +96,14 @@ describe('talentech-standards MCP server', () => {
     ).rejects.toMatchObject({ code: -32002 });
   });
 
+  it('resources/read on an alias URI returns the canonical content + canonical URI in _meta', async () => {
+    const res = await fx.client.readResource({ uri: 'conventions://prs/checklist' });
+    expect(res.contents).toHaveLength(1);
+    const [first] = res.contents;
+    expect(first!.uri).toBe('conventions://prs/review-checklist');
+    expect(String(first!.text)).toContain('Review checklist');
+  });
+
   it('search_standards finds the review checklist', async () => {
     const result = await fx.client.callTool({
       name: 'search_standards',
@@ -105,23 +113,22 @@ describe('talentech-standards MCP server', () => {
     expect(structured.results.map((r) => r.uri)).toContain('conventions://prs/review-checklist');
   });
 
-  it('get_resource returns content and etag for a URI', async () => {
-    const result = await fx.client.callTool({
-      name: 'get_resource',
-      arguments: { uri: 'templates://prd' },
-    });
-    const body = result.structuredContent as { content: string; etag: string };
-    expect(body.content).toContain('PRD template');
-    expect(body.etag).toBeTruthy();
+  it('tools/list exposes only search_standards, search_docs, who_owns', async () => {
+    const list = await fx.client.listTools();
+    const names = list.tools.map((t) => t.name).sort();
+    expect(names).toEqual(['search_docs', 'search_standards', 'who_owns']);
   });
 
-  it('current_standard resolves a topic to a canonical URI', async () => {
-    const result = await fx.client.callTool({
-      name: 'current_standard',
-      arguments: { topic: 'pr review' },
-    });
-    const body = result.structuredContent as { uri: string };
-    expect(body.uri).toBe('conventions://prs/review-checklist');
+  it('prompts/list exposes the five canonical prompts (no onboard_repo)', async () => {
+    const list = await fx.client.listPrompts();
+    const names = list.prompts.map((p) => p.name).sort();
+    expect(names).toEqual([
+      'incident_postmortem',
+      'review_pr',
+      'write_adr',
+      'write_prd',
+      'write_rfc',
+    ]);
   });
 
   it('who_owns resolves a known service and returns an error payload for unknown', async () => {

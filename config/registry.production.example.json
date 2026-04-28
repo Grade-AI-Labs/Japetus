@@ -1,0 +1,201 @@
+{
+  "_note": "Production registry config — Confluence-backed. Issue 30 (HITL) replaces every <TBD-page-id> with the real Confluence page ID after content owners sign off. Until then, this file documents the schema; it must not be the active config in any environment with real users.",
+  "entries": [
+    {
+      "uri": "conventions://prs/review-checklist",
+      "adapterId": "confluence",
+      "backingId": "<TBD-page-id>",
+      "name": "PR review checklist",
+      "description": "Talentech PR review checklist. Cover these points on every review: correctness, tests, security, observability, accessibility. Supersedes ad-hoc reviewer lists.",
+      "owner": "<TBD-platform-dx-lead>",
+      "topics": ["pr review", "pull request", "review checklist"],
+      "priority": 0.9,
+      "aliases": ["conventions://prs/checklist"]
+    },
+    {
+      "uri": "conventions://prs/description-template",
+      "adapterId": "confluence",
+      "backingId": "<TBD-page-id>",
+      "name": "PR description template",
+      "description": "Canonical PR description template: summary, motivation, change list, test plan, rollback. Use for every PR; agents should fill as many sections as possible automatically.",
+      "owner": "<TBD-platform-dx-lead>",
+      "topics": ["pr description", "pull request", "description template"],
+      "priority": 0.85
+    },
+    {
+      "uri": "conventions://python/style",
+      "adapterId": "confluence",
+      "backingId": "<TBD-page-id>",
+      "name": "Python style guide",
+      "description": "Talentech Python conventions: formatting, typing, imports, error handling, logging. Supersedes PEP 8 where they conflict.",
+      "owner": "<TBD-platform-dx-lead>",
+      "topics": ["python", "style", "formatting", "typing"],
+      "priority": 0.9
+    },
+    {
+      "uri": "conventions://typescript/style",
+      "adapterId": "confluence",
+      "backingId": "<TBD-page-id>",
+      "name": "TypeScript style guide",
+      "description": "Talentech TypeScript conventions: strict mode, module layout, error handling, async patterns. Supersedes community defaults where explicit.",
+      "owner": "<TBD-platform-dx-lead>",
+      "topics": ["typescript", "style"],
+      "priority": 0.9
+    },
+    {
+      "uri": "conventions://react/component-patterns",
+      "adapterId": "confluence",
+      "backingId": "<TBD-page-id>",
+      "name": "React component patterns",
+      "description": "Component patterns for React at Talentech: composition over inheritance, hooks vs context, when to split, styling conventions.",
+      "owner": "<TBD-platform-dx-lead>",
+      "topics": ["react", "component", "patterns"]
+    },
+    {
+      "uri": "conventions://git/commit-messages",
+      "adapterId": "confluence",
+      "backingId": "<TBD-page-id>",
+      "name": "Git commit message convention",
+      "description": "How Talentech writes commit messages: imperative mood, body explains why not what, link issues/work items. Use for every commit.",
+      "owner": "<TBD-platform-dx-lead>",
+      "topics": ["git", "commit", "commit message"]
+    },
+    {
+      "uri": "conventions://git/branch-naming",
+      "adapterId": "confluence",
+      "backingId": "<TBD-page-id>",
+      "name": "Git branch naming convention",
+      "description": "Branch naming convention at Talentech: type/short-slug, linked to work items.",
+      "owner": "<TBD-platform-dx-lead>",
+      "topics": ["git", "branch"]
+    },
+    {
+      "uri": "conventions://security/secrets-handling",
+      "adapterId": "confluence",
+      "backingId": "<TBD-page-id>",
+      "name": "Secrets handling",
+      "description": "How to handle credentials, tokens, and keys at Talentech: never commit, use managed identity first, rotate on exposure. Supersedes per-repo secrets docs.",
+      "owner": "<TBD-security-lead>",
+      "topics": ["secrets", "credentials", "security"],
+      "priority": 0.95
+    },
+    {
+      "uri": "conventions://security/dependency-policy",
+      "adapterId": "confluence",
+      "backingId": "<TBD-page-id>",
+      "name": "Dependency policy",
+      "description": "Policy for adding and updating third-party dependencies: approval, scanning, pinning, SBOM.",
+      "owner": "<TBD-security-lead>",
+      "topics": ["dependency", "supply chain", "security"]
+    },
+    {
+      "uri": "conventions://testing/unit",
+      "adapterId": "confluence",
+      "backingId": "<TBD-page-id>",
+      "name": "Unit testing conventions",
+      "description": "How to write unit tests at Talentech: naming, structure, mocking, coverage expectations.",
+      "owner": "<TBD-platform-dx-lead>",
+      "topics": ["unit test", "testing"]
+    },
+    {
+      "uri": "conventions://testing/integration",
+      "adapterId": "confluence",
+      "backingId": "<TBD-page-id>",
+      "name": "Integration testing conventions",
+      "description": "Integration testing rules: real services where feasible, mocks at trust boundaries only.",
+      "owner": "<TBD-platform-dx-lead>",
+      "topics": ["integration test", "testing"]
+    },
+    {
+      "uri": "conventions://ado/work-item-conventions",
+      "adapterId": "confluence",
+      "backingId": "<TBD-page-id>",
+      "name": "Azure DevOps work-item conventions",
+      "description": "How to write ADO work items: title format, description structure, linking, tagging.",
+      "owner": "<TBD-platform-dx-lead>",
+      "topics": ["ado", "azure devops", "work item"]
+    },
+    {
+      "uri": "conventions://accessibility/wcag-baseline",
+      "adapterId": "confluence",
+      "backingId": "<TBD-page-id>",
+      "name": "WCAG accessibility baseline",
+      "description": "Minimum accessibility requirements for Talentech UIs: WCAG 2.1 AA. Checklist for components and pages.",
+      "owner": "<TBD-accessibility-lead>",
+      "topics": ["accessibility", "wcag", "a11y"]
+    },
+    {
+      "uri": "conventions://compliance/gdpr-pii-handling",
+      "adapterId": "confluence",
+      "backingId": "<TBD-page-id>",
+      "name": "GDPR / PII handling",
+      "description": "How to handle candidate and customer PII under GDPR at Talentech: collection, processing, retention, erasure. Required reading for any feature touching user data.",
+      "owner": "<TBD-compliance-lead>",
+      "topics": ["gdpr", "pii", "privacy", "compliance"],
+      "priority": 0.95
+    },
+    {
+      "uri": "runbooks://incident-response",
+      "adapterId": "confluence",
+      "backingId": "<TBD-page-id>",
+      "name": "Incident response runbook",
+      "description": "Declaring, managing, and resolving incidents at Talentech: severity levels, comms, roles.",
+      "owner": "<TBD-sre-lead>",
+      "topics": ["incident", "on-call", "runbook"]
+    },
+    {
+      "uri": "runbooks://deploy/production",
+      "adapterId": "confluence",
+      "backingId": "<TBD-page-id>",
+      "name": "Production deploy runbook",
+      "description": "How to deploy to production safely: change windows, canary, rollback.",
+      "owner": "<TBD-sre-lead>",
+      "topics": ["deploy", "production", "runbook"]
+    },
+    {
+      "uri": "runbooks://rotate-secrets",
+      "adapterId": "confluence",
+      "backingId": "<TBD-page-id>",
+      "name": "Rotate secrets runbook",
+      "description": "Step-by-step rotation of shared secrets when a leak is suspected.",
+      "owner": "<TBD-security-lead>",
+      "topics": ["secrets", "rotation", "runbook"]
+    },
+    {
+      "uri": "templates://prd",
+      "adapterId": "confluence",
+      "backingId": "<TBD-page-id>",
+      "name": "PRD template",
+      "description": "Canonical PRD skeleton at Talentech. Used by the write_prd prompt.",
+      "owner": "<TBD-platform-dx-lead>",
+      "topics": ["prd", "template"]
+    },
+    {
+      "uri": "templates://rfc",
+      "adapterId": "confluence",
+      "backingId": "<TBD-page-id>",
+      "name": "RFC template",
+      "description": "Canonical RFC skeleton.",
+      "owner": "<TBD-platform-dx-lead>",
+      "topics": ["rfc", "template"]
+    },
+    {
+      "uri": "templates://adr",
+      "adapterId": "confluence",
+      "backingId": "<TBD-page-id>",
+      "name": "ADR template",
+      "description": "Canonical ADR skeleton.",
+      "owner": "<TBD-platform-dx-lead>",
+      "topics": ["adr", "template"]
+    },
+    {
+      "uri": "templates://postmortem",
+      "adapterId": "confluence",
+      "backingId": "<TBD-page-id>",
+      "name": "Postmortem template",
+      "description": "Canonical blameless-postmortem skeleton.",
+      "owner": "<TBD-sre-lead>",
+      "topics": ["postmortem", "template"]
+    }
+  ]
+}

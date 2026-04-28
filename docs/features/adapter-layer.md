@@ -30,7 +30,7 @@ What this feature does NOT own:
 - **Registry**: single in-memory map `uri → (adapter_id, backing_id)` plus `supersedes` chains
 - **ResourceEntry**: what the registry stores per URI (name, description, owner, product, space, topics, priority)
 - **FetchResult**: `{ content, etag, updated }` — the common output shape of every `adapter.fetch(...)`
-- **Canonical URI**: the end of a `supersedes` chain; used by `current_standard` to follow redirects
+- **Canonical URI**: the end of an alias / `supersedes` chain; the registry returns the canonical entry for any alias URI passed to `resolve`
 - **Scope**: which corpus kind the URI belongs to (`conventions`, `runbooks`, `templates`, `docs`, `catalog`)
 
 ---
@@ -80,8 +80,8 @@ Agent → resources/read(uri)
   - `registerAdapter(a)` — register a `SourceAdapter` by its `id`
   - `register(entry)` — add a `ResourceEntry`; `supersedes` links are recorded
   - `resolve(uri)` — canonicalize + look up; throws `resourceNotFound` (`-32002`) for unknown URIs
-  - `canonical(uri)` — follow supersedes chain to the current URI (used by `current_standard`)
-  - `findByTopic(topic)` — topic keyword resolver for `current_standard`
+  - `canonical(uri)` — follow alias / `supersedes` links to the current canonical URI
+  - `findByTopic(topic)` — topic keyword resolver used by search-style consumers
 
 ### Adapters
 
@@ -91,7 +91,7 @@ Agent → resources/read(uri)
   - Primary adapter for integration tests per PRD §6.5 — tests stay off Confluence.
 - **ConfluenceAdapter** ([`src/adapters/confluence.ts`](../../src/adapters/confluence.ts))
   - Uses the Confluence Cloud v2 API (`/wiki/api/v2/…`) with basic auth (email + API token).
-  - Normalizes Confluence storage format to markdown via a minimal translator; replace with a proper parser if behavioral faithfulness matters.
+  - Normalizes Confluence storage format to markdown via [`src/adapters/storage_to_markdown.ts`](../../src/adapters/storage_to_markdown.ts) — a parser-based pipeline (turndown + GFM tables plugin) with custom rules for Confluence-specific structured macros (`code`, `info`/`note`/`warning`/`tip`/`panel`, `ac:image`/`ri:attachment`). Unsupported macros degrade gracefully: inner content survives, the wrapper is dropped, no raw `<ac:` tags leak.
   - `onChange` implemented as a polling loop at a configurable `pollIntervalMs`.
   - Returns `upstreamUnavailable` (`1002`) on any network or non-2xx response.
 
@@ -115,7 +115,7 @@ Agent → resources/read(uri)
 
 ### Environment Variables
 
-- `CONTENT_DIR` — root for `FilesystemAdapter`. Default `./content`.
+- `CONTENT_DIR` — root for `FilesystemAdapter`. Default `./config/fixtures/content` (dev/test/offline fixtures; production deployments use Confluence-backed entries via `REGISTRY_CONFIG=config/registry.production.json` and don't read this directory).
 - `CONFLUENCE_BASE_URL`, `CONFLUENCE_EMAIL`, `CONFLUENCE_API_TOKEN` — required together to activate `ConfluenceAdapter`. Omit all three to run filesystem-only.
 - `CONFLUENCE_SPACE_ENG`, `CONFLUENCE_SPACE_PRODUCT`, `CONFLUENCE_SPACE_SEC` — Confluence space keys mapped to the `ENG`, `PRODUCT`, `SEC` opaque enum agents see.
 
@@ -131,7 +131,7 @@ None.
 
 - **Location**: [`tests/integration/server.test.ts`](../../tests/integration/server.test.ts)
 - **Setup**: per-test `tmpdir` seeded with a couple of markdown fixtures; the test registers a `FilesystemAdapter` over that tmpdir and starts the full server with `DevValidator`.
-- **Covered**: `resources/list` surfaces registry entries, `resources/read` returns content plus ETag and lastModified, `-32002` is raised for unknown URIs, tools that route through the adapter layer (`search_standards`, `get_resource`, `current_standard`) behave correctly.
+- **Covered**: `resources/list` surfaces registry entries, `resources/read` returns content plus ETag and lastModified, `-32002` is raised for unknown URIs, the search tools that route through the adapter layer (`search_standards`, `search_docs`) behave correctly.
 - **Mocking**: Confluence is not exercised in CI per PRD §6.5. Add a dedicated unit test for `ConfluenceAdapter` with an HTTP mock when extending it.
 
 ---
@@ -167,7 +167,7 @@ None.
 
 ## Known Issues and Limitations
 
-1. **Storage-format → markdown translator is minimal.** Complex Confluence macros, layouts, and embedded tables render poorly. Replace with a proper parser (e.g. `@atlaskit/editor-common`) if faithfulness matters.
+1. **Storage-format → markdown translator is parser-based but limited.** Headings, paragraphs, lists (incl. nested), simple tables, inline emphasis, links, images, fenced code with language hints, and the common Confluence panels (`info`/`note`/`warning`/`tip`/`panel`) render correctly. Layout macros (multi-column, tab groups), the Atlassian-specific link macro variants, and rich embeds are best-effort plain text. Replace with `@atlaskit/editor-common` if higher faithfulness is needed.
 2. **Confluence `onChange` uses polling.** Webhook support would be cheaper; add when we want sub-minute change propagation.
 3. **No per-resource TTL override.** Some resources change daily, others yearly; a uniform 5-minute TTL is a coarse approximation.
 4. **Read count tracking in the staleness dashboard is process-local.** Multi-instance deployments will undercount.
@@ -175,10 +175,11 @@ None.
 ## Related Features
 
 - **auth-and-scopes**: scope enforcement runs before any adapter call
-- **mcp-surface**: `search_standards`, `get_resource`, `current_standard`, `search_docs` all invoke adapter methods
+- **mcp-surface**: `search_standards` and `search_docs` invoke adapter methods; `resources/read` (protocol-native) goes through the registry → cache → adapter path
 
 ## Changelog
 
-| Date       | Change                |
-| ---------- | --------------------- |
-| 2026-04-22 | Initial documentation |
+| Date       | Change                                                                                         |
+| ---------- | ---------------------------------------------------------------------------------------------- |
+| 2026-04-22 | Initial documentation                                                                          |
+| 2026-04-28 | Confluence storage→markdown converter rewritten over turndown + GFM; added registry `aliases`. |

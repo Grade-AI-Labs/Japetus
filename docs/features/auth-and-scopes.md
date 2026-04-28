@@ -6,7 +6,7 @@
 
 ## Overview
 
-`talentech-standards` authenticates every request against Microsoft Entra (OAuth 2.1), extracts a `Principal` from the validated token's claims, and enforces a backend-neutral scope set on every tool call and resource read. Scope names (`standards:read`, `kb:read:<space>`, `catalog:read`) are intentionally decoupled from the underlying source adapters so swapping a backend does not force token reissuance. A dev validator allows local work without Entra; an `off` mode disables auth entirely for diagnostics.
+`Japetus` authenticates every request against Microsoft Entra (OAuth 2.1), extracts a `Principal` from the validated token's claims, and enforces a backend-neutral scope set on every tool call and resource read. Scope names (`standards:read`, `kb:read`, `catalog:read`) are intentionally decoupled from the underlying source adapters so swapping a backend does not force token reissuance. The per-space dimension (`kb:read:ENG|PRODUCT|SEC`) was collapsed in PRD §4.6 — every authenticated employee with KB access reads from every approved space, so adding a new content area (e.g. `LEGAL`) is config-only and does not require token reissue. A dev validator allows local work without Entra; an `off` mode disables auth entirely for diagnostics.
 
 ## Responsibilities
 
@@ -25,7 +25,7 @@ What this feature does NOT own:
 ## Key concepts
 
 - **Principal**: `{ sub, scopes: Set<string>, tokenKind: 'user' | 'client_credentials' }` — what the rest of the code gets after validation
-- **Scope**: a string from the fixed set `standards:read`, `kb:read:ENG|PRODUCT|SEC`, `catalog:read`
+- **Scope**: a string from the fixed set `standards:read`, `kb:read`, `catalog:read`. The `Space` enum (`ENG`, `PRODUCT`, `SEC`) is an internal routing label only — it does not drive auth.
 - **Validator**: strategy interface with one method `validate(bearerHeader): Promise<Principal>`
 - **AUTH_MODE**: env-driven selector between `dev`, `entra`, `off`
 - **AuthInfo**: the MCP SDK's per-request context object; we populate it in the transport so tools/resource handlers can read scopes from `extra.authInfo`
@@ -55,21 +55,19 @@ Tool/resource handlers then call `principalFromExtra(extra)` and, if a principal
 
 Each URI prefix maps to a scope via `scopeForEntry(entry)` in [`src/server.ts`](../../src/server.ts):
 
-| URI prefix                                       | Required scope    |
-| ------------------------------------------------ | ----------------- |
-| `catalog://*`                                    | `catalog:read`    |
-| `docs://<space>/*`                               | `kb:read:<space>` |
-| `conventions://*` `runbooks://*` `templates://*` | `standards:read`  |
+| URI prefix                                       | Required scope   |
+| ------------------------------------------------ | ---------------- |
+| `catalog://*`                                    | `catalog:read`   |
+| `docs://<space>/*`                               | `kb:read`        |
+| `conventions://*` `runbooks://*` `templates://*` | `standards:read` |
 
 Tools declare their own scopes:
 
-| Tool               | Scope                                     |
-| ------------------ | ----------------------------------------- |
-| `search_standards` | `standards:read`                          |
-| `get_resource`     | scope of the target entry                 |
-| `current_standard` | `standards:read`                          |
-| `search_docs`      | `kb:read:<space>` for the requested space |
-| `who_owns`         | `catalog:read`                            |
+| Tool               | Scope            |
+| ------------------ | ---------------- |
+| `search_standards` | `standards:read` |
+| `search_docs`      | `kb:read`        |
+| `who_owns`         | `catalog:read`   |
 
 If `principal.scopes` does not contain the required scope, `requireScope` throws `notEntitled(scope, target?)` which becomes MCP error `1001`.
 
@@ -92,7 +90,7 @@ If `principal.scopes` does not contain the required scope, `requireScope` throws
 
 - **Location**: [`src/auth/scopes.ts`](../../src/auth/scopes.ts)
 - **`requireScope(principal, scope, target?)`**: throws `notEntitled(scope, target)` if the scope is missing
-- **`kbScopeFor(space)`**: constructs `kb:read:<space>` — used when a tool receives the space argument and needs to build the scope name dynamically
+- The per-space helper (`kbScopeFor`) was removed when `kb:read` was collapsed (PRD §4.6); `search_docs` and `docs://` reads now require the bare `kb:read` scope
 
 ### Transport integration
 
@@ -113,14 +111,12 @@ If `principal.scopes` does not contain the required scope, `requireScope` throws
 
 - `AUTH_MODE` — `dev` | `entra` | `off`. Default: `dev`.
 - `ENTRA_TENANT_ID` — required when `AUTH_MODE=entra`; the Entra tenant GUID
-- `ENTRA_AUDIENCE` — required when `AUTH_MODE=entra`; the `aud` claim the token must carry (typically `api://talentech-standards`)
+- `ENTRA_AUDIENCE` — required when `AUTH_MODE=entra`; the `aud` claim the token must carry (typically `api://japetus`)
 
 ### Scope set (fixed)
 
 - `standards:read`
-- `kb:read:ENG`
-- `kb:read:PRODUCT`
-- `kb:read:SEC`
+- `kb:read` (covers all approved spaces; per-space tokens were dropped in PRD §4.6 — supersedes the per-space decision in ADR 001)
 - `catalog:read`
 
 ---
@@ -185,6 +181,7 @@ If `principal.scopes` does not contain the required scope, `requireScope` throws
 
 ## Changelog
 
-| Date       | Change                |
-| ---------- | --------------------- |
-| 2026-04-22 | Initial documentation |
+| Date       | Change                                                                                              |
+| ---------- | --------------------------------------------------------------------------------------------------- |
+| 2026-04-22 | Initial documentation                                                                               |
+| 2026-04-28 | Collapsed `kb:read:<space>` → `kb:read`; removed `kbScopeFor`; `Space` is now a routing label only. |

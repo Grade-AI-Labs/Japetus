@@ -1,6 +1,6 @@
 # Engineering Standards & Workflows
 
-This document defines shared engineering practices for `talentech-standards`.
+This document defines shared engineering practices for `Japetus` (renamed from `talentech-standards`).
 
 ---
 
@@ -129,13 +129,13 @@ npm run build                     # tsc -p tsconfig.json → dist/
 npm run start                     # node dist/server.js
 npm run lint                      # prettier --check . && tsc --noEmit
 npm run format                    # prettier --write .
-docker build -t talentech-standards . # container image
+docker build -t japetus .             # container image
 ```
 
 For local dev against the real seed corpus:
 
 ```bash
-AUTH_MODE=dev CONTENT_DIR=$(pwd)/content npm run dev
+AUTH_MODE=dev npm run dev   # CONTENT_DIR defaults to ./config/fixtures/content (dev fixtures)
 ```
 
 ---

@@ -1,0 +1,200 @@
+{
+  "entries": [
+    {
+      "uri": "conventions://prs/review-checklist",
+      "adapterId": "filesystem",
+      "backingId": "conventions/prs/review-checklist.md",
+      "name": "PR review checklist",
+      "description": "Talentech PR review checklist. Cover these points on every review: correctness, tests, security, observability, accessibility. Supersedes ad-hoc reviewer lists.",
+      "owner": "platform-dx",
+      "topics": ["pr review", "pull request", "review checklist"],
+      "priority": 0.9,
+      "aliases": ["conventions://prs/checklist"]
+    },
+    {
+      "uri": "conventions://prs/description-template",
+      "adapterId": "filesystem",
+      "backingId": "conventions/prs/description-template.md",
+      "name": "PR description template",
+      "description": "Canonical PR description template: summary, motivation, change list, test plan, rollback. Use for every PR; agents should fill as many sections as possible automatically.",
+      "owner": "platform-dx",
+      "topics": ["pr description", "pull request", "description template"],
+      "priority": 0.85
+    },
+    {
+      "uri": "conventions://python/style",
+      "adapterId": "filesystem",
+      "backingId": "conventions/python/style.md",
+      "name": "Python style guide",
+      "description": "Talentech Python conventions: formatting, typing, imports, error handling, logging. Supersedes PEP 8 where they conflict.",
+      "owner": "platform-dx",
+      "topics": ["python", "style", "formatting", "typing"],
+      "priority": 0.9
+    },
+    {
+      "uri": "conventions://typescript/style",
+      "adapterId": "filesystem",
+      "backingId": "conventions/typescript/style.md",
+      "name": "TypeScript style guide",
+      "description": "Talentech TypeScript conventions: strict mode, module layout, error handling, async patterns. Supersedes community defaults where explicit.",
+      "owner": "platform-dx",
+      "topics": ["typescript", "style"],
+      "priority": 0.9
+    },
+    {
+      "uri": "conventions://react/component-patterns",
+      "adapterId": "filesystem",
+      "backingId": "conventions/react/component-patterns.md",
+      "name": "React component patterns",
+      "description": "Component patterns for React at Talentech: composition over inheritance, hooks vs context, when to split, styling conventions.",
+      "owner": "platform-dx",
+      "topics": ["react", "component", "patterns"]
+    },
+    {
+      "uri": "conventions://git/commit-messages",
+      "adapterId": "filesystem",
+      "backingId": "conventions/git/commit-messages.md",
+      "name": "Git commit message convention",
+      "description": "How Talentech writes commit messages: imperative mood, body explains why not what, link issues/work items. Use for every commit.",
+      "owner": "platform-dx",
+      "topics": ["git", "commit", "commit message"]
+    },
+    {
+      "uri": "conventions://git/branch-naming",
+      "adapterId": "filesystem",
+      "backingId": "conventions/git/branch-naming.md",
+      "name": "Git branch naming convention",
+      "description": "Branch naming convention at Talentech: type/short-slug, linked to work items.",
+      "owner": "platform-dx",
+      "topics": ["git", "branch"]
+    },
+    {
+      "uri": "conventions://security/secrets-handling",
+      "adapterId": "filesystem",
+      "backingId": "conventions/security/secrets-handling.md",
+      "name": "Secrets handling",
+      "description": "How to handle credentials, tokens, and keys at Talentech: never commit, use managed identity first, rotate on exposure. Supersedes per-repo secrets docs.",
+      "owner": "security",
+      "topics": ["secrets", "credentials", "security"],
+      "priority": 0.95
+    },
+    {
+      "uri": "conventions://security/dependency-policy",
+      "adapterId": "confluence",
+      "backingId": "729939990",
+      "name": "Dependency policy",
+      "description": "Policy for adding and updating third-party dependencies: approval, scanning, pinning, SBOM. Source: Talentech Group → GT space → Dependency Management.",
+      "owner": "security",
+      "topics": ["dependency", "supply chain", "security"]
+    },
+    {
+      "uri": "conventions://testing/unit",
+      "adapterId": "filesystem",
+      "backingId": "conventions/testing/unit.md",
+      "name": "Unit testing conventions",
+      "description": "How to write unit tests at Talentech: naming, structure, mocking, coverage expectations.",
+      "owner": "platform-dx",
+      "topics": ["unit test", "testing"]
+    },
+    {
+      "uri": "conventions://testing/integration",
+      "adapterId": "filesystem",
+      "backingId": "conventions/testing/integration.md",
+      "name": "Integration testing conventions",
+      "description": "Integration testing rules: real services where feasible, mocks at trust boundaries only.",
+      "owner": "platform-dx",
+      "topics": ["integration test", "testing"]
+    },
+    {
+      "uri": "conventions://ado/work-item-conventions",
+      "adapterId": "filesystem",
+      "backingId": "conventions/ado/work-item-conventions.md",
+      "name": "Azure DevOps work-item conventions",
+      "description": "How to write ADO work items: title format, description structure, linking, tagging.",
+      "owner": "platform-dx",
+      "topics": ["ado", "azure devops", "work item"]
+    },
+    {
+      "uri": "conventions://accessibility/wcag-baseline",
+      "adapterId": "filesystem",
+      "backingId": "conventions/accessibility/wcag-baseline.md",
+      "name": "WCAG accessibility baseline",
+      "description": "Minimum accessibility requirements for Talentech UIs: WCAG 2.1 AA. Checklist for components and pages.",
+      "owner": "platform-dx",
+      "topics": ["accessibility", "wcag", "a11y"]
+    },
+    {
+      "uri": "conventions://compliance/gdpr-pii-handling",
+      "adapterId": "filesystem",
+      "backingId": "conventions/compliance/gdpr-pii-handling.md",
+      "name": "GDPR / PII handling",
+      "description": "How to handle candidate and customer PII under GDPR at Talentech: collection, processing, retention, erasure. Required reading for any feature touching user data.",
+      "owner": "security",
+      "topics": ["gdpr", "pii", "privacy", "compliance"],
+      "priority": 0.95
+    },
+    {
+      "uri": "runbooks://incident-response",
+      "adapterId": "filesystem",
+      "backingId": "runbooks/incident-response.md",
+      "name": "Incident response runbook",
+      "description": "Declaring, managing, and resolving incidents at Talentech: severity levels, comms, roles.",
+      "owner": "sre",
+      "topics": ["incident", "on-call", "runbook"]
+    },
+    {
+      "uri": "runbooks://deploy/production",
+      "adapterId": "filesystem",
+      "backingId": "runbooks/deploy/production.md",
+      "name": "Production deploy runbook",
+      "description": "How to deploy to production safely: change windows, canary, rollback.",
+      "owner": "sre",
+      "topics": ["deploy", "production", "runbook"]
+    },
+    {
+      "uri": "runbooks://rotate-secrets",
+      "adapterId": "filesystem",
+      "backingId": "runbooks/rotate-secrets.md",
+      "name": "Rotate secrets runbook",
+      "description": "Step-by-step rotation of shared secrets when a leak is suspected.",
+      "owner": "security",
+      "topics": ["secrets", "rotation", "runbook"]
+    },
+    {
+      "uri": "templates://prd",
+      "adapterId": "filesystem",
+      "backingId": "templates/prd.md",
+      "name": "PRD template",
+      "description": "Canonical PRD skeleton at Talentech. Used by the write_prd prompt.",
+      "owner": "platform-dx",
+      "topics": ["prd", "template"]
+    },
+    {
+      "uri": "templates://rfc",
+      "adapterId": "filesystem",
+      "backingId": "templates/rfc.md",
+      "name": "RFC template",
+      "description": "Canonical RFC skeleton.",
+      "owner": "platform-dx",
+      "topics": ["rfc", "template"]
+    },
+    {
+      "uri": "templates://adr",
+      "adapterId": "filesystem",
+      "backingId": "templates/adr.md",
+      "name": "ADR template",
+      "description": "Canonical ADR skeleton.",
+      "owner": "platform-dx",
+      "topics": ["adr", "template"]
+    },
+    {
+      "uri": "templates://postmortem",
+      "adapterId": "filesystem",
+      "backingId": "templates/postmortem.md",
+      "name": "Postmortem template",
+      "description": "Canonical blameless-postmortem skeleton.",
+      "owner": "sre",
+      "topics": ["postmortem", "template"]
+    }
+  ]
+}

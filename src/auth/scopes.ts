@@ -1,7 +1,6 @@
-import type { Space } from '../adapters/types.ts';
 import { notEntitled } from '../errors.ts';
 
-export type Scope = 'standards:read' | 'catalog:read' | `kb:read:${Space}`;
+export type Scope = 'standards:read' | 'kb:read' | 'catalog:read';
 
 export interface Principal {
   sub: string;
@@ -11,8 +10,4 @@ export interface Principal {
 
 export function requireScope(principal: Principal, scope: Scope, target?: string): void {
   if (!principal.scopes.has(scope)) throw notEntitled(scope, target);
-}
-
-export function kbScopeFor(space: Space): Scope {
-  return `kb:read:${space}` as Scope;
 }

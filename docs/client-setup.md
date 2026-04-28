@@ -1,6 +1,6 @@
 # Client setup
 
-This doc covers registering `talentech-standards` in the supported clients and the OAuth flow. Matches slice [plans/issues/18-cursor-wiring.md](../plans/issues/18-cursor-wiring.md).
+This doc covers registering `Japetus` (renamed from `talentech-standards`) in the supported clients and the OAuth flow. Matches slice [plans/issues/18-cursor-wiring.md](../plans/issues/18-cursor-wiring.md).
 
 ## Claude Code
 
@@ -8,7 +8,7 @@ Add the server as a remote MCP server at the user or project level:
 
 ```sh
 # user-level (recommended for org-wide use)
-claude mcp add --transport http talentech-standards https://talentech-standards.example.corp/mcp
+claude mcp add --transport http japetus https://japetus.example.corp/mcp
 ```
 
 On first use, Claude Code opens a browser for the Entra consent flow. After consent, tokens are cached per user.
@@ -20,9 +20,9 @@ Drop a `.mcp.json` into the repo root:
 ```json
 {
   "mcpServers": {
-    "talentech-standards": {
+    "japetus": {
       "type": "http",
-      "url": "https://talentech-standards.example.corp/mcp"
+      "url": "https://japetus.example.corp/mcp"
     }
   }
 }
@@ -35,8 +35,8 @@ Cursor supports remote MCP servers via `~/.cursor/mcp.json`:
 ```json
 {
   "mcpServers": {
-    "talentech-standards": {
-      "url": "https://talentech-standards.example.corp/mcp",
+    "japetus": {
+      "url": "https://japetus.example.corp/mcp",
       "transport": "http"
     }
   }
@@ -52,9 +52,9 @@ MCP is supported in **agent chat**, not in inline completions. Wire via `.vscode
 ```json
 {
   "servers": {
-    "talentech-standards": {
+    "japetus": {
       "type": "http",
-      "url": "https://talentech-standards.example.corp/mcp"
+      "url": "https://japetus.example.corp/mcp"
     }
   }
 }
@@ -68,7 +68,7 @@ For local work against the server running from this repo:
 
 ```sh
 npm install
-CONTENT_DIR=$(pwd)/content AUTH_MODE=dev npm run dev
+AUTH_MODE=dev npm run dev   # CONTENT_DIR defaults to ./config/fixtures/content
 ```
 
 Then point your client at `http://localhost:3333/mcp`. `AUTH_MODE=dev` accepts any bearer and grants all scopes — do NOT use in any environment with real data.

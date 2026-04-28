@@ -1,4 +1,5 @@
 import { upstreamUnavailable } from '../errors.ts';
+import { storageToMarkdown } from './storage_to_markdown.ts';
 import type {
   FetchResult,
   ResourceHandle,
@@ -130,27 +131,6 @@ export class ConfluenceAdapter implements SourceAdapter {
     }
     return (await res.json()) as T;
   }
-}
-
-function storageToMarkdown(storage: string): string {
-  // Minimal MVP conversion. A production path should use a proper parser.
-  return storage
-    .replace(/<h([1-6])[^>]*>([\s\S]*?)<\/h\1>/gi, (_m, lvl, inner) => {
-      const level = Number(lvl);
-      return `\n${'#'.repeat(level)} ${stripHtml(inner).trim()}\n`;
-    })
-    .replace(/<p[^>]*>([\s\S]*?)<\/p>/gi, (_m, inner) => `\n${stripHtml(inner).trim()}\n`)
-    .replace(/<li[^>]*>([\s\S]*?)<\/li>/gi, (_m, inner) => `- ${stripHtml(inner).trim()}\n`)
-    .replace(/<\/?ul[^>]*>/gi, '\n')
-    .replace(/<\/?ol[^>]*>/gi, '\n')
-    .replace(/<code[^>]*>([\s\S]*?)<\/code>/gi, (_m, inner) => '`' + stripHtml(inner) + '`')
-    .replace(
-      /<pre[^>]*>([\s\S]*?)<\/pre>/gi,
-      (_m, inner) => `\n\`\`\`\n${stripHtml(inner)}\n\`\`\`\n`,
-    )
-    .replace(/<[^>]+>/g, '')
-    .replace(/\n{3,}/g, '\n\n')
-    .trim();
 }
 
 function stripHtml(html: string): string {

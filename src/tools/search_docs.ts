@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { audit } from '../audit/logger.ts';
-import { kbScopeFor, requireScope } from '../auth/scopes.ts';
+import { requireScope } from '../auth/scopes.ts';
 import { principalFromExtra, type AppContext, type McpExtra } from '../server.ts';
 import type { Space } from '../adapters/types.ts';
 
@@ -22,7 +22,7 @@ export function registerSearchDocs(server: McpServer, ctx: AppContext): void {
     async (args, extra: McpExtra) => {
       const space = args.space as Space;
       const principal = principalFromExtra(extra);
-      if (principal) requireScope(principal, kbScopeFor(space));
+      if (principal) requireScope(principal, 'kb:read');
       const started = Date.now();
       const results: Array<{ uri: string; snippet: string; score: number }> = [];
       for (const adapter of ctx.registry.listAdapters()) {

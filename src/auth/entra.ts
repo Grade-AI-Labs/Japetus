@@ -71,13 +71,7 @@ export class DevValidator implements EntraValidator {
     void bearer;
     return {
       sub: 'dev-user',
-      scopes: new Set([
-        'standards:read',
-        'catalog:read',
-        'kb:read:ENG',
-        'kb:read:PRODUCT',
-        'kb:read:SEC',
-      ]),
+      scopes: new Set(['standards:read', 'catalog:read', 'kb:read']),
       tokenKind: 'user',
     };
   }

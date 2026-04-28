@@ -35,13 +35,13 @@ What this feature does NOT own:
 
 ## Tool inventory
 
-| Tool               | File                                                                   | Scope             | Purpose                                                                                                            |
-| ------------------ | ---------------------------------------------------------------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------ |
-| `search_standards` | [`src/tools/search_standards.ts`](../../src/tools/search_standards.ts) | `standards:read`  | Full-text search over the curated corpus (conventions + runbooks + templates); returns URIs + snippets, not bodies |
-| `get_resource`     | [`src/tools/get_resource.ts`](../../src/tools/get_resource.ts)         | scope of target   | Tool-shaped alias for `resources/read` for clients that prefer tool access; returns content + etag + lastModified  |
-| `current_standard` | [`src/tools/current_standard.ts`](../../src/tools/current_standard.ts) | `standards:read`  | Resolve a topic keyword to the canonical URI; follows supersedes chains                                            |
-| `search_docs`      | [`src/tools/search_docs.ts`](../../src/tools/search_docs.ts)           | `kb:read:<space>` | Search pre-approved KB spaces (`ENG`, `PRODUCT`, `SEC`); backend-neutral                                           |
-| `who_owns`         | [`src/tools/who_owns.ts`](../../src/tools/who_owns.ts)                 | `catalog:read`    | Resolve a path/service/package to owning team, contact, Slack channel, repos                                       |
+| Tool               | File                                                                   | Scope            | Purpose                                                                                                                                                                       |
+| ------------------ | ---------------------------------------------------------------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `search_standards` | [`src/tools/search_standards.ts`](../../src/tools/search_standards.ts) | `standards:read` | Lexical search over the curated corpus (conventions + runbooks + templates); returns URIs + snippets, not bodies. Read full content via the protocol-native `resources/read`. |
+| `search_docs`      | [`src/tools/search_docs.ts`](../../src/tools/search_docs.ts)           | `kb:read`        | Search pre-approved KB spaces (`ENG`, `PRODUCT`, `SEC`); backend-neutral                                                                                                      |
+| `who_owns`         | [`src/tools/who_owns.ts`](../../src/tools/who_owns.ts)                 | `catalog:read`   | Resolve a path/service/package to owning team, contact, Slack channel, repos                                                                                                  |
+
+> **Removed in PRD §4.3 / §6**: `get_resource` (replaced by the protocol-native `resources/read`) and `current_standard` (its supersedes/redirect role moved into the registry layer as alias resolution).
 
 ## Prompt inventory
 
@@ -52,7 +52,8 @@ What this feature does NOT own:
 | `write_rfc`           | [`src/prompts/write_rfc.ts`](../../src/prompts/write_rfc.ts)                     | `topic`                           | `templates://rfc`                                                       |
 | `write_adr`           | [`src/prompts/write_adr.ts`](../../src/prompts/write_adr.ts)                     | `decision`, `context?`            | `templates://adr`                                                       |
 | `incident_postmortem` | [`src/prompts/incident_postmortem.ts`](../../src/prompts/incident_postmortem.ts) | `incident_id`                     | `templates://postmortem`, `runbooks://incident-response`                |
-| `onboard_repo`        | [`src/prompts/onboard_repo.ts`](../../src/prompts/onboard_repo.ts)               | `repo_url`                        | git + prs + testing conventions                                         |
+
+> **Removed in PRD §4.4 / §6**: `onboard_repo` — repo scaffolding is owned by Mimas, not Japetus.
 
 ---
 
@@ -132,14 +133,14 @@ Never leave the description blank; never write a description that just restates 
 ### Integration Tests
 
 - **Location**: [`tests/integration/server.test.ts`](../../tests/integration/server.test.ts)
-- **Covered tools**: `search_standards`, `get_resource`, `current_standard`, `who_owns` (both hit and miss paths)
+- **Covered tools**: `search_standards`, `who_owns` (both hit and miss paths). Resource reads are exercised via the protocol-native `resources/read`.
 - **Covered prompts**: `write_prd` — verifies embedded URIs are present in the returned messages
 - **Setup**: `DevValidator` grants all scopes; `FilesystemAdapter` on a per-test tmpdir seeded with fixture markdown
 
 ### Gaps (explicit TODOs)
 
 - `search_docs`: no integration test yet — add when a `docs://`-scoped resource is added to the seed
-- `review_pr`, `write_rfc`, `write_adr`, `incident_postmortem`, `onboard_repo`: no integration tests yet
+- `review_pr`, `write_rfc`, `write_adr`, `incident_postmortem`: no integration tests yet
 - Scope denial (`1001`) on a tool call — test covers resource path implicitly; add an explicit tool-level test
 
 ---
@@ -150,7 +151,7 @@ Never leave the description blank; never write a description that just restates 
 
 - **Invalid tool input**: zod rejection → MCP error `-32602` (InvalidParams)
 - **Missing scope**: `notEntitled` → MCP error `1001`
-- **Unknown URI argument** (e.g. `get_resource({ uri: ... })` with unknown URI): `resourceNotFound` → MCP error `-32002`
+- **Unknown URI argument** (resources/read with an unknown URI): `resourceNotFound` → MCP error `-32002`
 - **Upstream unavailable during a tool call** (adapter throws): `upstreamUnavailable` → MCP error `1002`
 - **`who_owns` not-found**: returned as `isError: true` + `{ found: false, path }` structured content rather than an MCP error — tools don't throw for "no match" cases, they return a null-result shape
 
@@ -158,7 +159,7 @@ Never leave the description blank; never write a description that just restates 
 
 - **`search_standards` with an empty query**: zod schema enforces `min(1)`; `-32602` on empty string
 - **`search_docs` with an unknown space**: enum validation fails at the zod layer; `-32602`
-- **`current_standard` with a topic that maps to a URI which itself is superseded**: the canonical chain is followed; the response carries a `redirectedFrom` field when the original URI was superseded
+- **Alias URI in `resources/read`**: the registry resolves to the canonical entry; `_meta` always carries the canonical URI (cache key is the canonical URI, not the alias)
 
 ---
 

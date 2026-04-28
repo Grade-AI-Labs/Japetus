@@ -1,6 +1,6 @@
 # `src/` Instructions
 
-This directory contains the `talentech-standards` MCP server — a TypeScript/Node service that speaks the Model Context Protocol over Streamable HTTP, validates Entra OAuth tokens, and projects curated content from pluggable source adapters to MCP-capable coding agents.
+This directory contains the `Japetus` MCP server — a TypeScript/Node service that speaks the Model Context Protocol over Streamable HTTP, validates Entra OAuth tokens, and projects curated content from pluggable source adapters to MCP-capable coding agents. (Renamed from `talentech-standards`.)
 
 You MUST follow:
 
@@ -14,7 +14,7 @@ Code is organized **by kind**, not by feature:
 
 - `server.ts` — MCP server entry; composes registry, cache, adapters, tools, prompts; exposes `buildServer()` and `main()`
 - `transport.ts` — Streamable HTTP wiring; resolves bearer → `AuthInfo` before delegating to the SDK transport
-- `registry.ts` — URI → `(adapter, backing_id)` resolver; supports `supersedes` chains used by `current_standard`
+- `registry.ts` — URI → `(adapter, backing_id)` resolver; supports `aliases` so renamed/merged URIs keep resolving to the canonical entry
 - `cache.ts` — ETag + TTL cache of `FetchResult`s
 - `errors.ts` — MCP error code constants and typed helpers (`resourceNotFound`, `notEntitled`, `upstreamUnavailable`)
 - `seed.ts` — the MVP corpus registry entries; edit here to add/remove a resource

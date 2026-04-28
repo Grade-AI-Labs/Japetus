@@ -12,6 +12,9 @@ export interface ResourceEntry {
   owner?: string;
   product?: string;
   space?: Space;
+  /** URIs that resolve to this entry. Replaces / generalizes the legacy `supersedes` field. */
+  aliases?: string[];
+  /** Legacy: URIs that this entry supersedes. Treated equivalently to `aliases`. */
   supersedes?: string[];
   priority?: number;
   topics?: string[];
@@ -21,7 +24,7 @@ export interface ResourceEntry {
 export class Registry {
   private readonly adapters = new Map<string, SourceAdapter>();
   private readonly entries = new Map<string, ResourceEntry>();
-  private readonly supersededBy = new Map<string, string>();
+  private readonly aliasOf = new Map<string, string>();
 
   registerAdapter(adapter: SourceAdapter): void {
     this.adapters.set(adapter.id, adapter);
@@ -36,9 +39,24 @@ export class Registry {
   }
 
   register(entry: ResourceEntry): void {
+    if (this.aliasOf.has(entry.uri)) {
+      throw new Error(
+        `Registry alias collision: '${entry.uri}' is already an alias for '${this.aliasOf.get(entry.uri)}'`,
+      );
+    }
     this.entries.set(entry.uri, entry);
-    for (const from of entry.supersedes ?? []) {
-      this.supersededBy.set(from, entry.uri);
+    const aliases = [...(entry.aliases ?? []), ...(entry.supersedes ?? [])];
+    for (const alias of aliases) {
+      const existingAlias = this.aliasOf.get(alias);
+      if (existingAlias && existingAlias !== entry.uri) {
+        throw new Error(
+          `Registry alias collision: '${alias}' is already an alias for '${existingAlias}'`,
+        );
+      }
+      if (this.entries.has(alias) && alias !== entry.uri) {
+        throw new Error(`Registry alias collision: '${alias}' is already a canonical URI`);
+      }
+      this.aliasOf.set(alias, entry.uri);
     }
   }
 
@@ -54,15 +72,15 @@ export class Registry {
   }
 
   /**
-   * Follow supersedes chains to the current canonical URI. Used by current_standard.
+   * Follow alias / supersedes links to the current canonical URI.
    */
   canonical(uri: string): string {
     const seen = new Set<string>();
     let cur = uri;
-    while (this.supersededBy.has(cur)) {
+    while (this.aliasOf.has(cur)) {
       if (seen.has(cur)) break;
       seen.add(cur);
-      cur = this.supersededBy.get(cur)!;
+      cur = this.aliasOf.get(cur)!;
     }
     return cur;
   }

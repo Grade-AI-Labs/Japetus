@@ -9,6 +9,7 @@ It must stay accurate as new features are introduced, renamed, merged, or remove
 ## Feature list (alphabetical)
 
 - [adapter-layer](./features/adapter-layer.md) — `SourceAdapter` contract, filesystem + Confluence adapters, URI registry, ETag cache, change notifications
+- [audit](./features/audit.md) — audit pipeline, redaction (email-strip + 80-char truncation), sinks, adoption metrics
 - [auth-and-scopes](./features/auth-and-scopes.md) — Entra JWKS validation, dev/off modes, scope enforcement, MCP error shapes
 - [mcp-surface](./features/mcp-surface.md) — tools and prompts registered on the MCP server, plus conventions for adding more
 
