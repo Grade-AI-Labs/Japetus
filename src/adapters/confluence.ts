@@ -10,6 +10,12 @@ import type {
 } from './types.ts';
 
 export interface ConfluenceAdapterOptions {
+  /**
+   * For classic API tokens, the site URL (e.g. `https://yoursite.atlassian.net`).
+   * For scoped API tokens, the Atlassian gateway URL
+   * `https://api.atlassian.com/ex/confluence/<cloudId>`. The cloudId is the
+   * value returned by `GET ${siteUrl}/_edge/tenant_info`.
+   */
   baseUrl: string;
   email: string;
   apiToken: string;
