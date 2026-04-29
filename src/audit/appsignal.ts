@@ -40,21 +40,34 @@ export class AppSignalAuditSink implements AuditSink {
 }
 
 /**
- * Build an AppSignalClient backed by the real SDK if the push API key is
- * configured; otherwise return undefined. Imports are dynamic so test
- * environments without `@appsignal/nodejs` configured don't pay the SDK init
- * cost or trigger network setup.
+ * Build an `AppSignalClient` if `APPSIGNAL_PUSH_API_KEY` is set, else undefined.
+ *
+ * The `@appsignal/nodejs` SDK is intentionally NOT in `dependencies` — its
+ * postinstall script downloads native binaries from a Fastly CDN, and that
+ * fetch hangs inside Clever Cloud's build sandbox, killing every deploy.
+ * To enable AppSignal in production: `npm install @appsignal/nodejs`, set
+ * `APPSIGNAL_PUSH_API_KEY` on the deploy, and the dynamic import below will
+ * resolve. Until then the function is a no-op and the sink is never wired.
  */
 export async function createAppSignalClient(
   env: NodeJS.ProcessEnv = process.env,
 ): Promise<AppSignalClient | undefined> {
   const key = env['APPSIGNAL_PUSH_API_KEY'];
   if (!key) return undefined;
-  const mod = (await import('@appsignal/nodejs')) as {
+  let mod: {
     Appsignal: new (config: { active: boolean; pushApiKey: string; name?: string }) => {
       metrics(): { incrementCounter: Function; addDistributionValue: Function };
     };
   };
+  try {
+    mod = (await import('@appsignal/nodejs')) as never;
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error(
+      `[audit] APPSIGNAL_PUSH_API_KEY is set but '@appsignal/nodejs' is not installed; skipping AppSignal sink. Run \`npm install @appsignal/nodejs\` and redeploy. Underlying error: ${(err as Error).message}`,
+    );
+    return undefined;
+  }
   const client = new mod.Appsignal({
     active: true,
     pushApiKey: key,

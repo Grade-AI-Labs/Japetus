@@ -55,7 +55,7 @@ The 90-day retention is **enforced at the sink backend**, not by client-side rot
 ### Sinks
 
 - **`StdoutAuditSink`** — always on; writes a single JSON line per entry to stdout.
-- **`AppSignalAuditSink`** ([`src/audit/appsignal.ts`](../../src/audit/appsignal.ts)) — increments `japetus.audit.<kind>` and `japetus.audit.errors`; records `japetus.audit.<kind>.latency_ms` distributions. Activated only when `APPSIGNAL_PUSH_API_KEY` is set.
+- **`AppSignalAuditSink`** ([`src/audit/appsignal.ts`](../../src/audit/appsignal.ts)) — increments `japetus.audit.<kind>` and `japetus.audit.errors`; records `japetus.audit.<kind>.latency_ms` distributions. Activated only when `APPSIGNAL_PUSH_API_KEY` is set. **Note:** `@appsignal/nodejs` is not in `dependencies` because its postinstall script hangs inside Clever Cloud's build sandbox. To turn AppSignal on, `npm install @appsignal/nodejs` and set the env var; the sink falls back to a no-op with a warning if the key is set but the package is absent.
 - **`OtelAuditSink`** ([`src/audit/otel.ts`](../../src/audit/otel.ts)) — emits `japetus.audit.calls`, `japetus.audit.errors` counters and a `japetus.audit.latency_ms` histogram via the global OTEL meter. Activated only when `OTEL_EXPORTER_OTLP_ENDPOINT` is set.
 - **`MultiSink`** — composite fan-out; one sink failing does not crash the server or block other sinks (PRD §4.8 requirement).
 - **`MetricsAuditSink`** — in-memory ring buffer of recent entries; backs the adoption-metrics observable gauges. Always part of the fan-out so derivation works whether or not OTEL is wired.
