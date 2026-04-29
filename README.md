@@ -51,3 +51,5 @@ tests/                        # integration + unit tests
 ## Deployment
 
 Target: Clever Cloud as a Docker container (per PRD §7.3 / §11). The same image is OCI-portable to any other container host. Build image with the included Dockerfile; the app accepts config via env vars. ADR [docs/adr/001-foundations.md](docs/adr/001-foundations.md) is being superseded by a follow-up ADR capturing the Clever Cloud decision.
+
+CI/CD lives in [`.github/workflows/japetus-ci-cd.yml`](.github/workflows/japetus-ci-cd.yml): `Test`, `Lint`, and `Build` run on every push and PR; `Deploy` to Clever Cloud fires on push to `master`. Required repo secrets: `CLEVER_TOKEN`, `CLEVER_SECRET`, `JAPETUS_PRODUCTION_APP_ID`. Per-environment Clever env vars (Entra, Confluence, AppSignal, OTEL, `REGISTRY_CONFIG`) are configured on the Clever app itself.

@@ -1,0 +1,133 @@
+name: Japetus CI/CD
+
+# Runs on every push and PR. Deploy to Clever Cloud only fires on push to master.
+# Modeled on Hyperion's pipeline (../Hyperion/.github/workflows/hyperion-ci-cd.yml).
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  Test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npx vitest run
+        env:
+          CI: true
+
+  Lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Runs `prettier --check .` then `tsc --noEmit`.
+      - name: Lint (prettier + tsc)
+        run: npm run lint
+
+  Build:
+    # Compile validation only — a fast TypeScript build for early feedback.
+    # This is NOT the deployment artifact; Clever Cloud runs the authoritative
+    # build on deploy from the repo's Dockerfile.
+    runs-on: ubuntu-latest
+    needs: [Test, Lint]
+    if: needs.Test.result == 'success' && needs.Lint.result == 'success'
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build TypeScript
+        run: npm run build
+
+  Deploy:
+    runs-on: ubuntu-latest
+    needs: [Test, Lint, Build]
+    # Only deploy when master is updated by a push (not on pull_request previews).
+    # Add `|| github.ref == 'refs/heads/development'` here when a staging branch
+    # and a Japetus-Staging Clever app exist (mirror Hyperion's split).
+    if: |
+      needs.Test.result == 'success' &&
+      needs.Lint.result == 'success' &&
+      needs.Build.result == 'success' &&
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/master'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Install Clever Cloud CLI
+        run: npm install -g clever-tools
+
+      - name: Clever Cloud Login
+        env:
+          CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
+          CLEVER_SECRET: ${{ secrets.CLEVER_SECRET }}
+        run: clever login --token $CLEVER_TOKEN --secret $CLEVER_SECRET
+
+      - name: Set variables for master branch
+        if: github.ref == 'refs/heads/master'
+        run: |
+          echo "CLEVER_ALIAS=Japetus-Production" >> $GITHUB_ENV
+          echo "APP_ID=${{ secrets.JAPETUS_PRODUCTION_APP_ID }}" >> $GITHUB_ENV
+
+      - name: Link Clever Cloud application
+        run: |
+          # Check if already linked, if not then link.
+          if ! clever status --alias $CLEVER_ALIAS >/dev/null 2>&1; then
+            echo "Linking application $APP_ID with alias $CLEVER_ALIAS"
+            clever link $APP_ID --alias $CLEVER_ALIAS
+          else
+            echo "Application already linked with alias $CLEVER_ALIAS"
+          fi
+
+      - name: Deploy to Clever Cloud
+        env:
+          APP_REVISION: ${{ github.sha }}
+        run: clever deploy --alias $CLEVER_ALIAS --force=true
