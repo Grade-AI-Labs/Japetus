@@ -40,9 +40,9 @@ describe('adoption metrics — clientInfo capture and derivation', () => {
     const registry = new Registry();
     registry.registerAdapter(new FilesystemAdapter({ root: contentDir }));
     await seedRegistry(registry);
-    const server = buildServer({ registry, cache: new ResourceCache({ ttlMs: 1000 }) });
+    const cache = new ResourceCache({ ttlMs: 1000 });
     const http = await startHttpServer({
-      server,
+      buildServer: () => buildServer({ registry, cache }),
       validator: new DevValidator(),
       port: 0,
     });

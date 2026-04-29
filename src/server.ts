@@ -229,9 +229,9 @@ export async function main(): Promise<void> {
   for (const a of buildAdapters()) registry.registerAdapter(a);
   await loadRegistryConfig(registry, resolveRegistryConfigPath());
 
-  const server = buildServer({ registry, cache });
+  const ctx: AppContext = { registry, cache };
   const http = await startHttpServer({
-    server,
+    buildServer: () => buildServer(ctx),
     validator: buildValidator(),
     port: Number(process.env['PORT'] ?? 3333),
   });

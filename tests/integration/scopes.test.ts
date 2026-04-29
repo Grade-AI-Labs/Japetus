@@ -46,9 +46,9 @@ async function startWithScopes(scopes: string[]): Promise<Started> {
   const registry = new Registry();
   registry.registerAdapter(new FilesystemAdapter({ root: contentDir }));
   await seedRegistry(registry);
-  const server = buildServer({ registry, cache: new ResourceCache({ ttlMs: 1000 }) });
+  const cache = new ResourceCache({ ttlMs: 1000 });
   const http = await startHttpServer({
-    server,
+    buildServer: () => buildServer({ registry, cache }),
     validator: new StubValidator(scopes),
     port: 0,
   });

@@ -7,7 +7,13 @@ import type { EntraValidator } from './auth/entra.ts';
 import { UnauthorizedError } from './auth/entra.ts';
 
 export interface TransportOptions {
-  server: McpServer;
+  /**
+   * Factory that returns a fresh `McpServer` instance per MCP session. The
+   * underlying SDK `Server` tracks initialization state per instance and a
+   * single instance can only be initialized once, so multi-client deployments
+   * must mint one per session.
+   */
+  buildServer: () => McpServer;
   validator: EntraValidator | undefined;
   path?: string;
   port?: number;
@@ -19,15 +25,17 @@ export interface StartedServer {
   close(): Promise<void>;
 }
 
+interface SessionEntry {
+  transport: StreamableHTTPServerTransport;
+  server: McpServer;
+}
+
 export async function startHttpServer(options: TransportOptions): Promise<StartedServer> {
   const path = options.path ?? '/mcp';
   const port = options.port ?? 3333;
   const host = options.host ?? '0.0.0.0';
 
-  const transport = new StreamableHTTPServerTransport({
-    sessionIdGenerator: () => randomUUID(),
-  });
-  await options.server.connect(transport);
+  const sessions = new Map<string, SessionEntry>();
 
   const http = createServer(async (req, res) => {
     if (req.url && req.url.startsWith('/healthz')) {
@@ -45,7 +53,12 @@ export async function startHttpServer(options: TransportOptions): Promise<Starte
       const withAuth = req as IncomingMessage & { auth?: AuthInfo };
       withAuth.auth = auth;
       const body = await readBody(req);
-      await transport.handleRequest(withAuth, res, body);
+      const sessionId = headerValue(req.headers['mcp-session-id']);
+      let entry = sessionId ? sessions.get(sessionId) : undefined;
+      if (!entry) {
+        entry = await openSession(options, sessions);
+      }
+      await entry.transport.handleRequest(withAuth, res, body);
     } catch (err) {
       if (err instanceof UnauthorizedError) {
         writeWwwAuth(res, 401, err.message);
@@ -66,9 +79,36 @@ export async function startHttpServer(options: TransportOptions): Promise<Starte
       await new Promise<void>((resolve, reject) =>
         http.close((err) => (err ? reject(err) : resolve())),
       );
-      await options.server.close();
+      for (const { server } of sessions.values()) {
+        await server.close().catch(() => {});
+      }
+      sessions.clear();
     },
   };
+}
+
+async function openSession(
+  options: TransportOptions,
+  sessions: Map<string, SessionEntry>,
+): Promise<SessionEntry> {
+  const server = options.buildServer();
+  const transport = new StreamableHTTPServerTransport({
+    sessionIdGenerator: () => randomUUID(),
+    onsessioninitialized: (sessionId) => {
+      sessions.set(sessionId, { transport, server });
+    },
+  });
+  await server.connect(transport);
+  // The SDK's `Server.connect` installs its own `transport.onclose`. Wrap it
+  // so we also evict the session entry. Do NOT call `server.close()` here —
+  // it would cascade back into `transport.close()` and recurse.
+  const sdkOnClose = transport.onclose;
+  transport.onclose = () => {
+    const id = transport.sessionId;
+    if (id) sessions.delete(id);
+    sdkOnClose?.call(transport);
+  };
+  return { transport, server };
 }
 
 async function resolveAuth(
@@ -101,6 +141,11 @@ async function readBody(req: IncomingMessage): Promise<unknown> {
   } catch {
     return raw;
   }
+}
+
+function headerValue(v: string | string[] | undefined): string | undefined {
+  if (!v) return undefined;
+  return Array.isArray(v) ? v[0] : v;
 }
 
 function writeWwwAuth(res: ServerResponse, status: number, detail: string): void {

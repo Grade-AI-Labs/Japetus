@@ -36,9 +36,9 @@ async function setup(): Promise<Fixture> {
   registry.registerAdapter(new FilesystemAdapter({ root: contentDir }));
   await seedRegistry(registry);
 
-  const server = buildServer({ registry, cache: new ResourceCache({ ttlMs: 1000 }) });
+  const cache = new ResourceCache({ ttlMs: 1000 });
   const http = await startHttpServer({
-    server,
+    buildServer: () => buildServer({ registry, cache }),
     validator: new DevValidator(),
     port: 0,
   });
@@ -94,6 +94,20 @@ describe('Japetus MCP server', () => {
     await expect(
       fx.client.readResource({ uri: 'conventions://nope/does-not-exist' }),
     ).rejects.toMatchObject({ code: -32002 });
+  });
+
+  it('accepts multiple concurrent client sessions', async () => {
+    // Regression: a single shared McpServer rejects re-initialization
+    // (-32600 "Server already initialized"). The transport mints a fresh
+    // server per session.
+    const t2 = new StreamableHTTPClientTransport(new URL(fx.url), {
+      requestInit: { headers: { authorization: 'Bearer dev' } },
+    });
+    const c2 = new Client({ name: 'second-client', version: '0.0.1' });
+    await c2.connect(t2);
+    const res = await c2.readResource({ uri: 'conventions://prs/review-checklist' });
+    expect(String(res.contents[0]!.text)).toContain('Review checklist');
+    await c2.close();
   });
 
   it('resources/read on an alias URI returns the canonical content + canonical URI in _meta', async () => {
