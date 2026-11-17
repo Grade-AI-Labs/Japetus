@@ -1,4 +1,4 @@
-# talentech-agentic-marketplace
+# Japetus
 
 A Claude Code plugin marketplace, `talentech`, with skills, agents and MCP
 servers for Talentech: engineering, design, product and research.
@@ -17,13 +17,14 @@ servers for Talentech: engineering, design, product and research.
 ## Install
 
 ```
-/plugin marketplace add https://gradegroup.ghe.com/tech/talentech-agentic-marketplace.git
+/plugin marketplace add Grade-AI-Labs/Japetus
 /plugin install <plugin>@talentech
 ```
 
-The repository is on GitHub Enterprise, so Claude Code clones it with your own
-git credentials: `git clone https://gradegroup.ghe.com/tech/talentech-agentic-marketplace.git`
-must work from your terminal first.
+The repository, [Grade-AI-Labs/Japetus](https://github.com/Grade-AI-Labs/Japetus),
+is private, so Claude Code clones it with your own git credentials. You need read
+access to it, and `git clone https://github.com/Grade-AI-Labs/Japetus.git` must
+work from your terminal first.
 
 The MCP plugins hold no credentials. After installing one, run `/mcp` and sign
 in with your own account; your workspace or site admin may have to approve the
@@ -39,8 +40,8 @@ To offer the plugins to everyone working in a repo, add this to that repo's
   "extraKnownMarketplaces": {
     "talentech": {
       "source": {
-        "source": "git",
-        "url": "https://gradegroup.ghe.com/tech/talentech-agentic-marketplace.git"
+        "source": "github",
+        "repo": "Grade-AI-Labs/Japetus"
       }
     }
   },

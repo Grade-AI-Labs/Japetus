@@ -5,7 +5,7 @@ Skills for Product Management.
 ## Install
 
 ```
-/plugin marketplace add https://gradegroup.ghe.com/tech/talentech-agentic-marketplace.git
+/plugin marketplace add Grade-AI-Labs/Japetus
 /plugin install talentech-product@talentech
 ```
 
