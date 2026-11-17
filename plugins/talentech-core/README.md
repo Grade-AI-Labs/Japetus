@@ -5,7 +5,7 @@ Company-wide skills for every department.
 ## Install
 
 ```
-/plugin marketplace add https://gradegroup.ghe.com/tech/talentech-agentic-marketplace.git
+/plugin marketplace add Grade-AI-Labs/Japetus
 /plugin install talentech-core@talentech
 ```
 

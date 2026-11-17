@@ -7,7 +7,7 @@ Unofficial. Not affiliated with or endorsed by Matt Pocock. His skills are MIT-l
 ## Install
 
 ```
-/plugin marketplace add https://gradegroup.ghe.com/tech/talentech-agentic-marketplace.git
+/plugin marketplace add Grade-AI-Labs/Japetus
 /plugin install dev-workflow@talentech
 ```
 

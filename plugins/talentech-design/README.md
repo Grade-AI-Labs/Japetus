@@ -5,7 +5,7 @@ Skills for Product Design.
 ## Install
 
 ```
-/plugin marketplace add https://gradegroup.ghe.com/tech/talentech-agentic-marketplace.git
+/plugin marketplace add Grade-AI-Labs/Japetus
 /plugin install talentech-design@talentech
 ```
 
