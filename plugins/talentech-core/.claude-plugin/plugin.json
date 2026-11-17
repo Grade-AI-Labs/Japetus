@@ -1,0 +1,14 @@
+{
+  "name": "talentech-core",
+  "version": "0.1.1",
+  "description": "Company-wide skills for every department: publish content to Confluence and pull Confluence pages into the session as context. Needs the Atlassian connector from the Claude directory.",
+  "author": {
+    "name": "Talentech"
+  },
+  "license": "MIT",
+  "keywords": [
+    "confluence",
+    "atlassian",
+    "company-wide"
+  ]
+}

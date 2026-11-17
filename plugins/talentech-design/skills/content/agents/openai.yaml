@@ -1,0 +1,12 @@
+interface:
+  display_name: Talentech Design Content
+  short_description: Write and review Talentech product content
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

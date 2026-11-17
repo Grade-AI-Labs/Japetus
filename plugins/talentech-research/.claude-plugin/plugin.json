@@ -1,0 +1,16 @@
+{
+  "name": "talentech-research",
+  "version": "0.1.0",
+  "description": "UX research skills for design and product: research plans, method choice, interview guides, surveys, mixed methods, affinity synthesis, insight extraction, business cases, ethics and share-outs.",
+  "author": {
+    "name": "Talentech"
+  },
+  "license": "MIT",
+  "keywords": [
+    "research",
+    "ux-research",
+    "interviews",
+    "surveys",
+    "synthesis"
+  ]
+}

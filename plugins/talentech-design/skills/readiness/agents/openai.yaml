@@ -1,0 +1,13 @@
+interface:
+  display_name: talentech – design readiness
+  short_description: Turn product work into design-ready requirements, evidence, assumptions,
+    gaps, and research needs.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+    - chatgpt
+    - codex
+    - api
+    - atlas
+  allow_implicit_invocation: true

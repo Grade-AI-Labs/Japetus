@@ -1,0 +1,17 @@
+{
+  "name": "talentech-product",
+  "version": "0.1.0",
+  "description": "Skills for Product Management: take a product idea from raw problem to a developer-ready PRD through gated interrogation.",
+  "author": {
+    "name": "Talentech"
+  },
+  "license": "MIT",
+  "keywords": [
+    "product",
+    "prd",
+    "problem-statement"
+  ],
+  "dependencies": [
+    "talentech-core"
+  ]
+}

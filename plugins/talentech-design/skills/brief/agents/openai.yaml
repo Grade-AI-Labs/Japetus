@@ -1,0 +1,14 @@
+interface:
+  display_name: talentech – design brief
+  short_description: Write structured design briefs with problem statements, design
+    goals, constraints, and success criteria. Use when briefing a feature, scoping
+    design work, aligning with a PRD, or documenting design decisions.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+    - chatgpt
+    - codex
+    - api
+    - atlas
+  allow_implicit_invocation: true

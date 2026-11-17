@@ -1,0 +1,14 @@
+interface:
+  display_name: talentech – FigJam Flow Builder
+  short_description: Create and standardise formal FigJam flows
+  default_prompt: Use $figjam-flow-builder to create or standardise an editable FigJam
+    flow.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

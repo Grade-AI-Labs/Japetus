@@ -1,55 +1,101 @@
-# Japetus
+# talentech-agentic-marketplace
 
-Org-wide MCP server that surfaces Talentech's coding standards, runbooks, templates, and service ownership to any MCP-capable coding agent (Claude Code, Cursor, VS Code/Copilot Chat agent, …). Renamed from `talentech-standards`.
+A Claude Code plugin marketplace, `talentech`, with skills, agents and MCP
+servers for Talentech: engineering, design, product and research.
 
-**Status:** in development.
+| Plugin | What it does |
+| --- | --- |
+| [`dev-workflow`](./plugins/dev-workflow) | Matt Pocock's promoted skills with Mimas's `setup-agentic-repository` and review skills in place of his setup, plus tiered worker agents and a `/orchestrate-spec` orchestrator that tiers each ticket by model and effort and reviews every result before merging. |
+| [`dev-progress`](./plugins/dev-progress) | Mod: a progress bar above the prompt and a live agents panel that `/orchestrate-spec` and its agents report to, drawn as crabs or, with `icons: jdm`, JDM cars. Forked from [savvy-progress](https://github.com/JohnnyVizz/claude-kit/tree/main/plugins/savvy-progress). |
+| [`crowdin-mcp`](./plugins/crowdin-mcp) | MCP: Crowdin's hosted MCP server, for projects, strings, translations, glossaries and QA checks. |
+| [`productboard-mcp`](./plugins/productboard-mcp) | MCP: Productboard's hosted MCP server, for documents, features, initiatives, feedback and change history. |
+| [`talentech-core`](./plugins/talentech-core) | Company-wide skills: publish to and pull from Confluence. Needs the Atlassian connector from the Claude directory. |
+| [`talentech-design`](./plugins/talentech-design) | Product Design: briefs, design readiness, FigJam flows, wireframes, handoff pages, UX content and translation. |
+| [`talentech-product`](./plugins/talentech-product) | Product Management: from a raw problem to a developer-ready PRD. Depends on `talentech-core`. |
+| [`talentech-research`](./plugins/talentech-research) | UX research for design and product: plans, methods, interviews, surveys, synthesis, ethics and share-outs. |
 
-- **PRD:** [plans/prds/MCP.md](plans/prds/MCP.md)
-- **Implementation plan:** [plans/issues/](plans/issues/)
-- **Foundations ADR:** [docs/adr/001-foundations.md](docs/adr/001-foundations.md)
-
-## Quick start (local dev)
-
-```
-npm install
-npm run dev
-```
-
-The server listens on `http://localhost:3333/mcp` by default. See [docs/client-setup.md](docs/client-setup.md) for wiring Claude Code, Cursor, and CI agents.
-
-## Architecture
-
-See PRD §5 for the three-layer model. The server itself is a thin, opinionated surface over pluggable source adapters (filesystem at launch + Confluence; add more through the `SourceAdapter` contract in [`src/adapters/types.ts`](src/adapters/types.ts)).
-
-## Layout
+## Install
 
 ```
-src/
-├── server.ts                 # MCP server entry
-├── transport.ts              # Streamable HTTP wiring
-├── registry.ts               # URI → (adapter, backing_id) resolver
-├── cache.ts                  # ETag / TTL cache
-├── errors.ts                 # MCP error codes (PRD §6.8)
-├── adapters/
-│   ├── types.ts              # SourceAdapter interface (PRD §6.5)
-│   ├── filesystem.ts         # reads markdown from CONTENT_DIR (default config/fixtures/content/)
-│   └── confluence.ts         # Confluence REST + storage-format → markdown
-├── tools/                    # search_standards, get_resource, …
-├── prompts/                  # write_prd, review_pr, …
-├── auth/
-│   ├── entra.ts              # OAuth 2.1 / Entra token validation
-│   └── scopes.ts             # standards:read, kb:read:*, catalog:read
-└── audit/logger.ts
-
-config/                       # registry configs (dev + production example)
-└── fixtures/content/         # DEV/TEST/OFFLINE fixtures only — not production content
-catalog/                      # who_owns MVP stub (replaced in issue 33)
-docs/                         # ADRs, onboarding guides
-tests/                        # integration + unit tests
+/plugin marketplace add https://gradegroup.ghe.com/tech/talentech-agentic-marketplace.git
+/plugin install <plugin>@talentech
 ```
 
-## Deployment
+The repository is on GitHub Enterprise, so Claude Code clones it with your own
+git credentials: `git clone https://gradegroup.ghe.com/tech/talentech-agentic-marketplace.git`
+must work from your terminal first.
 
-Target: Clever Cloud as a Docker container (per PRD §7.3 / §11). The same image is OCI-portable to any other container host. Build image with the included Dockerfile; the app accepts config via env vars. ADR [docs/adr/001-foundations.md](docs/adr/001-foundations.md) is being superseded by a follow-up ADR capturing the Clever Cloud decision.
+The MCP plugins hold no credentials. After installing one, run `/mcp` and sign
+in with your own account; your workspace or site admin may have to approve the
+integration first.
 
-CI/CD lives in [`.github/workflows/japetus-ci-cd.yml`](.github/workflows/japetus-ci-cd.yml): `Test`, `Lint`, and `Build` run on every push and PR; `Deploy` to Clever Cloud fires on push to `master`. Required repo secrets: `CLEVER_TOKEN`, `CLEVER_SECRET`, `JAPETUS_PRODUCTION_APP_ID`. Per-environment Clever env vars (Entra, Confluence, AppSignal, OTEL, `REGISTRY_CONFIG`) are configured on the Clever app itself.
+## Install for everyone in a repo
+
+To offer the plugins to everyone working in a repo, add this to that repo's
+`.claude/settings.json`:
+
+```json
+{
+  "extraKnownMarketplaces": {
+    "talentech": {
+      "source": {
+        "source": "git",
+        "url": "https://gradegroup.ghe.com/tech/talentech-agentic-marketplace.git"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "dev-workflow@talentech": true,
+    "dev-progress@talentech": true
+  }
+}
+```
+
+### Design, product and research plugins
+
+`talentech-core`, `talentech-design`, `talentech-product` and `talentech-research` were moved here from the
+`talentech-skills` marketplace. If you still have those installed, or standalone copies of the same skills in
+`~/.claude/skills`, remove them so each skill loads once. Their plugin names keep the `talentech-` prefix so
+they do not clash with other marketplaces' plugins (Anthropic ships a plugin called `design`).
+
+## Relation to Mimas
+
+The plugins were copied from the `mimas` marketplace in
+[Grade-AI-Labs/Mimas](https://github.com/Grade-AI-Labs/Mimas). If you have
+installed them from `mimas` too, uninstall those copies
+(`/plugin uninstall dev-workflow@mimas` and so on) so each plugin loads once.
+
+`dev-workflow` ships its own copies of `setup-agentic-repository`,
+`review-policy-builder`, `review-policy-rule-builder` and `agentic-review`,
+adapted to Matt's layout (`docs/agents/`, `GLOSSARY.md`, `docs/adr/`,
+`CODING_STANDARDS.md`). The standalone originals, which keep the Mimas
+`agents-docs/` + `CONTEXT.md` layout, stay in
+[Mimas `skills/`](https://github.com/Grade-AI-Labs/Mimas/tree/master/skills).
+Plugin skills are namespaced (`/dev-workflow:to-spec`), but if you also install
+the standalone Mimas skills, both versions of the model-invoked ones can
+trigger.
+
+### Upstream
+
+`plugins/dev-workflow/skills/` is a fork of Matt's promoted skills at the
+commit in `plugins/dev-workflow/UPSTREAM`. It is not synced automatically;
+bring upstream changes over by hand. Changes to Matt's
+`setup-matt-pocock-skills` templates belong in
+`plugins/dev-workflow/skills/setup-agentic-repository/templates/`.
+
+## Releasing a change
+
+Bump the plugin's `version` in both `plugins/<name>/.claude-plugin/plugin.json`
+and `.claude-plugin/marketplace.json`, then check the marketplace with:
+
+```sh
+claude plugin validate .
+```
+
+## License
+
+MIT, see [LICENSE](./LICENSE). `dev-workflow` includes skills derived from
+[`mattpocock/skills`](https://github.com/mattpocock/skills) (see
+`plugins/dev-workflow/LICENSE-mattpocock-skills`), and `dev-progress` is
+derived from [claude-kit](https://github.com/JohnnyVizz/claude-kit) (see
+`plugins/dev-progress/LICENSE-claude-kit`), both under the same licence.

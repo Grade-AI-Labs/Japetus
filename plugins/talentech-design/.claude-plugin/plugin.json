@@ -1,0 +1,18 @@
+{
+  "name": "talentech-design",
+  "version": "0.1.0",
+  "description": "Skills for Product Design: design briefs, design readiness, FigJam flows, wireframes, handoff pages for builders, Talentech UX content and translation.",
+  "author": {
+    "name": "Talentech"
+  },
+  "license": "MIT",
+  "keywords": [
+    "design",
+    "ux",
+    "figjam",
+    "wireframes",
+    "handoff",
+    "ux-writing",
+    "localization"
+  ]
+}
