@@ -1,14 +1,17 @@
 {
   "name": "talentech-core",
-  "version": "0.1.1",
-  "description": "Company-wide skills for every department: publish content to Confluence and pull Confluence pages into the session as context. Needs the Atlassian connector from the Claude directory.",
+  "version": "0.2.0",
+  "description": "Company-wide skills for every department: the grilling interview that role plugins wrap, grill-me, handoff, questionnaires, teach and wait-what, plus publishing to and pulling from Confluence (which needs the Atlassian connector).",
   "author": {
     "name": "Talentech"
   },
   "license": "MIT",
   "keywords": [
-    "confluence",
     "atlassian",
-    "company-wide"
+    "company-wide",
+    "confluence",
+    "grilling",
+    "handoff",
+    "interview"
   ]
 }
