@@ -11,7 +11,7 @@
       "name": "dev-workflow",
       "source": "./plugins/dev-workflow",
       "description": "Matt Pocock's engineering skills with Mimas's setup and review skills, plus tiered worker agents and a /orchestrate-spec orchestrator.",
-      "version": "0.3.2",
+      "version": "0.4.0",
       "category": "skill"
     },
     {
@@ -38,22 +38,22 @@
     {
       "name": "talentech-core",
       "source": "./plugins/talentech-core",
-      "description": "Company-wide skills for every department: publish content to Confluence and pull Confluence pages into the session as context. Needs the Atlassian connector from the Claude directory.",
-      "version": "0.1.1",
+      "description": "Company-wide skills for every department: the grilling interview that role plugins wrap, grill-me, handoff, questionnaires, teach and wait-what, plus publishing to and pulling from Confluence (which needs the Atlassian connector).",
+      "version": "0.2.0",
       "category": "skill"
     },
     {
       "name": "talentech-design",
       "source": "./plugins/talentech-design",
-      "description": "Skills for Product Design: design briefs, design readiness, FigJam flows, wireframes, handoff pages for builders, Talentech UX content and translation.",
-      "version": "0.1.0",
+      "description": "Skills for Product Design: design briefs, design readiness, FigJam flows, a UX-flow grilling interview, wireframes, handoff pages for builders, Talentech UX content and translation.",
+      "version": "0.2.0",
       "category": "skill"
     },
     {
       "name": "talentech-product",
       "source": "./plugins/talentech-product",
-      "description": "Skills for Product Management: take a product idea from raw problem to a developer-ready PRD through gated interrogation.",
-      "version": "0.1.0",
+      "description": "Skills for Product Management: grill-prd takes a product idea from raw problem to a developer-ready PRD in two gated stages, on top of talentech-core's grilling.",
+      "version": "0.2.0",
       "category": "skill"
     },
     {

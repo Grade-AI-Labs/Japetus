@@ -9,9 +9,9 @@ servers for Talentech: engineering, design, product and research.
 | [`dev-progress`](./plugins/dev-progress) | Mod: a progress bar above the prompt and a live agents panel that `/orchestrate-spec` and its agents report to, drawn as crabs or, with `icons: jdm`, JDM cars. Forked from [savvy-progress](https://github.com/JohnnyVizz/claude-kit/tree/main/plugins/savvy-progress). |
 | [`crowdin-mcp`](./plugins/crowdin-mcp) | MCP: Crowdin's hosted MCP server, for projects, strings, translations, glossaries and QA checks. |
 | [`productboard-mcp`](./plugins/productboard-mcp) | MCP: Productboard's hosted MCP server, for documents, features, initiatives, feedback and change history. |
-| [`talentech-core`](./plugins/talentech-core) | Company-wide skills: publish to and pull from Confluence. Needs the Atlassian connector from the Claude directory. |
-| [`talentech-design`](./plugins/talentech-design) | Product Design: briefs, design readiness, FigJam flows, wireframes, handoff pages, UX content and translation. |
-| [`talentech-product`](./plugins/talentech-product) | Product Management: from a raw problem to a developer-ready PRD. Depends on `talentech-core`. |
+| [`talentech-core`](./plugins/talentech-core) | Company-wide skills: the `grilling` interview that role plugins wrap, `grill-me`, `handoff`, `to-questionnaire`, `teach`, `wait-what`, and publishing to and pulling from Confluence (Atlassian connector). |
+| [`talentech-design`](./plugins/talentech-design) | Product Design: briefs, design readiness, `grill-ux-flow`, FigJam flows, wireframes, handoff pages, UX content and translation. Depends on `talentech-core`. |
+| [`talentech-product`](./plugins/talentech-product) | Product Management: `grill-prd`, from a raw problem to a developer-ready PRD. Depends on `talentech-core`. |
 | [`talentech-research`](./plugins/talentech-research) | UX research for design and product: plans, methods, interviews, surveys, synthesis, ethics and share-outs. |
 
 ## Install
@@ -30,6 +30,37 @@ The MCP plugins hold no credentials. After installing one, run `/mcp` and sign
 in with your own account; your workspace or site admin may have to approve the
 integration first.
 
+## Core and role plugins
+
+`talentech-core` holds the skills every department uses, and holds them once. The role plugins (`dev-workflow`, `talentech-product`, `talentech-design`) depend on it, and Claude Code installs it with them. A role plugin adds small **wrapper** skills on top of core's: `talentech-product:grill-prd` runs `talentech-core:grilling` with a PRD checklist, Talentech product context and a PRD template. So the _how_ of an interview is kept in core, and each department owns the _what_. See [Writing a wrapper skill](./plugins/talentech-core/README.md#writing-a-wrapper-skill).
+
+### Moved skills
+
+These skills moved, with no alias left under the old name. Type the new command:
+
+| Old | New |
+| --- | --- |
+| `/dev-workflow:grilling` | `/talentech-core:grilling` |
+| `/dev-workflow:grill-me` | `/talentech-core:grill-me` |
+| `/dev-workflow:handoff` | `/talentech-core:handoff` |
+| `/dev-workflow:to-questionnaire` | `/talentech-core:to-questionnaire` |
+| `/dev-workflow:teach` | `/talentech-core:teach` |
+| `/dev-workflow:wait-what` | `/talentech-core:wait-what` |
+| `/talentech-product:problem-to-prd` | `/talentech-product:grill-prd` |
+
+Skills or tools of your own that call `dev-workflow:grilling` by name must call `talentech-core:grilling` instead.
+
+### Updating to a version with a new dependency
+
+Installing a plugin installs its dependencies too. When you update a plugin that has gained a dependency (`dev-workflow` and `talentech-design` now depend on `talentech-core`), Claude Code v2.1.319 or later installs it with the update, from `claude plugin update`, **Update now** in `/plugin`, or auto-update. On an older version, or if `talentech-core` is still missing, update by hand:
+
+```sh
+claude plugin update dev-workflow@talentech     # in a shell
+/reload-plugins                                 # then in an open session
+```
+
+or install it directly with `/plugin install talentech-core@talentech`.
+
 ## Install for everyone in a repo
 
 To offer the plugins to everyone working in a repo, add this to that repo's
@@ -46,6 +77,7 @@ To offer the plugins to everyone working in a repo, add this to that repo's
     }
   },
   "enabledPlugins": {
+    "talentech-core@talentech": true,
     "dev-workflow@talentech": true,
     "dev-progress@talentech": true
   }

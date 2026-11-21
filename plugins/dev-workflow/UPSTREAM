@@ -8,3 +8,8 @@ The skills match that commit, except:
 - the setup pointers in other skills name /setup-agentic-repository;
 - code-review, retro and ask-matt mention the review-policy skills.
 Not synced automatically: merge upstream changes by hand.
+- grilling, grill-me, handoff, to-questionnaire, teach and wait-what moved
+  to plugins/talentech-core/skills/ (SWF-119). grill-me calls
+  talentech-core:grilling, wait-what uses GLOSSARY.md only if present, and
+  grilling gained a "When a wrapper skill runs you" section. Merge upstream
+  changes to those skills there.
