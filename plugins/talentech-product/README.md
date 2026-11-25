@@ -6,7 +6,7 @@ Skills for Product Management.
 
 ```
 /plugin marketplace add Grade-AI-Labs/Japetus
-/plugin install talentech-product@talentech
+/plugin install talentech-product@talentech-agentic-skills
 ```
 
 Depends on [`talentech-core`](../talentech-core): `grill-prd` runs core's `grilling` interview and publishes the finished PRD to Confluence with core's `push-to-confluence`.

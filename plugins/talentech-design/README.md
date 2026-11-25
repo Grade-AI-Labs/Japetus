@@ -6,7 +6,7 @@ Skills for Product Design.
 
 ```
 /plugin marketplace add Grade-AI-Labs/Japetus
-/plugin install talentech-design@talentech
+/plugin install talentech-design@talentech-agentic-skills
 ```
 
 Depends on [`talentech-core`](../talentech-core): `grill-ux-flow` runs core's `grilling` interview.

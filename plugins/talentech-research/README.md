@@ -6,7 +6,7 @@ UX research skills, shared by Product Design and Product Management.
 
 ```
 /plugin marketplace add Grade-AI-Labs/Japetus
-/plugin install talentech-research@talentech
+/plugin install talentech-research@talentech-agentic-skills
 ```
 
 ## What ships

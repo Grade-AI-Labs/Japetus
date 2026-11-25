@@ -1,10 +1,10 @@
 {
-  "name": "talentech",
+  "name": "talentech-agentic-skills",
   "owner": {
     "name": "Talentech AI"
   },
   "metadata": {
-    "description": "Skills, agents and MCP servers for Talentech: engineering, design, product and research."
+    "description": "Skills and agents for Talentech: company-wide core, design, product and research plugins, plus opt-in developer plugins."
   },
   "plugins": [
     {
@@ -18,27 +18,13 @@
       "name": "dev-progress",
       "source": "./plugins/dev-progress",
       "description": "Mod: progress bar above the prompt and a live agents panel for /orchestrate-spec; shows any subagents, as crabs or JDM cars. Forked from savvy-progress.",
-      "version": "0.2.1",
+      "version": "0.2.2",
       "category": "mod"
-    },
-    {
-      "name": "crowdin-mcp",
-      "source": "./plugins/crowdin-mcp",
-      "description": "MCP: Crowdin's hosted MCP server for projects, strings, translations, glossaries and QA checks, signed in with your own account through OAuth.",
-      "version": "0.1.0",
-      "category": "mcp"
-    },
-    {
-      "name": "productboard-mcp",
-      "source": "./plugins/productboard-mcp",
-      "description": "MCP: Productboard's hosted MCP server for documents, features, initiatives, feedback and change history, signed in with your own account through OAuth.",
-      "version": "0.1.0",
-      "category": "mcp"
     },
     {
       "name": "talentech-core",
       "source": "./plugins/talentech-core",
-      "description": "Company-wide skills for every department: the grilling interview that role plugins wrap, grill-me, handoff, questionnaires, teach and wait-what, plus publishing to and pulling from Confluence (which needs the Atlassian connector).",
+      "description": "Company-wide skills for every department: the grilling interview that role plugins wrap, grill-me and questionnaires, plus publishing to and pulling from Confluence (which needs the Atlassian connector).",
       "version": "0.2.0",
       "category": "skill"
     },
@@ -60,7 +46,7 @@
       "name": "talentech-research",
       "source": "./plugins/talentech-research",
       "description": "UX research skills for design and product: research plans, method choice, interview guides, surveys, mixed methods, affinity synthesis, insight extraction, business cases, ethics and share-outs.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "skill"
     }
   ]
