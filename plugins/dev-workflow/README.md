@@ -8,7 +8,7 @@ Unofficial. Not affiliated with or endorsed by Matt Pocock. His skills are MIT-l
 
 ```
 /plugin marketplace add Grade-AI-Labs/Japetus
-/plugin install dev-workflow@talentech
+/plugin install dev-workflow@talentech-agentic-skills
 ```
 
 To offer it to everyone working in a repo, see the project-scope snippet in the [marketplace README](../../README.md#install-for-everyone-in-a-repo).
@@ -16,7 +16,7 @@ To offer it to everyone working in a repo, see the project-scope snippet in the 
 ## What ships
 
 - **Matt's promoted skills**, forked: `/grill-with-docs`, `/to-spec`, `/to-tickets`, `/implement`, `/implement-spec`, `/tdd`, `/code-review`, `/pr`, `/retro`, `/ask-matt` and the rest. His `/setup-matt-pocock-skills` is replaced by `/setup-agentic-repository`; see [Setup](#setup).
-- **From `talentech-core`**: Matt's role-neutral skills (`grilling`, `grill-me`, `handoff`, `to-questionnaire`, `teach`, `wait-what`) live in [`talentech-core`](../talentech-core), so every department shares one copy. This plugin depends on core, which installs with it, and calls them by their qualified names (`talentech-core:grilling`).
+- **From `talentech-core`**: Matt's role-neutral skills `grilling`, `grill-me` and `to-questionnaire` live in [`talentech-core`](../talentech-core), so every department shares one copy. `handoff`, `teach` and `wait-what` stay here, as developer tools. This plugin depends on core, which installs with it, and calls them by their qualified names (`talentech-core:grilling`).
 - **Mimas setup and review**: `/setup-agentic-repository`, `/review-policy-builder`, `/review-policy-rule-builder` and `/agentic-review`, adapted from the copies in [`skills/` in Mimas](https://github.com/Grade-AI-Labs/Mimas/tree/master/skills) to Matt's layout.
 - **`/orchestrate-spec <spec>`**: Matt's `/implement-spec` flow (task graph, ready frontier, worktree per ticket, one integration branch, final two-axis review) with two additions:
   1. each ticket gets a **tier**, the cheapest model and effort that gets it right first time;

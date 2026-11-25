@@ -1,7 +1,7 @@
 {
   "name": "talentech-core",
   "version": "0.2.0",
-  "description": "Company-wide skills for every department: the grilling interview that role plugins wrap, grill-me, handoff, questionnaires, teach and wait-what, plus publishing to and pulling from Confluence (which needs the Atlassian connector).",
+  "description": "Company-wide skills for every department: the grilling interview that role plugins wrap, grill-me and questionnaires, plus publishing to and pulling from Confluence (which needs the Atlassian connector).",
   "author": {
     "name": "Talentech"
   },
@@ -11,7 +11,7 @@
     "company-wide",
     "confluence",
     "grilling",
-    "handoff",
-    "interview"
+    "interview",
+    "questionnaire"
   ]
 }

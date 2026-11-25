@@ -6,7 +6,7 @@ Company-wide skills for every department.
 
 ```
 /plugin marketplace add Grade-AI-Labs/Japetus
-/plugin install talentech-core@talentech
+/plugin install talentech-core@talentech-agentic-skills
 ```
 
 The Confluence skills call the Confluence tools of the Atlassian connector in the Claude directory. Connect it on claude.ai under Settings → Connectors and sign in with your own Atlassian account. Claude Code picks up the connectors of the claude.ai account you are logged in with: run `/mcp` to check that the Atlassian connector is connected, and sign in there if it asks you to. Your Atlassian site admin must allow the Rovo MCP server for the site.
@@ -19,17 +19,14 @@ The Confluence skills call the Confluence tools of the Atlassian connector in th
 | `/talentech-core:pull-from-confluence` | Pull a page and, if you want, its child pages into the session as context. Read-only |
 | `/talentech-core:grill-me` | Get grilled about a plan, design or piece of writing until you reach a shared understanding |
 | `talentech-core:grilling` | The interview itself, which `grill-me`, the role plugins' `grill-*` wrappers and dev-workflow's skills run. It also triggers by itself when you ask to be grilled |
-| `/talentech-core:handoff` | Compact the conversation into a handoff document another session or a colleague can pick up |
 | `/talentech-core:to-questionnaire` | Turn a decision you can't answer alone into a questionnaire for the person who can |
-| `/talentech-core:teach` | Learn a topic over several sessions, with the current directory as the teaching workspace |
-| `/talentech-core:wait-what` | Ask for the last message again, in plain language |
 
 ## Prerequisites
 
 - `push-to-confluence` and `pull-from-confluence` need the Atlassian connector (see Install).
-- `grilling`, `grill-me`, `handoff`, `to-questionnaire`, `teach` and `wait-what` run in Claude Code. `grilling` sends subagents to look facts up, and `to-questionnaire` and `teach` write files into the current directory, so start Claude Code in a directory it may write to.
+- `grilling`, `grill-me` and `to-questionnaire` are written for Claude Code. `grilling` sends subagents to look facts up, and `to-questionnaire` writes a file into the current directory, so start Claude Code in a directory it may write to. How they behave in the desktop app's Chat and Cowork tabs is not yet tested.
 
-These six came from [Matt Pocock's skills](https://github.com/mattpocock/skills), by way of `dev-workflow` (MIT, see `LICENSE-mattpocock-skills`).
+These three came from [Matt Pocock's skills](https://github.com/mattpocock/skills), by way of `dev-workflow` (MIT, see `LICENSE-mattpocock-skills`).
 
 ## Writing a wrapper skill
 
