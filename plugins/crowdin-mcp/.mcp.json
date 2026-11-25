@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "crowdin": {
-      "type": "http",
-      "url": "https://mcp.crowdin.com/v2/mcp"
-    }
-  }
-}

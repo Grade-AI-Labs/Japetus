@@ -1,9 +1,0 @@
-{
-  "name": "crowdin-mcp",
-  "displayName": "Crowdin MCP",
-  "version": "0.1.0",
-  "description": "Crowdin's hosted MCP server: projects, files, strings, translations, glossaries, TMs and QA checks, signed in with your own Crowdin account through OAuth.",
-  "author": { "name": "Talentech AI" },
-  "license": "MIT",
-  "keywords": ["mcp", "crowdin", "localization", "translation"]
-}
