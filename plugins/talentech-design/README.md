@@ -6,8 +6,10 @@ Skills for Product Design.
 
 ```
 /plugin marketplace add Grade-AI-Labs/Japetus
-/plugin install talentech-design@talentech
+/plugin install talentech-design@talentech-agentic-skills
 ```
+
+Depends on [`talentech-core`](../talentech-core): `grill-ux-flow` runs core's `grilling` interview.
 
 ## What ships
 
@@ -15,6 +17,7 @@ Skills for Product Design.
 | --- | --- |
 | `/talentech-design:brief` | Write a structured design brief: problem, goals, constraints, success criteria |
 | `/talentech-design:readiness` | Turn an issue, ticket or PRD fragment into design-ready requirements and decide how much design involvement it needs |
+| `/talentech-design:grill-ux-flow` | Grill one user flow (path, decisions, actors, states, Duo components, accessibility, localisation) into a flow spec, then hand it to `figjam-flow` to draw. A wrapper over `talentech-core:grilling` |
 | `/talentech-design:figjam-flow` | Build or standardise editable flows in FigJam with formal flowchart conventions and Duo colours |
 | `/talentech-design:wireframe` | Create wireframes and interactive prototypes to get feedback early |
 | `/talentech-design:design-handoff` | Write or update the handoff page for the team that builds a feature: decision, flow, components, UX copy, states, accessibility, open questions, change log |

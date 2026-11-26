@@ -8,7 +8,7 @@ Forked from [savvy-progress](https://github.com/JohnnyVizz/claude-kit/tree/main/
 
 ```
 /plugin marketplace add Grade-AI-Labs/Japetus
-/plugin install dev-progress@talentech
+/plugin install dev-progress@talentech-agentic-skills
 ```
 
 Restart the session afterwards.

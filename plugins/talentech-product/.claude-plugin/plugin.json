@@ -1,7 +1,7 @@
 {
   "name": "talentech-product",
-  "version": "0.1.0",
-  "description": "Skills for Product Management: take a product idea from raw problem to a developer-ready PRD through gated interrogation.",
+  "version": "0.2.0",
+  "description": "Skills for Product Management: grill-prd takes a product idea from raw problem to a developer-ready PRD in two gated stages, on top of talentech-core's grilling.",
   "author": {
     "name": "Talentech"
   },

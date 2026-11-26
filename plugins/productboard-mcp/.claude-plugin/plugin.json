@@ -1,9 +1,0 @@
-{
-  "name": "productboard-mcp",
-  "displayName": "Productboard MCP",
-  "version": "0.1.0",
-  "description": "Productboard's hosted MCP server: documents, entities (features, components, initiatives), relationships, feedback and change history, signed in with your own Productboard account through OAuth.",
-  "author": { "name": "Talentech AI" },
-  "license": "MIT",
-  "keywords": ["mcp", "productboard", "product-management", "roadmap", "feedback"]
-}
