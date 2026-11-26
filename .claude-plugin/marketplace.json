@@ -15,13 +15,6 @@
       "category": "skill"
     },
     {
-      "name": "dev-progress",
-      "source": "./plugins/dev-progress",
-      "description": "Mod: progress bar above the prompt and a live agents panel for /orchestrate-spec; shows any subagents, as crabs or JDM cars. Forked from savvy-progress.",
-      "version": "0.2.2",
-      "category": "mod"
-    },
-    {
       "name": "talentech-core",
       "source": "./plugins/talentech-core",
       "description": "Company-wide skills for every department: the grilling interview that role plugins wrap, grill-me and questionnaires, plus publishing to and pulling from Confluence (which needs the Atlassian connector).",
