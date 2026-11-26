@@ -17,7 +17,6 @@ Rules:
 - Run the repo's typecheck and lint commands (whichever it has; `docs/agents/ENGINEERING.md` lists them) and the relevant test files as you go, and the full suite once at the end.
 - Commit to your branch, then merge the integration branch tip into it and re-run the tests before reporting.
 - Never push, never merge into the integration branch yourself, never close the ticket.
-- If `mcp__dev-progress__step` is among your tools (load a deferred one with ToolSearch `select:mcp__dev-progress__step`), report `total` steps right after planning and `done` as each finishes. Skip silently if absent.
 
 Final report (under ~300 words):
 1. Result: done / partially done / blocked.

@@ -4,22 +4,15 @@
     "name": "Talentech AI"
   },
   "metadata": {
-    "description": "Skills and agents for Talentech: company-wide core, design, product and research plugins, plus opt-in developer plugins."
+    "description": "Skills and agents for Talentech: company-wide core, design, product and research plugins, plus an opt-in developer plugin."
   },
   "plugins": [
     {
       "name": "dev-workflow",
       "source": "./plugins/dev-workflow",
       "description": "Matt Pocock's engineering skills with Mimas's setup and review skills, plus tiered worker agents and a /orchestrate-spec orchestrator.",
-      "version": "0.4.0",
+      "version": "0.4.1",
       "category": "skill"
-    },
-    {
-      "name": "dev-progress",
-      "source": "./plugins/dev-progress",
-      "description": "Mod: progress bar above the prompt and a live agents panel for /orchestrate-spec; shows any subagents, as crabs or JDM cars. Forked from savvy-progress.",
-      "version": "0.2.2",
-      "category": "mod"
     },
     {
       "name": "talentech-core",

@@ -13,12 +13,11 @@ Four plugins are for everyone. IT installs them company-wide:
 | [`talentech-product`](./plugins/talentech-product) | Product Management | `grill-prd`: from a raw problem to a developer-ready PRD. |
 | [`talentech-research`](./plugins/talentech-research) | UX research | Plans, methods, interview guides, surveys, synthesis, ethics and share-outs. |
 
-Two plugins are for developers, and you opt in to them yourself:
+One plugin is for developers, and you opt in to it yourself:
 
 | Plugin | What it gives you |
 | --- | --- |
 | [`dev-workflow`](./plugins/dev-workflow) | Matt Pocock's engineering skills with Mimas's setup and review skills, tiered worker agents and the `/orchestrate-spec` orchestrator. Also `handoff`, `teach` and `wait-what`. |
-| [`dev-progress`](./plugins/dev-progress) | A mod: a progress bar above the prompt and a live agents panel for `/orchestrate-spec`. |
 
 Services such as Atlassian (Confluence, Jira), Productboard, Figma and Crowdin come through the company's **connectors**, not through these plugins. They work in the Chat and Cowork tabs and in Claude Code. The Crowdin connector is waiting for IT's approval, so Crowdin is not available until IT adds it.
 
@@ -101,8 +100,7 @@ To offer the plugins to everyone working in a repo in Claude Code, add this to t
     }
   },
   "enabledPlugins": {
-    "dev-workflow@talentech-agentic-skills": true,
-    "dev-progress@talentech-agentic-skills": true
+    "dev-workflow@talentech-agentic-skills": true
   }
 }
 ```
@@ -147,6 +145,4 @@ claude plugin validate .
 
 MIT, see [LICENSE](./LICENSE). `dev-workflow` includes skills derived from
 [`mattpocock/skills`](https://github.com/mattpocock/skills) (see
-`plugins/dev-workflow/LICENSE-mattpocock-skills`), and `dev-progress` is
-derived from [claude-kit](https://github.com/JohnnyVizz/claude-kit) (see
-`plugins/dev-progress/LICENSE-claude-kit`), both under the same licence.
+`plugins/dev-workflow/LICENSE-mattpocock-skills`), under the same licence.
