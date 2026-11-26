@@ -13,12 +13,11 @@ Four plugins are for everyone. IT installs them company-wide:
 | [`talentech-product`](./plugins/talentech-product) | Product Management | `grill-prd`: from a raw problem to a developer-ready PRD. |
 | [`talentech-research`](./plugins/talentech-research) | UX research | Plans, methods, interview guides, surveys, synthesis, ethics and share-outs. |
 
-Two plugins are for developers, and you opt in to them yourself:
+One plugin is for developers, and you opt in to it yourself:
 
 | Plugin | What it gives you |
 | --- | --- |
-| [`dev-workflow`](./plugins/dev-workflow) | Matt Pocock's engineering skills with Mimas's setup and review skills, tiered worker agents and the `/orchestrate-spec` orchestrator. Also `handoff`, `teach` and `wait-what`. |
-| [`dev-progress`](./plugins/dev-progress) | A mod: a progress bar above the prompt and a live agents panel for `/orchestrate-spec`. |
+| [`talentech-dev`](./plugins/talentech-dev) | Matt Pocock's engineering skills with Mimas's setup and review skills, tiered worker agents and the `/orchestrate-spec` orchestrator. Also `handoff`, `teach` and `wait-what`. |
 
 Services such as Atlassian (Confluence, Jira), Productboard, Figma and Crowdin come through the company's **connectors**, not through these plugins. They work in the Chat and Cowork tabs and in Claude Code. The Crowdin connector is waiting for IT's approval, so Crowdin is not available until IT adds it.
 
@@ -29,7 +28,7 @@ Services such as Atlassian (Confluence, Jira), Productboard, Figma and Crowdin c
 
   ```
   /plugin marketplace add Grade-AI-Labs/Japetus
-  /plugin install dev-workflow@talentech-agentic-skills
+  /plugin install talentech-dev@talentech-agentic-skills
   ```
 
   The repository, [Grade-AI-Labs/Japetus](https://github.com/Grade-AI-Labs/Japetus), is private, so Claude Code clones it with your own git credentials. You need read access to it, and `git clone https://github.com/Grade-AI-Labs/Japetus.git` must work from your terminal first.
@@ -38,11 +37,21 @@ Services such as Atlassian (Confluence, Jira), Productboard, Figma and Crowdin c
 
 - **Signing in to a connector:** the first time a skill needs Atlassian, Productboard or another service, run `/mcp` in Claude Code, pick the service and sign in with your own account in the browser. In the desktop app, connect it under Settings → Connectors. Claude acts with your own permissions.
 
-Installing a plugin also installs the plugins it depends on: `talentech-design`, `talentech-product` and `dev-workflow` depend on `talentech-core`.
+Installing a plugin also installs the plugins it depends on: `talentech-design`, `talentech-product` and `talentech-dev` depend on `talentech-core`.
 
 ## Changelog
 
 ### November 2026
+
+- **`dev-workflow` is renamed to `talentech-dev`**, to match the other `talentech-*` plugins, and starts again at version 1.0.0. There is no alias under the old name: `/dev-workflow:to-spec` is now `/talentech-dev:to-spec`, the agents are `talentech-dev:tier-medium` and so on. **`dev-progress` is removed**: the progress bar and agents panel are gone, and the agents and `/orchestrate-spec` no longer report to it. Uninstall both old plugins and install the new one:
+
+  ```
+  /plugin uninstall dev-workflow@talentech-agentic-skills
+  /plugin uninstall dev-progress@talentech-agentic-skills
+  /plugin install talentech-dev@talentech-agentic-skills
+  ```
+
+  In a repo's `.claude/settings.json`, replace `dev-workflow@talentech-agentic-skills` with `talentech-dev@talentech-agentic-skills` under `enabledPlugins` and drop `dev-progress`. Skills, settings or tools of your own that name `dev-workflow:…` must use `talentech-dev:…`.
 
 - **The marketplace is renamed** from `talentech` to `talentech-agentic-skills`, to match the repository IT syncs. If you added it in the CLI under the old name, updating keeps the old name, so remove it and add it again, then reinstall what you use:
 
@@ -71,11 +80,12 @@ Installing a plugin also installs the plugins it depends on: `talentech-design`,
   - You installed a Talentech plugin in the CLI that the desktop app already gives you. Uninstall the CLI copy: `/plugin uninstall <plugin>@talentech-agentic-skills`.
   - You still have the marketplace under its old name `talentech`, or the plugins from the older `talentech-skills` or `mimas` marketplaces. Remove them (`/plugin marketplace remove <name>`).
   - You still have `crowdin-mcp` or `productboard-mcp` next to the company connector. Uninstall the plugin.
+  - You still have `dev-workflow` next to `talentech-dev`. Uninstall `dev-workflow` (and `dev-progress`), as the changelog says.
   - You copied a skill by hand into `~/.claude/skills`, for example `problem-to-prd`. Delete the copy.
 - **A role plugin's skill fails because a `talentech-core` skill is missing.** Your Claude Code may be older than v2.1.319, which installs new dependencies on update. Update the plugin by hand, or install core:
 
   ```sh
-  claude plugin update dev-workflow@talentech-agentic-skills     # in a shell
+  claude plugin update talentech-dev@talentech-agentic-skills    # in a shell
   /reload-plugins                                                # then in an open session
   /plugin install talentech-core@talentech-agentic-skills
   ```
@@ -101,8 +111,7 @@ To offer the plugins to everyone working in a repo in Claude Code, add this to t
     }
   },
   "enabledPlugins": {
-    "dev-workflow@talentech-agentic-skills": true,
-    "dev-progress@talentech-agentic-skills": true
+    "talentech-dev@talentech-agentic-skills": true
   }
 }
 ```
@@ -116,23 +125,23 @@ The plugins were copied from the `mimas` marketplace in
 installed them from `mimas` too, uninstall those copies
 (`/plugin uninstall dev-workflow@mimas` and so on) so each plugin loads once.
 
-`dev-workflow` ships its own copies of `setup-agentic-repository`,
+`talentech-dev` ships its own copies of `setup-agentic-repository`,
 `review-policy-builder`, `review-policy-rule-builder` and `agentic-review`,
 adapted to Matt's layout (`docs/agents/`, `GLOSSARY.md`, `docs/adr/`,
 `CODING_STANDARDS.md`). The standalone originals, which keep the Mimas
 `agents-docs/` + `CONTEXT.md` layout, stay in
 [Mimas `skills/`](https://github.com/Grade-AI-Labs/Mimas/tree/master/skills).
-Plugin skills are namespaced (`/dev-workflow:to-spec`), but if you also install
+Plugin skills are namespaced (`/talentech-dev:to-spec`), but if you also install
 the standalone Mimas skills, both versions of the model-invoked ones can
 trigger.
 
 ### Upstream
 
-`plugins/dev-workflow/skills/` is a fork of Matt's promoted skills at the
-commit in `plugins/dev-workflow/UPSTREAM`. It is not synced automatically;
+`plugins/talentech-dev/skills/` is a fork of Matt's promoted skills at the
+commit in `plugins/talentech-dev/UPSTREAM`. It is not synced automatically;
 bring upstream changes over by hand. Changes to Matt's
 `setup-matt-pocock-skills` templates belong in
-`plugins/dev-workflow/skills/setup-agentic-repository/templates/`.
+`plugins/talentech-dev/skills/setup-agentic-repository/templates/`.
 
 ## Releasing a change
 
@@ -145,8 +154,6 @@ claude plugin validate .
 
 ## License
 
-MIT, see [LICENSE](./LICENSE). `dev-workflow` includes skills derived from
+MIT, see [LICENSE](./LICENSE). `talentech-dev` includes skills derived from
 [`mattpocock/skills`](https://github.com/mattpocock/skills) (see
-`plugins/dev-workflow/LICENSE-mattpocock-skills`), and `dev-progress` is
-derived from [claude-kit](https://github.com/JohnnyVizz/claude-kit) (see
-`plugins/dev-progress/LICENSE-claude-kit`), both under the same licence.
+`plugins/talentech-dev/LICENSE-mattpocock-skills`), under the same licence.
