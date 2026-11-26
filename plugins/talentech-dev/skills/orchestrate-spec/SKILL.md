@@ -97,7 +97,3 @@ Triage the findings yourself. Send every finding worth fixing to **one** worker 
 1. If a draft PR exists, mark it ready for review; the `pr` skill shapes its body. Otherwise report the integration branch.
 2. Remove every worker worktree, and delete each merged worker branch (`git branch -d`).
 3. Report to the user: what landed, what was verified, what was left out and why, and one line on which tiers ran. If `agentic-review` ran, give the path of its result file. Suggest `/dev-workflow:retro` if any ticket needed a return round.
-
-## Progress bar (optional)
-
-If the tool `mcp__dev-progress__progress` is among your tools, including as a deferred tool (load it with ToolSearch `select:mcp__dev-progress__progress`), keep it current: after section 1, `title`, `total` (ticket count), `tasks` (`[{ title, tier, after }]`), `phase: "delegate"`; on each accept, `done`; `phase: "review"` during section 6; `finished: true` at close. Skip silently if the tool is absent.

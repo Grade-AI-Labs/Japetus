@@ -76,10 +76,6 @@ For stricter, module-aware review:
 
 Run the orchestrator session on your strongest model at high effort: the judgement lives there.
 
-## With dev-progress
-
-If the [dev-progress](../dev-progress) mod is installed, the orchestrator drives its progress bar and workers report steps to its agents panel. Without it those calls are skipped.
-
 ## Don't install twice
 
 If you also have `mattpocock-skills` installed, every Matt skill appears twice and model-invoked ones (`tdd`, `code-review`, and `grilling` in `talentech-core`...) can trigger from either. Uninstall one.
