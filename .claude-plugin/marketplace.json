@@ -8,10 +8,10 @@
   },
   "plugins": [
     {
-      "name": "dev-workflow",
-      "source": "./plugins/dev-workflow",
+      "name": "talentech-dev",
+      "source": "./plugins/talentech-dev",
       "description": "Matt Pocock's engineering skills with Mimas's setup and review skills, plus tiered worker agents and a /orchestrate-spec orchestrator.",
-      "version": "0.4.1",
+      "version": "1.0.0",
       "category": "skill"
     },
     {

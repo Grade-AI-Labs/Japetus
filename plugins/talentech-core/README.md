@@ -18,7 +18,7 @@ The Confluence skills call the Confluence tools of the Atlassian connector in th
 | `/talentech-core:push-to-confluence` | Publish ad-hoc content as a new child page under a parent page you name, or append to that page |
 | `/talentech-core:pull-from-confluence` | Pull a page and, if you want, its child pages into the session as context. Read-only |
 | `/talentech-core:grill-me` | Get grilled about a plan, design or piece of writing until you reach a shared understanding |
-| `talentech-core:grilling` | The interview itself, which `grill-me`, the role plugins' `grill-*` wrappers and dev-workflow's skills run. It also triggers by itself when you ask to be grilled |
+| `talentech-core:grilling` | The interview itself, which `grill-me`, the role plugins' `grill-*` wrappers and talentech-dev's skills run. It also triggers by itself when you ask to be grilled |
 | `/talentech-core:to-questionnaire` | Turn a decision you can't answer alone into a questionnaire for the person who can |
 
 ## Prerequisites
@@ -26,7 +26,7 @@ The Confluence skills call the Confluence tools of the Atlassian connector in th
 - `push-to-confluence` and `pull-from-confluence` need the Atlassian connector (see Install).
 - `grilling`, `grill-me` and `to-questionnaire` are written for Claude Code. `grilling` sends subagents to look facts up, and `to-questionnaire` writes a file into the current directory, so start Claude Code in a directory it may write to. How they behave in the desktop app's Chat and Cowork tabs is not yet tested.
 
-These three came from [Matt Pocock's skills](https://github.com/mattpocock/skills), by way of `dev-workflow` (MIT, see `LICENSE-mattpocock-skills`).
+These three came from [Matt Pocock's skills](https://github.com/mattpocock/skills), by way of `talentech-dev` (MIT, see `LICENSE-mattpocock-skills`).
 
 ## Writing a wrapper skill
 
