@@ -1,6 +1,6 @@
 ---
 name: tier-light
-description: "Dev-workflow implementer (Opus, low effort). Mechanical tickets: expand or contract steps, renames, config, boilerplate. Spawned only by the /orchestrate-spec orchestrator."
+description: "talentech-dev implementer (Opus, low effort). Mechanical tickets: expand or contract steps, renames, config, boilerplate. Spawned only by the /orchestrate-spec orchestrator."
 model: opus
 effort: low
 ---

@@ -1,6 +1,6 @@
 ---
 name: tier-fable
-description: "Dev-workflow implementer (Fable, high effort). Very complex logic (subtle algorithms, concurrency, many interacting states) and bugs that survived a Heavy attempt. Spawned only by the /orchestrate-spec orchestrator."
+description: "talentech-dev implementer (Fable, high effort). Very complex logic (subtle algorithms, concurrency, many interacting states) and bugs that survived a Heavy attempt. Spawned only by the /orchestrate-spec orchestrator."
 model: fable
 effort: high
 ---

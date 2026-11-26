@@ -1,4 +1,4 @@
-# dev-workflow
+# talentech-dev
 
 [Matt Pocock's skills](https://github.com/mattpocock/skills) for real engineering, plus the one thing they leave open: **which model does the work**. This plugin adds tiered worker agents and an orchestrator, `/orchestrate-spec`, in the style of [savvy-flow](https://github.com/JohnnyVizz/claude-kit/tree/main/plugins/savvy-flow).
 
@@ -8,7 +8,7 @@ Unofficial. Not affiliated with or endorsed by Matt Pocock. His skills are MIT-l
 
 ```
 /plugin marketplace add Grade-AI-Labs/Japetus
-/plugin install dev-workflow@talentech-agentic-skills
+/plugin install talentech-dev@talentech-agentic-skills
 ```
 
 To offer it to everyone working in a repo, see the project-scope snippet in the [marketplace README](../../README.md#install-for-everyone-in-a-repo).
@@ -38,7 +38,7 @@ To offer it to everyone working in a repo, see the project-scope snippet in the 
 
 ## Setup
 
-Run `/dev-workflow:setup-agentic-repository` once per repo. Before the first run, remove any standalone copy of `setup-agentic-repository` (for example `~/.claude/skills/setup-agentic-repository`, or the same folder under `~/.agents/skills/` that it may link to): it uses the old `agents-docs/` layout, and the unscoped `/setup-agentic-repository` runs it instead of the plugin's. The skills in this plugin point at the qualified name for the same reason. It writes everything Matt's setup writes, in the same places, so his skills run unchanged, and adds the Mimas instruction tree on top:
+Run `/talentech-dev:setup-agentic-repository` once per repo. Before the first run, remove any standalone copy of `setup-agentic-repository` (for example `~/.claude/skills/setup-agentic-repository`, or the same folder under `~/.agents/skills/` that it may link to): it uses the old `agents-docs/` layout, and the unscoped `/setup-agentic-repository` runs it instead of the plugin's. The skills in this plugin point at the qualified name for the same reason. It writes everything Matt's setup writes, in the same places, so his skills run unchanged, and adds the Mimas instruction tree on top:
 
 | Path | What it is |
 | --- | --- |

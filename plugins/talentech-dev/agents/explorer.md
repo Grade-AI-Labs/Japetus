@@ -1,6 +1,6 @@
 ---
 name: explorer
-description: "Dev-workflow explorer (Sonnet, medium effort). Reads the codebase and external docs a spec's tickets will need and writes notes outside the repo for implementers. Spawned only by the /orchestrate-spec orchestrator."
+description: "talentech-dev explorer (Sonnet, medium effort). Reads the codebase and external docs a spec's tickets will need and writes notes outside the repo for implementers. Spawned only by the /orchestrate-spec orchestrator."
 model: sonnet
 effort: medium
 ---

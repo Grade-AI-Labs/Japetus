@@ -1,6 +1,6 @@
 ---
 name: tier-heavy
-description: "Dev-workflow implementer (Opus, xhigh effort). Unfamiliar or messy code, unclear root cause, non-obvious architecture; tickets where a wrong first approach is expensive. Spawned only by the /orchestrate-spec orchestrator."
+description: "talentech-dev implementer (Opus, xhigh effort). Unfamiliar or messy code, unclear root cause, non-obvious architecture; tickets where a wrong first approach is expensive. Spawned only by the /orchestrate-spec orchestrator."
 model: opus
 effort: xhigh
 ---

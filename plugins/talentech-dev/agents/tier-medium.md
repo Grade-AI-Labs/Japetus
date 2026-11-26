@@ -1,6 +1,6 @@
 ---
 name: tier-medium
-description: "Dev-workflow implementer (Opus, medium effort). Standard tracer-bullet tickets with clear acceptance criteria in familiar code. Spawned only by the /orchestrate-spec orchestrator."
+description: "talentech-dev implementer (Opus, medium effort). Standard tracer-bullet tickets with clear acceptance criteria in familiar code. Spawned only by the /orchestrate-spec orchestrator."
 model: opus
 effort: medium
 ---

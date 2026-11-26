@@ -23,7 +23,7 @@ Read [references/policy-contract.md](references/policy-contract.md) before writi
 
 ## Phase 1 — Verify prerequisites and locate `<docs-dir>`
 
-This skill runs after `/dev-workflow:setup-agentic-repository`.
+This skill runs after `/talentech-dev:setup-agentic-repository`.
 
 1. Read root `AGENTS.md`.
 2. Discover `<docs-dir>` from the docs paths listed in `AGENTS.md` (typically `docs/agents/`).
@@ -37,7 +37,7 @@ This skill runs after `/dev-workflow:setup-agentic-repository`.
    - `GLOSSARY.md` or `GLOSSARY-MAP.md`
    - `docs/adr/*.md` (and `<context-path>/docs/adr/*.md` in multi-context repos)
 
-If required files are missing, fail fast with actionable remediation: run `/dev-workflow:setup-agentic-repository` first.
+If required files are missing, fail fast with actionable remediation: run `/talentech-dev:setup-agentic-repository` first.
 
 ---
 

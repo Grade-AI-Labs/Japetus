@@ -29,7 +29,7 @@ Example user prompts:
 ## Workflow
 
 1. **Locate target policy file**
-   - Resolve `<docs-dir>` from the docs paths in `AGENTS.md` (typically `docs/agents/`; fallback: the directory holding `AGENT_WORKFLOW.md`). If neither exists, tell the user to run `/dev-workflow:setup-agentic-repository`.
+   - Resolve `<docs-dir>` from the docs paths in `AGENTS.md` (typically `docs/agents/`; fallback: the directory holding `AGENT_WORKFLOW.md`). If neither exists, tell the user to run `/talentech-dev:setup-agentic-repository`.
    - Ask whether the target is `global` or `module` if not explicit.
    - Route to `global-policy.md` for global scope and `module-<slug>.md` for module scope.
    - If file missing, create it from the matching template in the policy contract (`global-policy.md` or `module-<slug>.md`).

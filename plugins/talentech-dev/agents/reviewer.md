@@ -1,6 +1,6 @@
 ---
 name: reviewer
-description: "Dev-workflow reviewer (Opus, high effort). Reviews a diff along one axis, Standards or Spec, as the code-review skill defines them, or one module or cross-cut scope as an agentic-review specialist. Read-only. Spawned by /orchestrate-spec and /agentic-review."
+description: "talentech-dev reviewer (Opus, high effort). Reviews a diff along one axis, Standards or Spec, as the code-review skill defines them, or one module or cross-cut scope as an agentic-review specialist. Read-only. Spawned by /orchestrate-spec and /agentic-review."
 model: opus
 effort: high
 tools: Read, Grep, Glob, Bash

@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# Scaffold verbatim files for the agent instruction tree (dev-workflow layout).
+# Scaffold verbatim files for the agent instruction tree (talentech-dev layout).
 #
 # Creates directories, copies universal template files, composes
 # AGENT_WORKFLOW.md with platform-specific sections, and writes the
-# docs/agents/ files the dev-workflow skills read (issue-tracker.md,
+# docs/agents/ files the talentech-dev skills read (issue-tracker.md,
 # triage-labels.md, domain.md). The LLM only needs to generate
 # project-specific files (AGENTS.md, CODING_STANDARDS.md, ENGINEERING.md,
 # FEATURES.md, and GLOSSARY.md / GLOSSARY-MAP.md when there are terms to record).
@@ -40,7 +40,7 @@ Options:
                       "other" copies nothing: write issue-tracker.md from the user's
                       description instead.
   --docs-dir DIR      Relative path inside the repo for the agent docs root.
-                      Defaults to "docs/agents", where the dev-workflow skills
+                      Defaults to "docs/agents", where the talentech-dev skills
                       look for issue-tracker.md, triage-labels.md and domain.md.
   --help              Show this help message
 

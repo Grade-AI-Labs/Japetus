@@ -1,6 +1,6 @@
 ---
 name: setup-agentic-repository
-description: "Configure this repo for the dev-workflow skills and scaffold its agent instructions: issue tracker, triage labels and domain doc layout (docs/agents/, GLOSSARY.md, docs/adr/), plus AGENTS.md, CODING_STANDARDS.md and the agent docs, all tailored to the repo's stack, git platform and conventions. Run once before first use of the other engineering skills."
+description: "Configure this repo for the talentech-dev skills and scaffold its agent instructions: issue tracker, triage labels and domain doc layout (docs/agents/, GLOSSARY.md, docs/adr/), plus AGENTS.md, CODING_STANDARDS.md and the agent docs, all tailored to the repo's stack, git platform and conventions. Run once before first use of the other engineering skills."
 disable-model-invocation: true
 metadata:
   author: Olof Brogeby
@@ -9,7 +9,7 @@ metadata:
 
 # setup-agentic-repository
 
-You are configuring a repository for the dev-workflow skills and scaffolding the instruction files agents read at the start of every session. This replaces Matt Pocock's `setup-matt-pocock-skills`: it writes everything that skill writes, in the same places, so every other skill in this plugin works unchanged — plus the Mimas instruction tree on top.
+You are configuring a repository for the talentech-dev skills and scaffolding the instruction files agents read at the start of every session. This replaces Matt Pocock's `setup-matt-pocock-skills`: it writes everything that skill writes, in the same places, so every other skill in this plugin works unchanged — plus the Mimas instruction tree on top.
 
 What the repo ends up with:
 

@@ -1,6 +1,6 @@
 ---
 name: tier-careful
-description: "Dev-workflow implementer (Opus, high effort). Well-understood but delicate tickets: wide refactors, invariants to preserve, many edge cases. Spawned only by the /orchestrate-spec orchestrator."
+description: "talentech-dev implementer (Opus, high effort). Well-understood but delicate tickets: wide refactors, invariants to preserve, many edge cases. Spawned only by the /orchestrate-spec orchestrator."
 model: opus
 effort: high
 ---

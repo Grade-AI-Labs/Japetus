@@ -15,8 +15,8 @@ Spec from the user: $ARGUMENTS
 
 ## 0. Preconditions
 
-- The issue tracker should have been provided to you (`docs/agents/issue-tracker.md`). If not, tell the user to run `/dev-workflow:setup-agentic-repository` and stop.
-- The worker agents must exist. The Agent tool lists them as `explorer`, `tier-fable`, `tier-heavy`, `tier-careful`, `tier-medium`, `tier-light`, `merger`, `reviewer`, or with the `dev-workflow:` prefix when installed as a plugin. Use the names exactly as listed. If they are missing, stop and tell the user.
+- The issue tracker should have been provided to you (`docs/agents/issue-tracker.md`). If not, tell the user to run `/talentech-dev:setup-agentic-repository` and stop.
+- The worker agents must exist. The Agent tool lists them as `explorer`, `tier-fable`, `tier-heavy`, `tier-careful`, `tier-medium`, `tier-light`, `merger`, `reviewer`, or with the `talentech-dev:` prefix when installed as a plugin. Use the names exactly as listed. If they are missing, stop and tell the user.
 - A spec reference is required. If none was passed, ask for it.
 
 ## 1. Read and tier (orchestrator only)
@@ -87,8 +87,8 @@ Each accepted merge may grow the frontier: go back to section 4 for the newly un
 
 When every ticket is merged, run the two-axis review over the integration branch with the fixed point at the main branch's merge-base:
 
-- Call the Skill tool with `dev-workflow:code-review` (not the built-in `code-review`), or, to keep the review out of your context, spawn two `reviewer` agents in parallel, one per axis (**Standards** and **Spec**), each given the diff command, the commit list, and its axis brief from the `dev-workflow:code-review` skill.
-- If the repo has review policies (`docs/agents/review/policies/POLICY_INDEX.md`), the **Standards** axis is the `dev-workflow:agentic-review` skill instead: call it with the integration branch as the head ref, the main branch as base, and an output directory outside the repo (`$TMPDIR/<spec-slug>-review/`, next to the explorer notes) so its artifacts never land on the integration branch. It routes the diff to one specialist per module, enforces the policies, and fails closed if a specialist doesn't report. The **Spec** axis stays a `reviewer` agent. Treat an `incomplete` result as a blocker to fix, not a pass.
+- Call the Skill tool with `talentech-dev:code-review` (not the built-in `code-review`), or, to keep the review out of your context, spawn two `reviewer` agents in parallel, one per axis (**Standards** and **Spec**), each given the diff command, the commit list, and its axis brief from the `talentech-dev:code-review` skill.
+- If the repo has review policies (`docs/agents/review/policies/POLICY_INDEX.md`), the **Standards** axis is the `talentech-dev:agentic-review` skill instead: call it with the integration branch as the head ref, the main branch as base, and an output directory outside the repo (`$TMPDIR/<spec-slug>-review/`, next to the explorer notes) so its artifacts never land on the integration branch. It routes the diff to one specialist per module, enforces the policies, and fails closed if a specialist doesn't report. The **Spec** axis stays a `reviewer` agent. Treat an `incomplete` result as a blocker to fix, not a pass.
 
 Triage the findings yourself. Send every finding worth fixing to **one** worker in one brief, tiered by the worst finding. Review that fix as in section 5.
 
@@ -96,4 +96,4 @@ Triage the findings yourself. Send every finding worth fixing to **one** worker 
 
 1. If a draft PR exists, mark it ready for review; the `pr` skill shapes its body. Otherwise report the integration branch.
 2. Remove every worker worktree, and delete each merged worker branch (`git branch -d`).
-3. Report to the user: what landed, what was verified, what was left out and why, and one line on which tiers ran. If `agentic-review` ran, give the path of its result file. Suggest `/dev-workflow:retro` if any ticket needed a return round.
+3. Report to the user: what landed, what was verified, what was left out and why, and one line on which tiers ran. If `agentic-review` ran, give the path of its result file. Suggest `/talentech-dev:retro` if any ticket needed a return round.

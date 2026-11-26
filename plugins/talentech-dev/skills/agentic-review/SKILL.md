@@ -18,7 +18,7 @@ Read [references/review-contract.md](references/review-contract.md) before dispa
 
 ## Phase 1 — Verify prerequisites and discover `<docs-dir>`
 
-This skill assumes `/dev-workflow:setup-agentic-repository` has already been run.
+This skill assumes `/talentech-dev:setup-agentic-repository` has already been run.
 
 1. Read root `AGENTS.md`.
 2. Discover `<docs-dir>` from the docs paths listed there (typically `docs/agents/`, but `--docs-dir` may have overridden this).
@@ -27,7 +27,7 @@ This skill assumes `/dev-workflow:setup-agentic-repository` has already been run
    - `AGENTS.md`
    - `<docs-dir>/AGENT_WORKFLOW.md`
 
-If either is missing, stop and tell the user to run `/dev-workflow:setup-agentic-repository` first. Do not scaffold missing setup files from this skill.
+If either is missing, stop and tell the user to run `/talentech-dev:setup-agentic-repository` first. Do not scaffold missing setup files from this skill.
 
 Also look for `CODING_STANDARDS.md` at the repo root and `<docs-dir>/ENGINEERING.md`. Proceed without them, but record each missing one in `Testing gaps / unverified areas` and in the standards-compliance section of the report. `GLOSSARY.md`/`GLOSSARY-MAP.md` and ADRs (`docs/adr/`, plus `<context-path>/docs/adr/` in multi-context repos) are created lazily; never require them.
 
@@ -218,7 +218,7 @@ Backward compatibility:
 
 ## Phase 5 — Dispatch specialists in parallel
 
-Dispatch specialists in parallel batches of up to 5, each as a `reviewer` agent (`dev-workflow:reviewer` when installed as a plugin): its definition covers specialist work, with this skill's contract taking precedence over its axis rules. If the agent isn't listed, use a general-purpose subagent with the same brief.
+Dispatch specialists in parallel batches of up to 5, each as a `reviewer` agent (`talentech-dev:reviewer` when installed as a plugin): its definition covers specialist work, with this skill's contract taking precedence over its axis rules. If the agent isn't listed, use a general-purpose subagent with the same brief.
 
 For each specialist, provide:
 - its scoped diff artifact

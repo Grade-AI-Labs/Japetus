@@ -1,6 +1,6 @@
 ---
 name: merger
-description: "Dev-workflow merger (Opus, medium effort). Merges one accepted worker branch into the integration branch, resolves conflicts that have one clear resolution, and runs the suite. Spawned only by the /orchestrate-spec orchestrator."
+description: "talentech-dev merger (Opus, medium effort). Merges one accepted worker branch into the integration branch, resolves conflicts that have one clear resolution, and runs the suite. Spawned only by the /orchestrate-spec orchestrator."
 model: opus
 effort: medium
 ---
