@@ -31,15 +31,15 @@
     {
       "name": "talentech-product",
       "source": "./plugins/talentech-product",
-      "description": "Skills for Product Management: grill-prd takes a product idea from raw problem to a developer-ready PRD in two gated stages, on top of talentech-core's grilling.",
-      "version": "0.2.0",
+      "description": "Skills for Product Management: grill-prd takes a product idea from raw problem to a developer-ready PRD in two gated stages, on top of talentech-core's grilling; business-case interviews a PM and writes a comparable business case (case card, case page and, for large initiatives, a management deck).",
+      "version": "0.3.0",
       "category": "skill"
     },
     {
       "name": "talentech-research",
       "source": "./plugins/talentech-research",
       "description": "UX research skills for design and product: research plans, method choice, interview guides, surveys, mixed methods, affinity synthesis, insight extraction, business cases, ethics and share-outs.",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "category": "skill"
     }
   ]

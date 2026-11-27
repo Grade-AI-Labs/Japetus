@@ -1,0 +1,12 @@
+schema_version: "1.1"
+name: large-case-triggers-and-math
+expected_outcome: |
+  A large case (triggers: new pricing, more than one product / shared service; effort about 29 person-weeks
+  which is also over 20) with forum "management team, after steering group review". The 14-field card plus the
+  nine large-case sections. Value at 12 months: base 1,200 x 20% x 60 = 14,400 euro per year, low 7,200, high
+  21,600; at 36 months base 32,400, low 21,600, high 43,200. Build cost about 87,300 euro (29.1 pw x 40 x 75).
+  Value per effort about 0.16. Payback: 12-month base value minus yearly cost (9,000 + 60 x 75 = 13,500) is
+  900 euro per year, so payback is far beyond any horizon and the case says so instead of hiding it. Confidence
+  proposed at 50% (evidence level 2, no customer validation); the PM's 80% is only accepted with a written
+  reason, otherwise 50% stands and the note says so. The response names the weak spots: value far below cost,
+  estimate by PM alone, no customer validation, and asks what would change the price or adoption assumption.

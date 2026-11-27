@@ -1,0 +1,9 @@
+schema_version: "1.1"
+name: small-case-from-swedish-answers
+expected_outcome: |
+  A small case written in English (the PM wrote in Swedish): the 14-field card, open questions and notes,
+  and a comparison row. Tier computed as small (about 1.8 person-weeks, no triggers), forum steering group,
+  primary category retained ARR, value band XS, confidence proposed at 50% from evidence level 2
+  (support tickets and a Productboard vote), build cost about 5,400 euro at 75 euro per hour,
+  value per effort about 2.2 using the band midpoint of 12k, no payback figure (small case), no section
+  beyond the card. The reply to the PM may be in Swedish; the case itself is English.

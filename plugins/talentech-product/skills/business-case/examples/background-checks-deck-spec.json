@@ -1,0 +1,104 @@
+{
+  "title": {
+    "title": "Background checks: approval to build the MVP",
+    "subtitle": "Native, partner-executed background checks in ReachMee for Sweden and Norway, with 2 to 3 partners, live in 6 months.",
+    "byline": "Linus Andersson (product)  ·  Fabian Widén (tech)  ·  13 May 2026"
+  },
+  "propose": {
+    "title": "What we propose and why now",
+    "blocks": [
+      {"head": "What", "body": "A smooth, easy-to-order background-check step where recruiters already manage candidates. Talentech orchestrates and invoices; partners execute the checks and carry compliance and delivery."},
+      {"head": "Why now", "body": "The Swedish Supreme Court ruling (Feb 2025) and the Ju 2025:19 inquiry push buyers to licensed providers. We are losing Refensa deals to Refapp, which already offers checks."},
+      {"head": "What we need", "body": "A go for a 6-month build: about 6 people at partial allocation (82 person-weeks), €246k, two markets, one ATS, 2 to 3 partners. First invoice before year end."}
+    ]
+  },
+  "evidence": {
+    "title": "67% run checks today, only 8% through the ATS",
+    "subtitle": "In-product survey, n=303, April 2026 (bases vary by question). Precedent: Reference Checks won 29 subscription customers in 6 months through sales; self-serve converted under 1%.",
+    "stats": [
+      {"number": "67%", "label": "of surveyed recruiters already run background checks (often or sometimes)"},
+      {"number": "8%", "label": "run them through the recruitment system; 62% do it manually outside the ATS"},
+      {"number": "89%", "label": "are open to ATS-triggered checks (36% yes, 53% maybe); only 11% said no"}
+    ]
+  },
+  "scope": {
+    "title": "What we build first",
+    "mvp": ["Sweden and Norway", "One ATS: ReachMee", "2 to 3 partners (Fortcheck/ToFindOut, Manymore)", "Default packages only", "Status, permissions, consent, validity"],
+    "later": ["Other Nordic markets, all five ATSs, more partners per market", "Flexible packaging, custom checks, billing connection"],
+    "never": ["Own screening operations", "Country registry integrations built by us; one global white-label partner"]
+  },
+  "value": {
+    "title": "Value: €0.37M in year 1, €3.8M by year 3 (base case)",
+    "subtitle": "€ invoiced per year at the 12- and 36-month run-rate, three scenarios",
+    "categories": ["12 months after launch", "36 months after launch"],
+    "low": [0.18, 1.5],
+    "base": [0.37, 3.8],
+    "high": [0.61, 6.1],
+    "unit": "M",
+    "axis_max": 7,
+    "formula_head": "The formula",
+    "formula": ["650,000 recruitments per year", "× 15% using a paid check", "× adoption: 3% at 12 months, 25% at 36 months (base)", "× €125 per check", "= € invoiced per year"],
+    "footnote": "Talentech keeps 40%; the partner's 60% is a yearly cost after launch."
+  },
+  "cost": {
+    "title": "Cost €246k, payback 24 months",
+    "rows": [
+      ["Role", "Share", "Weeks", "pw", "€"],
+      ["Product lead", "40%", "26", "10.4", "31,200"],
+      ["UX / research", "80%", "26", "20.8", "62,400"],
+      ["Dev lead", "20%", "26", "5.2", "15,600"],
+      ["Development FE", "50%", "26", "13.0", "39,000"],
+      ["Development BE", "70%", "26", "18.2", "54,600"],
+      ["Sales enablement, partnerships", "30%", "26", "7.8", "23,400"],
+      ["Marketing", "5%", "26", "1.3", "3,900"],
+      ["Implementation", "20%", "26", "5.2", "15,600"],
+      ["Total build", "", "", "81.9", "245,700"]
+    ],
+    "col_w": [3.0, 0.9, 1.0, 1.0, 1.3],
+    "kpis": [
+      {"number": "€246k", "label": "build cost at €75/h, one loaded rate"},
+      {"number": "€243k / year", "label": "cost after launch at the 12-month run-rate: partner share €220k, licences €4k, maintenance €12k, support €7k"},
+      {"number": "24 months", "label": "payback on the base case (invoiced €366k minus €243k, over 12)"}
+    ],
+    "left_head": "Team",
+    "left": "Linus (product), Fabian (tech lead), Juha (UX), Olof, Kuba, Piotr G (dev), Anna K and Mads (sales enablement), Rafae (sales), Jana (marketing), Martin and Linea (implementation).",
+    "right_head": "Estimate",
+    "right": "PM with tech lead. The original pitch used role-specific rates and showed about 12 months payback; the template's single rate plus maintenance and support gives 24."
+  },
+  "risks": {
+    "title": "Risks, kill criteria and gates",
+    "rows": [
+      ["Type", "Risk", "Kill criterion"],
+      ["Market", "Needs differ by market and role; one package does not sell", "Fewer than 3 of 5 pilots convert to paid by month 8"],
+      ["Legal", "Responsibility for check results unclear per country", "Legal review finds Talentech must act as data controller"],
+      ["Partner", "Revenue share below 30%, or clunky partner UX", "No partner signs at 30%+ by end of pre-discovery"],
+      ["Execution", "Sales treats it as passive self-serve, like Reference Checks", "Fewer than 10 customers in pipeline by month 4"]
+    ],
+    "gate_note": "Pre-discovery gate passed (4 weeks: survey, interviews, partner terms, prototype test).",
+    "milestones": [
+      {"label": "M0", "text": "Build starts", "at": 0.0},
+      {"label": "M2", "text": "Partners signed, sales starts", "at": 0.28},
+      {"label": "M4", "text": "First pilot version", "at": 0.56},
+      {"label": "M6", "text": "MVP live in ReachMee", "at": 0.78},
+      {"label": "M8+", "text": "Gate: expand or stop", "at": 1.0, "gate": true}
+    ]
+  },
+  "decision": {
+    "kicker": "The decision",
+    "ask": "We ask for a go to build the MVP: ReachMee, Sweden and Norway, 2 to 3 partners, 6 months, €246k.",
+    "lines": [
+      "Success metric: € invoiced from background checks at the 12-month run-rate after launch. Target €366k. Review 12 months after launch, owner Linus.",
+      "If no: we keep the discovery findings and the partner terms; we continue losing reference-check deals to vendors that offer checks, and the regulatory window closes on us."
+    ]
+  },
+  "notes": {
+    "title": "The ask in one line: a go to build the MVP with the team on slide 6, six months from start, first invoice before year end. The pre-read holds the full case; this deck repeats its numbers.",
+    "propose": "Three things to land: what it is, why the window is open now, and the size of the ask. Everything else is detail for questions.",
+    "evidence": "Evidence level 3, confidence 70%. The survey is directional (bases vary by question). The precedent in the pre-read: 652 tenants activated, 6 unique PAYG buyers in 2 months, 29 MRR customers in 6 months.",
+    "scope": "The 'probably never' list is what keeps the MVP small. Partners own compliance, local data sources and the manual investigation work; we own the buying moment and the orchestration layer.",
+    "value": "Assumptions and sources: recruitments from our systems (2025); 15% paid-check share from 1 in 10 job ads mentioning a check (DISA, Unionen) and our survey; market growth 11.8% per year (Business Market Insights); adoption from the Reference Checks ramp and the survey (36% yes); price from partner lists; 40% share from preliminary partner agreements. The assumption that kills the case if halved: adoption. At 1.5% in year 1 the value is €0.18M and payback moves past 36 months.",
+    "cost": "Same case, comparable units: one loaded rate for every case, and cost after launch shown next to build cost so a partner model never looks like pure software margin.",
+    "risks": "Prepared objections. (1) Isn't this one more product to maintain? Maintenance is minimal, as with Reference Checks, and one product serves all ATSs. (2) Why not deepen the existing partner integration? Low revenue share, no control of sales, customers dislike the experience. (3) Why build rather than acquire a vendor? We would inherit a low-margin manual-operations P&L; the moat is the orchestration layer in the ATS. (4) What if adoption is a third of the base? The case slows, payback moves past 36 months; the M8 gate exists for that. (5) Open question we could not close: the acquisition-cost assumption (€184 per customer) is a rough estimate.",
+    "decision": "Fallback if the answer is no: the discovery material and partner conversations are kept; the cost of waiting a year is the tender position during the window in which buyers re-select licensed providers, and continued losses to Refapp."
+  }
+}

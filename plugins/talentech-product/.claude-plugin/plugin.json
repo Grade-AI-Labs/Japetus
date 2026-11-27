@@ -1,7 +1,7 @@
 {
   "name": "talentech-product",
-  "version": "0.2.0",
-  "description": "Skills for Product Management: grill-prd takes a product idea from raw problem to a developer-ready PRD in two gated stages, on top of talentech-core's grilling.",
+  "version": "0.3.0",
+  "description": "Skills for Product Management: grill-prd takes a product idea from raw problem to a developer-ready PRD in two gated stages, on top of talentech-core's grilling; business-case interviews a PM and writes a comparable business case (case card, case page and, for large initiatives, a management deck).",
   "author": {
     "name": "Talentech"
   },
@@ -9,7 +9,8 @@
   "keywords": [
     "product",
     "prd",
-    "problem-statement"
+    "problem-statement",
+    "business-case"
   ],
   "dependencies": [
     "talentech-core"
