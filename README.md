@@ -10,7 +10,7 @@ Four plugins are for everyone. IT installs them company-wide:
 | --- | --- | --- |
 | [`talentech-core`](./plugins/talentech-core) | Everyone | The `grilling` interview that the role plugins build on, `/talentech-core:grill-me`, `/talentech-core:to-questionnaire`, and publishing to and pulling from Confluence. |
 | [`talentech-design`](./plugins/talentech-design) | Product Design | Briefs, design readiness, `grill-ux-flow`, FigJam flows, wireframes, handoff pages, UX content and translation. |
-| [`talentech-product`](./plugins/talentech-product) | Product Management | `grill-prd`: from a raw problem to a developer-ready PRD. |
+| [`talentech-product`](./plugins/talentech-product) | Product Management | `grill-prd`: from a raw problem to a developer-ready PRD. `business-case`: a comparable business case for a feature or initiative, with a management deck for large ones. |
 | [`talentech-research`](./plugins/talentech-research) | UX research | Plans, methods, interview guides, surveys, synthesis, ethics and share-outs. |
 
 One plugin is for developers, and you opt in to it yourself:
@@ -43,6 +43,7 @@ Installing a plugin also installs the plugins it depends on: `talentech-design`,
 
 ### November 2026
 
+- **`/talentech-product:business-case` is new.** It interviews a PM and writes a comparable business case for a feature or initiative: a case card, a case page under **Business cases** in Confluence, and for large initiatives an 8-slide management deck. `talentech-research:business-case` stays, for business cases for user research.
 - **`dev-workflow` is renamed to `talentech-dev`**, to match the other `talentech-*` plugins, and starts again at version 1.0.0. There is no alias under the old name: `/dev-workflow:to-spec` is now `/talentech-dev:to-spec`, the agents are `talentech-dev:tier-medium` and so on. **`dev-progress` is removed**: the progress bar and agents panel are gone, and the agents and `/orchestrate-spec` no longer report to it. Uninstall both old plugins and install the new one:
 
   ```
