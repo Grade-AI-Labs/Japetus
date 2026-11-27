@@ -53,9 +53,12 @@ def base_value(value):
 
 def compute(a):
     effort = a.get("effort", {})
-    total_pw = round(sum(effort.values()), 1)
-    build_cost = round(total_pw * HOURS_PER_WEEK * HOURLY_RATE_EUR)
-    tier, tier_reason = tier_of(total_pw, a.get("triggers", []))
+    # Classify and cost on the exact total (rounded only past float noise), so 20.04 pw stays large;
+    # round to one decimal only for display.
+    exact_pw = round(sum(effort.values()), 6)
+    total_pw = round(exact_pw, 1)
+    build_cost = round(exact_pw * HOURS_PER_WEEK * HOURLY_RATE_EUR)
+    tier, tier_reason = tier_of(exact_pw, a.get("triggers", []))
 
     v12, v12_note = base_value(a["value_12m"])
     yearly_cost = a.get("yearly_cost_after_launch", 0) or 0
