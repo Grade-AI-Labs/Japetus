@@ -1,6 +1,6 @@
 ---
 name: business-case
-description: Interview a product manager and write a comparable business case (case card, one-page case, and for large initiatives an 8-slide management deck) for a feature or initiative at Talentech. Use this whenever a PM wants to pitch, prioritise, size, or get approval for a feature, initiative, shared service, integration, or product idea; when someone mentions a business case, case card, prioritisation, value vs effort, the steering group, or the management team; when a PM asks "is this worth building" or "how do I get this on the roadmap"; and when comparing two initiatives against each other, even if the word "business case" is never used.
+description: Interview a product manager and write a comparable business case (case card, one-page case, and for large initiatives an 8-slide management deck) for a feature or initiative at Talentech. Use this whenever a PM wants to pitch, prioritise, size, or get approval for a feature, initiative, shared service, integration, or product idea; when someone mentions a business case, case card, prioritisation, value vs effort, the steering group, or the management team; when a PM asks "is this worth building" or "how do I get this on the roadmap"; and when comparing two initiatives against each other, even if the word "business case" is never used. Do NOT use for a business case for user research (a study, research tools, incentives or research headcount); that is talentech-research:business-case.
 ---
 
 # Business case for a product initiative
